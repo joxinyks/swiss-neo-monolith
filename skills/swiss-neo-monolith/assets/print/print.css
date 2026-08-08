@@ -1,0 +1,143 @@
+/*
+ * Swiss Neo-Monolith — paged media stylesheet.
+ * Works with WeasyPrint, Paged.js and Chromium's print pipeline.
+ * Import tokens.css before this file.
+ *
+ * Print has its own scale: screen px do NOT carry over. See 12-print.md.
+ */
+
+@page {
+  size: A4;
+  margin: 18mm 18mm 22mm;
+
+  @top-left {
+    content: string(snm-section);
+    font: 700 7.5pt 'JetBrains Mono', monospace;
+    letter-spacing: 0.08em;
+    color: #4b5563;
+  }
+  @top-right {
+    content: 'REV ' string(snm-rev);
+    font: 700 7.5pt 'JetBrains Mono', monospace;
+    color: #4b5563;
+  }
+  @bottom-left {
+    content: string(snm-identity) ' · ' string(snm-date);
+    font: 400 7.5pt 'JetBrains Mono', monospace;
+    color: #4b5563;
+  }
+  @bottom-right {
+    content: counter(page, decimal-leading-zero) ' / '
+             counter(pages, decimal-leading-zero);
+    font: 700 7.5pt 'JetBrains Mono', monospace;
+    font-variant-numeric: tabular-nums;
+    color: #121316;
+  }
+}
+
+/* Cover page carries no running heads. */
+@page :first {
+  @top-left { content: none }
+  @top-right { content: none }
+}
+
+/* Strings are set from hidden metadata elements at the top of the document:
+   <span class="snm-meta" data-k="identity">OKAN ÖZTÜRK</span> etc. */
+.snm-meta[data-k='identity'] { string-set: snm-identity content(); }
+.snm-meta[data-k='date']     { string-set: snm-date content(); }
+.snm-meta[data-k='rev']      { string-set: snm-rev content(); }
+.snm-meta { display: none; }
+
+html { font-family: 'Inter', sans-serif; }
+
+body {
+  font-size: 10pt;
+  line-height: 14pt;      /* baseline unit — all vertical rhythm is a multiple */
+  color: #000;            /* K100, never rich black, for body text */
+  background: #fff;
+  text-align: left;       /* SNM: never justified */
+  hyphens: none;
+}
+
+/* Vertical rhythm: every block spacing is a multiple of the 14pt baseline. */
+p, ul, ol, table, figure { margin: 0 0 14pt; }
+
+h1 { font-size: 24pt; line-height: 28pt; font-weight: 700; margin: 28pt 0 14pt;
+     letter-spacing: -0.03em; }
+h2 { font-size: 16pt; line-height: 21pt; font-weight: 700; margin: 28pt 0 7pt;
+     letter-spacing: -0.02em; string-set: snm-section content(); }
+h3 { font-size: 12pt; line-height: 14pt; font-weight: 700; margin: 14pt 0 7pt; }
+
+h1, h2, h3 { break-after: avoid-page; }
+p { orphans: 3; widows: 3; }
+table, figure, .snm-card, .snm-kpi { break-inside: avoid; }
+
+/* SNM-CANON-02 — CAD section index */
+.snm-index {
+  font: 700 7.5pt 'JetBrains Mono', monospace;
+  letter-spacing: 0.08em;
+  text-transform: none;   /* written uppercase at source — see 02-typography.md */
+  color: #4b5563;
+  display: block;
+  margin-bottom: 4pt;
+}
+.snm-index .n { color: #047857; }   /* mint-700: the only print-text mint */
+
+/* SNM-CANON-06 — 40/60 asymmetric split */
+.snm-split {
+  display: grid;
+  grid-template-columns: 40fr 60fr;
+  column-gap: 8mm;
+}
+
+/* Structure is drawn with rules, never shadows (SNM-CANON-04). */
+.snm-rule        { border: 0; border-top: 0.5pt solid rgba(18,19,22,.35); margin: 7pt 0; }
+.snm-rule--heavy { border-top: 2pt solid #121316; }
+
+.snm-card {
+  border: 1pt solid #121316;
+  padding: 7pt 9pt;
+  /* no box-shadow: elevation becomes a rule in print */
+}
+
+/* Data is monospace and tabular everywhere. */
+.snm-data, table { font-family: 'JetBrains Mono', monospace; font-variant-numeric: tabular-nums; }
+
+table { width: 100%; border-collapse: collapse; font-size: 9pt; line-height: 12pt; }
+thead th {
+  font: 700 7.5pt 'JetBrains Mono', monospace;
+  letter-spacing: 0.08em;
+  text-align: left;
+  color: #4b5563;
+  border-bottom: 1pt solid #121316;
+  padding: 4pt 0;
+}
+tbody td { border-bottom: 0.5pt solid rgba(18,19,22,.25); padding: 5pt 0; }
+td.num, th.num { text-align: right; }
+tfoot td { border-top: 2pt solid #121316; font-weight: 700; padding-top: 5pt; }
+thead { display: table-header-group; }   /* repeat header across pages */
+
+/* Links stay clickable in the PDF but print their target for paper. */
+a { color: #047857; text-decoration: none; border-bottom: 0.5pt solid #047857; }
+a[href^='http']::after {
+  content: '  ' attr(href);
+  font: 400 7pt 'JetBrains Mono', monospace;
+  color: #4b5563;
+  border: 0;
+}
+
+/* Cover: the one place centring is allowed — and even then, only the block. */
+.snm-cover {
+  background: #121316;
+  color: #f2f4f3;
+  height: 100%;
+  padding: 18mm;
+  break-after: page;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+.snm-cover h1 { font-size: 48pt; line-height: 46pt; font-weight: 800; color: #f2f4f3; }
+.snm-cover .snm-index { color: #6ee7b7; }
+
+/* Nothing interactive or decorative survives into print. */
+nav, .snm-no-print, button, video, iframe { display: none !important; }

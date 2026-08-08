@@ -1,0 +1,16 @@
+{
+  "name": "swiss-neo-monolith",
+  "version": "1.0.0",
+  "description": "Okan Öztürk's signature cross-medium design system — web, apps, print, office, terminal.",
+  "type": "module",
+  "private": true,
+  "license": "MIT",
+  "author": "Okan Öztürk (https://joxinyks.com)",
+  "scripts": {
+    "build": "node skills/swiss-neo-monolith/scripts/build-tokens.mjs",
+    "check": "node skills/swiss-neo-monolith/scripts/check-contrast.mjs",
+    "verify": "npm run build && npm run check",
+    "install:skill": "node -e \"process.exit(0)\" && echo Use ./install.ps1 (Windows) or ./install.sh (POSIX)"
+  },
+  "engines": { "node": ">=18" }
+}

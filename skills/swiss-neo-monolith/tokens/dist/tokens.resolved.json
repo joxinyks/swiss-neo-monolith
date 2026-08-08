@@ -1,0 +1,482 @@
+{
+  "$meta": {
+    "system": "Swiss Neo-Monolith",
+    "code": "SNM",
+    "version": "1.0.0",
+    "author": "Okan Ozturk",
+    "canvasBase": 4,
+    "generated": true
+  },
+  "tokens": {
+    "color-bone-50": {
+      "light": "#ffffff",
+      "dark": "#ffffff"
+    },
+    "color-bone-100": {
+      "light": "#f8f9f9",
+      "dark": "#f8f9f9"
+    },
+    "color-bone-200": {
+      "light": "#f2f4f3",
+      "dark": "#f2f4f3"
+    },
+    "color-bone-300": {
+      "light": "#e6e9e8",
+      "dark": "#e6e9e8"
+    },
+    "color-bone-400": {
+      "light": "#d4d8d7",
+      "dark": "#d4d8d7"
+    },
+    "color-obsidian-600": {
+      "light": "#3a3e46",
+      "dark": "#3a3e46"
+    },
+    "color-obsidian-700": {
+      "light": "#2a2d33",
+      "dark": "#2a2d33"
+    },
+    "color-obsidian-800": {
+      "light": "#1c1e22",
+      "dark": "#1c1e22"
+    },
+    "color-obsidian-900": {
+      "light": "#121316",
+      "dark": "#121316"
+    },
+    "color-mint-300": {
+      "light": "#6ee7b7",
+      "dark": "#6ee7b7"
+    },
+    "color-mint-500": {
+      "light": "#10b981",
+      "dark": "#10b981"
+    },
+    "color-mint-600": {
+      "light": "#059669",
+      "dark": "#059669"
+    },
+    "color-mint-700": {
+      "light": "#047857",
+      "dark": "#047857"
+    },
+    "color-mint-800": {
+      "light": "#065f46",
+      "dark": "#065f46"
+    },
+    "color-steel-200": {
+      "light": "#d1d5d3",
+      "dark": "#d1d5d3"
+    },
+    "color-steel-400": {
+      "light": "#9ca3af",
+      "dark": "#9ca3af"
+    },
+    "color-steel-500": {
+      "light": "#6b7280",
+      "dark": "#6b7280"
+    },
+    "color-steel-600": {
+      "light": "#4b5563",
+      "dark": "#4b5563"
+    },
+    "color-steel-700": {
+      "light": "#374151",
+      "dark": "#374151"
+    },
+    "color-signal-danger": {
+      "light": "#b91c1c",
+      "dark": "#b91c1c"
+    },
+    "color-signal-dangerDark": {
+      "light": "#f87171",
+      "dark": "#f87171"
+    },
+    "color-signal-warn": {
+      "light": "#92400e",
+      "dark": "#92400e"
+    },
+    "color-signal-warnDark": {
+      "light": "#fbbf24",
+      "dark": "#fbbf24"
+    },
+    "color-signal-info": {
+      "light": "#1d4ed8",
+      "dark": "#1d4ed8"
+    },
+    "color-signal-infoDark": {
+      "light": "#93c5fd",
+      "dark": "#93c5fd"
+    },
+    "bg": {
+      "light": "#f2f4f3",
+      "dark": "#121316"
+    },
+    "bg-raised": {
+      "light": "#ffffff",
+      "dark": "#1c1e22"
+    },
+    "bg-sunken": {
+      "light": "#e6e9e8",
+      "dark": "#121316"
+    },
+    "bg-inverse": {
+      "light": "#121316",
+      "dark": "#f2f4f3"
+    },
+    "text": {
+      "light": "#121316",
+      "dark": "#f2f4f3"
+    },
+    "text-muted": {
+      "light": "#4b5563",
+      "dark": "#9ca3af"
+    },
+    "text-inverse": {
+      "light": "#ffffff",
+      "dark": "#121316"
+    },
+    "text-accent": {
+      "light": "#047857",
+      "dark": "#6ee7b7"
+    },
+    "accent": {
+      "light": "#10b981",
+      "dark": "#10b981"
+    },
+    "accent-ui": {
+      "light": "#059669",
+      "dark": "#10b981"
+    },
+    "accent-press": {
+      "light": "#059669",
+      "dark": "#059669"
+    },
+    "border": {
+      "light": "rgba(18,19,22,0.15)",
+      "dark": "rgba(242,244,243,0.15)"
+    },
+    "border-strong": {
+      "light": "#121316",
+      "dark": "#f2f4f3"
+    },
+    "focus": {
+      "light": "#047857",
+      "dark": "#6ee7b7"
+    },
+    "overlay": {
+      "light": "rgba(18,19,22,0.60)",
+      "dark": "rgba(0,0,0,0.72)"
+    },
+    "danger": {
+      "light": "#b91c1c",
+      "dark": "#f87171"
+    },
+    "warn": {
+      "light": "#92400e",
+      "dark": "#fbbf24"
+    },
+    "info": {
+      "light": "#1d4ed8",
+      "dark": "#93c5fd"
+    },
+    "space-0": {
+      "light": "0px",
+      "dark": "0px"
+    },
+    "space-1": {
+      "light": "4px",
+      "dark": "4px"
+    },
+    "space-2": {
+      "light": "8px",
+      "dark": "8px"
+    },
+    "space-3": {
+      "light": "12px",
+      "dark": "12px"
+    },
+    "space-4": {
+      "light": "16px",
+      "dark": "16px"
+    },
+    "space-5": {
+      "light": "24px",
+      "dark": "24px"
+    },
+    "space-6": {
+      "light": "32px",
+      "dark": "32px"
+    },
+    "space-7": {
+      "light": "48px",
+      "dark": "48px"
+    },
+    "space-8": {
+      "light": "64px",
+      "dark": "64px"
+    },
+    "space-9": {
+      "light": "96px",
+      "dark": "96px"
+    },
+    "space-10": {
+      "light": "128px",
+      "dark": "128px"
+    },
+    "radius": {
+      "light": "0px",
+      "dark": "0px"
+    },
+    "border-hair": {
+      "light": "1px",
+      "dark": "1px"
+    },
+    "border-struct": {
+      "light": "2px",
+      "dark": "2px"
+    },
+    "border-heavy": {
+      "light": "3px",
+      "dark": "3px"
+    },
+    "touch-min": {
+      "light": "44px",
+      "dark": "44px"
+    },
+    "header-h": {
+      "light": "68px",
+      "dark": "68px"
+    },
+    "header-hlg": {
+      "light": "80px",
+      "dark": "80px"
+    },
+    "content-max": {
+      "light": "1440px",
+      "dark": "1440px"
+    },
+    "prose-max": {
+      "light": "68ch",
+      "dark": "68ch"
+    },
+    "font-sans": {
+      "light": "Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif",
+      "dark": "Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+    },
+    "font-mono": {
+      "light": "'JetBrains Mono', ui-monospace, SFMono-Regular, 'Cascadia Mono', Consolas, monospace",
+      "dark": "'JetBrains Mono', ui-monospace, SFMono-Regular, 'Cascadia Mono', Consolas, monospace"
+    },
+    "text-micro": {
+      "light": "11px",
+      "dark": "11px"
+    },
+    "leading-micro": {
+      "light": "14px",
+      "dark": "14px"
+    },
+    "tracking-micro": {
+      "light": "0.08em",
+      "dark": "0.08em"
+    },
+    "text-xs": {
+      "light": "12px",
+      "dark": "12px"
+    },
+    "leading-xs": {
+      "light": "16px",
+      "dark": "16px"
+    },
+    "tracking-xs": {
+      "light": "0.04em",
+      "dark": "0.04em"
+    },
+    "text-sm": {
+      "light": "14px",
+      "dark": "14px"
+    },
+    "leading-sm": {
+      "light": "20px",
+      "dark": "20px"
+    },
+    "tracking-sm": {
+      "light": "0em",
+      "dark": "0em"
+    },
+    "text-base": {
+      "light": "16px",
+      "dark": "16px"
+    },
+    "leading-base": {
+      "light": "26px",
+      "dark": "26px"
+    },
+    "tracking-base": {
+      "light": "0em",
+      "dark": "0em"
+    },
+    "text-lg": {
+      "light": "18px",
+      "dark": "18px"
+    },
+    "leading-lg": {
+      "light": "28px",
+      "dark": "28px"
+    },
+    "tracking-lg": {
+      "light": "-0.01em",
+      "dark": "-0.01em"
+    },
+    "text-xl": {
+      "light": "24px",
+      "dark": "24px"
+    },
+    "leading-xl": {
+      "light": "30px",
+      "dark": "30px"
+    },
+    "tracking-xl": {
+      "light": "-0.02em",
+      "dark": "-0.02em"
+    },
+    "text-2xl": {
+      "light": "32px",
+      "dark": "32px"
+    },
+    "leading-2xl": {
+      "light": "36px",
+      "dark": "36px"
+    },
+    "tracking-2xl": {
+      "light": "-0.025em",
+      "dark": "-0.025em"
+    },
+    "text-3xl": {
+      "light": "40px",
+      "dark": "40px"
+    },
+    "leading-3xl": {
+      "light": "44px",
+      "dark": "44px"
+    },
+    "tracking-3xl": {
+      "light": "-0.03em",
+      "dark": "-0.03em"
+    },
+    "text-4xl": {
+      "light": "56px",
+      "dark": "56px"
+    },
+    "leading-4xl": {
+      "light": "56px",
+      "dark": "56px"
+    },
+    "tracking-4xl": {
+      "light": "-0.035em",
+      "dark": "-0.035em"
+    },
+    "text-5xl": {
+      "light": "72px",
+      "dark": "72px"
+    },
+    "leading-5xl": {
+      "light": "70px",
+      "dark": "70px"
+    },
+    "tracking-5xl": {
+      "light": "-0.04em",
+      "dark": "-0.04em"
+    },
+    "weight-regular": {
+      "light": "400",
+      "dark": "400"
+    },
+    "weight-medium": {
+      "light": "500",
+      "dark": "500"
+    },
+    "weight-bold": {
+      "light": "700",
+      "dark": "700"
+    },
+    "weight-extrabold": {
+      "light": "800",
+      "dark": "800"
+    },
+    "duration-instant": {
+      "light": "0ms",
+      "dark": "0ms"
+    },
+    "duration-fast": {
+      "light": "120ms",
+      "dark": "120ms"
+    },
+    "duration-base": {
+      "light": "180ms",
+      "dark": "180ms"
+    },
+    "duration-slow": {
+      "light": "320ms",
+      "dark": "320ms"
+    },
+    "ease-mech": {
+      "light": "cubic-bezier(0.2, 0, 0, 1)",
+      "dark": "cubic-bezier(0.2, 0, 0, 1)"
+    },
+    "ease-out": {
+      "light": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "dark": "cubic-bezier(0.16, 1, 0.3, 1)"
+    },
+    "ease-step": {
+      "light": "steps(4, end)",
+      "dark": "steps(4, end)"
+    },
+    "elevation-0": {
+      "light": "none",
+      "dark": "none"
+    },
+    "elevation-1": {
+      "light": "2px 2px 0 0 #121316",
+      "dark": "2px 2px 0 0 #121316"
+    },
+    "elevation-2": {
+      "light": "4px 4px 0 0 #121316",
+      "dark": "4px 4px 0 0 #121316"
+    },
+    "elevation-3": {
+      "light": "8px 8px 0 0 #121316",
+      "dark": "8px 8px 0 0 #121316"
+    }
+  },
+  "print": {
+    "$description": "Approximate CMYK conversions (naive, no ICC profile). VERIFY against a physical guide before any production print run.",
+    "mint500": {
+      "cmyk": "91 0 30 27",
+      "pantoneApprox": "3395 C"
+    },
+    "obsidian900": {
+      "cmyk": "75 65 60 90",
+      "$description": "Rich black for large fills. Use K100 alone for body text."
+    },
+    "bone200": {
+      "cmyk": "3 1 2 0",
+      "$description": "Prefer uncoated natural stock over printing a flood tint."
+    },
+    "steel600": {
+      "cmyk": "70 58 45 25"
+    },
+    "pageMargin": {
+      "$value": "18mm"
+    },
+    "baselineGrid": {
+      "$value": "4mm"
+    },
+    "bodySize": {
+      "$value": "10pt"
+    },
+    "bodyLeading": {
+      "$value": "14pt"
+    }
+  }
+}

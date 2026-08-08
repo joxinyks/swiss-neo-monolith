@@ -1,0 +1,9 @@
+node_modules/
+.DS_Store
+Thumbs.db
+*.log
+.env
+.env.*
+
+# tokens/dist IS committed on purpose: consumers pull this repo and use the
+# bindings directly without needing Node. Regenerate with build-tokens.mjs.

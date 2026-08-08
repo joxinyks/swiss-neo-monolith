@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+  Swiss Neo-Monolith — Office theme colour and font scheme.
+
+  This is the <a:themeElements> fragment of an OOXML theme. Two ways to use it:
+
+  A) Manual (fastest): in PowerPoint/Word, Design > Colors > Customize Colors,
+     and enter the hex values below into the matching slots. Save as
+     "Swiss Neo-Monolith". Repeat for Fonts (Inter headings, Inter body).
+
+  B) Packaged: unzip a .thmx (or .pptx), replace theme/theme1.xml's
+     <a:themeElements> colour and font schemes with the ones here, rezip.
+
+  Slot mapping (Office name -> SNM role):
+    dk1  text/background dark 1   -> obsidian 900   #121316
+    lt1  text/background light 1  -> bone 200       #f2f4f3
+    dk2  text/background dark 2   -> steel 600      #4b5563
+    lt2  text/background light 2  -> paper          #ffffff
+    accent1  mint 500   #10b981   accent2  mint 700   #047857
+    accent3  steel 600  #4b5563   accent4  steel 400  #9ca3af
+    accent5  danger     #b91c1c   accent6  warn       #92400e
+    hlink    mint 700   #047857   folHlink mint 800   #065f46
+
+  accent5/6 are state colours, not decoration — do not use them for chart series
+  unless the series genuinely means "bad" or "warning". Chart series order is
+  defined in references/15-data-viz.md.
+-->
+<a:themeElements xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main">
+  <a:clrScheme name="Swiss Neo-Monolith">
+    <a:dk1><a:srgbClr val="121316"/></a:dk1>
+    <a:lt1><a:srgbClr val="F2F4F3"/></a:lt1>
+    <a:dk2><a:srgbClr val="4B5563"/></a:dk2>
+    <a:lt2><a:srgbClr val="FFFFFF"/></a:lt2>
+    <a:accent1><a:srgbClr val="10B981"/></a:accent1>
+    <a:accent2><a:srgbClr val="047857"/></a:accent2>
+    <a:accent3><a:srgbClr val="4B5563"/></a:accent3>
+    <a:accent4><a:srgbClr val="9CA3AF"/></a:accent4>
+    <a:accent5><a:srgbClr val="B91C1C"/></a:accent5>
+    <a:accent6><a:srgbClr val="92400E"/></a:accent6>
+    <a:hlink><a:srgbClr val="047857"/></a:hlink>
+    <a:folHlink><a:srgbClr val="065F46"/></a:folHlink>
+  </a:clrScheme>
+
+  <a:fontScheme name="Swiss Neo-Monolith">
+    <a:majorFont>
+      <a:latin typeface="Inter"/>
+      <a:ea typeface=""/>
+      <a:cs typeface=""/>
+    </a:majorFont>
+    <a:minorFont>
+      <a:latin typeface="Inter"/>
+      <a:ea typeface=""/>
+      <a:cs typeface=""/>
+    </a:minorFont>
+  </a:fontScheme>
+
+  <!--
+    JetBrains Mono is NOT the theme font: Office themes carry only a heading and
+    a body face. Mono is applied through the character styles "SNM Label" and
+    "SNM Data" (see references/13-office.md), which is correct — mono is a role,
+    not a default.
+
+    Flat look: effect scheme is deliberately empty of shadows (SNM-CANON-04).
+    Shape defaults must set line width 2pt (structural) or 1pt (hairline),
+    fill solid, and NO preset shadow or bevel.
+  -->
+  <a:fmtScheme name="Swiss Neo-Monolith">
+    <a:fillStyleLst>
+      <a:solidFill><a:schemeClr val="phClr"/></a:solidFill>
+      <a:solidFill><a:schemeClr val="phClr"/></a:solidFill>
+      <a:solidFill><a:schemeClr val="phClr"/></a:solidFill>
+    </a:fillStyleLst>
+    <a:lnStyleLst>
+      <a:ln w="12700" cap="flat" cmpd="sng" algn="ctr">
+        <a:solidFill><a:schemeClr val="phClr"/></a:solidFill>
+        <a:prstDash val="solid"/><a:miter lim="800000"/>
+      </a:ln>
+      <a:ln w="25400" cap="flat" cmpd="sng" algn="ctr">
+        <a:solidFill><a:schemeClr val="phClr"/></a:solidFill>
+        <a:prstDash val="solid"/><a:miter lim="800000"/>
+      </a:ln>
+      <a:ln w="38100" cap="flat" cmpd="sng" algn="ctr">
+        <a:solidFill><a:schemeClr val="phClr"/></a:solidFill>
+        <a:prstDash val="solid"/><a:miter lim="800000"/>
+      </a:ln>
+    </a:lnStyleLst>
+    <a:effectStyleLst>
+      <a:effectStyle><a:effectLst/></a:effectStyle>
+      <a:effectStyle><a:effectLst/></a:effectStyle>
+      <a:effectStyle><a:effectLst/></a:effectStyle>
+    </a:effectStyleLst>
+    <a:bgFillStyleLst>
+      <a:solidFill><a:schemeClr val="phClr"/></a:solidFill>
+      <a:solidFill><a:schemeClr val="phClr"/></a:solidFill>
+      <a:solidFill><a:schemeClr val="phClr"/></a:solidFill>
+    </a:bgFillStyleLst>
+  </a:fmtScheme>
+</a:themeElements>
