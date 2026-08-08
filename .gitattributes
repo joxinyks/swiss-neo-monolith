@@ -1,0 +1,13 @@
+* text=auto eol=lf
+
+# CRLF here would make the script unrunnable on macOS/Linux
+# ("bad interpreter: /usr/bin/env bash^M").
+*.sh text eol=lf
+
+# PowerShell is fine either way, but keep it native on Windows.
+*.ps1 text eol=crlf
+
+*.png binary
+*.jpg binary
+*.woff2 binary
+*.thmx binary
