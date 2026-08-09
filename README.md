@@ -1,12 +1,23 @@
-# 00 // SWISS NEO-MONOLITH
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset=".github/banner-dark.svg">
+  <img alt="Swiss Neo-Monolith — çok mecralı tasarım sistemi" src=".github/banner-light.svg">
+</picture>
 
-Okan Öztürk'ün imza tasarım sistemi. Web, uygulama, PDF, sunum, doküman, terminal,
-grafik ve marka varlıkları — hepsi tek bir dilden.
+![sürüm](https://img.shields.io/badge/REV-1.0.1-10b981?style=flat-square&labelColor=121316)
+![kontrast](https://img.shields.io/badge/WCAG-34%2F34%20PASS-10b981?style=flat-square&labelColor=121316)
+![mecra](https://img.shields.io/badge/MECRA-7-4b5563?style=flat-square&labelColor=121316)
+![lisans](https://img.shields.io/badge/LICENSE-MIT-4b5563?style=flat-square&labelColor=121316)
 
-Bu repo aynı anda iki şeydir:
+Tek bir tasarım dili; web arayüzünden basılı teklife, masaüstü uygulamasından
+terminal çıktısına kadar. Bir bileşen, bir kapak sayfası ve bir komut satırı
+raporu aynı elden çıkmış görünür.
 
-1. **Bir tasarım sistemi** — token'lar, kurallar, referans uygulamalar.
-2. **Bir Claude skill'i** — kurduğun her makinede Claude bu sistemi otomatik uygular.
+Bu depo iki işlevi birlikte görür:
+
+| | |
+|---|---|
+| **Tasarım sistemi** | Token'lar, kurallar, referans uygulamalar ve denetim araçları. |
+| **Claude skill'i** | Kurulu olduğu makinede Claude bu sistemi kendiliğinden uygular. |
 
 ---
 
@@ -18,157 +29,202 @@ cd swiss-neo-monolith
 ```
 
 **Windows**
+
 ```powershell
 .\install.ps1
 ```
 
-**macOS / Linux**
+**macOS · Linux**
+
 ```bash
 chmod +x install.sh && ./install.sh
 ```
 
-Kurulum `skills/swiss-neo-monolith` klasörünü `~/.claude/skills/` altına kopyalar.
-Claude'u yeniden başlat; skill her projede otomatik devreye girer.
+Betik `skills/swiss-neo-monolith` dizinini `~/.claude/skills/` altına yerleştirir,
+token'ları derler ve kontrast denetimini çalıştırır. Claude yeniden başlatıldığında
+skill her projede etkindir.
 
-**Geliştirme makinende** (sistemi düzenlediğin makine) kopya yerine bağlantı kur —
-düzenlemeler anında geçerli olur:
+### Geliştirme makinesi
+
+Sistemin kendisini düzenlediğin makinede kopya yerine bağlantı kur; değişiklikler
+yeniden kurulum gerektirmeden geçerli olur.
 
 ```powershell
-.\install.ps1 -Link      # Windows (junction)
-```
-```bash
-./install.sh --link      # macOS / Linux (symlink)
+.\install.ps1 -Link
 ```
 
-### Güncelleme (diğer 3 makine)
+```bash
+./install.sh --link
+```
+
+### Güncelleme
 
 ```bash
-git pull && ./install.ps1 -Force
+git pull && .\install.ps1 -Force
 ```
 
 ### Doğrulama
 
 ```bash
-node skills/swiss-neo-monolith/scripts/check-contrast.mjs
+npm run verify
 ```
 
-`PASS` görmüyorsan kurulum eksiktir.
+`PASS` dönmüyorsa kurulum eksik veya bozuktur.
 
 ---
 
-## 02 // YAPI
+## 02 // KANON
 
-```
-swiss-neo-monolith/
-├─ install.ps1 / install.sh        4 makineye kurulum
-└─ skills/swiss-neo-monolith/      ← kurulan birim (kendine yeterli)
-   ├─ SKILL.md                     kanon + yönlendirme
-   ├─ references/
-   │  ├─ 01-foundations.md         renk · aralık · kontur · yükseklik
-   │  ├─ 02-typography.md          ölçek · aile · Türkçe büyük harf
-   │  ├─ 03-motion-sound.md        geçiş · mekanik ses · imleç
-   │  ├─ 04-voice.md               ton · tarih/sayı formatı · etiket sözlüğü
-   │  ├─ 10-web.md                 React · Tailwind · komponent kataloğu
-   │  ├─ 11-app.md                 masaüstü · mobil · yoğunluk · platform
-   │  ├─ 12-print.md               PDF · baskı · sayfa ızgarası · CMYK
-   │  ├─ 13-office.md              PPTX · DOCX · XLSX
-   │  ├─ 14-terminal.md            CLI · TUI · log
-   │  ├─ 15-data-viz.md            grafik · dashboard · KPI
-   │  ├─ 16-brand-assets.md        logo · ikon · favicon · OG · e-posta
-   │  └─ 99-checklist.md           teslim denetimi
-   ├─ tokens/
-   │  ├─ tokens.json               ← TEK GERÇEK KAYNAK (elle düzenlenen tek dosya)
-   │  └─ dist/                     ← ÜRETİLEN (elle düzenleme)
-   │     ├─ tokens.css             CSS custom properties + tema
-   │     ├─ tokens.scss
-   │     ├─ tokens.ts              tip güvenli erişim + literal değerler
-   │     ├─ tailwind.preset.cjs    palette dışını derlemede yakalar
-   │     ├─ tokens.py              ReportLab · WeasyPrint · matplotlib
-   │     ├─ tokens.dart            Flutter
-   │     └─ tokens.resolved.json   platformdan bağımsız (e-posta, Office, native)
-   ├─ assets/
-   │  ├─ web/    FooterGlobal.tsx · useMechanicalClick.ts · eslint-snm.cjs
-   │  ├─ print/  print.css (CSS Paged Media)
-   │  └─ office/ snm-theme-colors.xml
-   └─ scripts/
-      ├─ build-tokens.mjs          tokens.json → dist/
-      └─ check-contrast.mjs        WCAG kapısı (CI'da çalıştırılabilir)
-```
+Altı değişmez, mecradan bağımsızdır. Bir çıktının bu sisteme ait olup olmadığı
+bunlarla belirlenir.
 
----
-
-## 03 // KANON
-
-Mecradan bağımsız 6 değişmez. Bir çıktının SNM olup olmadığı bunlarla anlaşılır.
-
-| | |
+| Kod | Kural |
 |---|---|
-| **C01** | Sıfır yarıçap — her yerde |
-| **C02** | CAD indeksleme — `01 // SECTION` |
-| **C03** | Tek kromatik aksan — mint, alanın ≤%10'u |
-| **C04** | Yapı çizgiyle kurulur, gölgeyle değil |
-| **C05** | Telemetri künyesi — sürüm · ISO tarih · durum |
-| **C06** | Asimetri — 40/60, ortalanmış kompozisyon yok |
+| `C01` | **Sıfır yarıçap.** Yuvarlatılmış köşe yok; tek istisna durum nabzı. |
+| `C02` | **CAD indeksleme.** Her bölüm iki haneli monospace etiketle açılır: `01 // SECTION`. |
+| `C03` | **Tek kromatik aksan.** Mint dışında renk yok; mint görünür alanın %10'unu aşmaz. |
+| `C04` | **Yapı çizgiyle kurulur.** Bulanık gölge, degrade ve doku yerine keskin kural çizgileri. |
+| `C05` | **Telemetri künyesi.** Her çıktı sürüm, ISO tarih ve durum taşır. |
+| `C06` | **Asimetri.** Varsayılan 40/60 bölünme; ortalanmış kompozisyon yok. |
 
-Ayrıntı: [`SKILL.md`](skills/swiss-neo-monolith/SKILL.md)
+Ayrıntılar: [`SKILL.md`](skills/swiss-neo-monolith/SKILL.md)
 
 ---
 
-## 04 // TOKEN DEĞİŞTİRME
+## 03 // KAPSAM
 
-Tek kural: **yalnızca `tokens/tokens.json` düzenlenir.**
+| Mecra | Referans |
+|---|---|
+| Web — React, Tailwind, HTML | [`10-web.md`](skills/swiss-neo-monolith/references/10-web.md) |
+| Uygulama — masaüstü ve mobil | [`11-app.md`](skills/swiss-neo-monolith/references/11-app.md) |
+| Baskı ve PDF | [`12-print.md`](skills/swiss-neo-monolith/references/12-print.md) |
+| Ofis — PPTX, DOCX, XLSX | [`13-office.md`](skills/swiss-neo-monolith/references/13-office.md) |
+| Terminal ve CLI | [`14-terminal.md`](skills/swiss-neo-monolith/references/14-terminal.md) |
+| Veri görselleştirme | [`15-data-viz.md`](skills/swiss-neo-monolith/references/15-data-viz.md) |
+| Marka varlıkları | [`16-brand-assets.md`](skills/swiss-neo-monolith/references/16-brand-assets.md) |
+
+Temel katman her mecra için geçerlidir: [renk ve ölçek](skills/swiss-neo-monolith/references/01-foundations.md) ·
+[tipografi](skills/swiss-neo-monolith/references/02-typography.md) ·
+[hareket ve ses](skills/swiss-neo-monolith/references/03-motion-sound.md) ·
+[dil ve biçim](skills/swiss-neo-monolith/references/04-voice.md) ·
+[teslim denetimi](skills/swiss-neo-monolith/references/99-checklist.md)
+
+---
+
+## 04 // TOKEN BORU HATTI
+
+Elle düzenlenen tek dosya `tokens/tokens.json`'dır. Diğer tüm bağlamalar ondan
+üretilir; `dist/` altındaki hiçbir dosya elle değiştirilmez.
+
+```
+tokens.json
+    │
+    └── build-tokens.mjs
+            ├── tokens.css              CSS custom properties, açık ve koyu tema
+            ├── tokens.scss
+            ├── tokens.ts               tip güvenli erişim, literal değerler
+            ├── tailwind.preset.cjs     palette dışını derleme zamanında yakalar
+            ├── tokens.py               ReportLab · WeasyPrint · matplotlib
+            ├── tokens.dart             Flutter
+            └── tokens.resolved.json    Office · e-posta · native platformlar
+```
+
+### Değiştirme yordamı
 
 ```bash
-# 1. düzenle
-#    skills/swiss-neo-monolith/tokens/tokens.json
+# 1  tokens/tokens.json düzenlenir
+# 2  bağlamalar üretilir
+npm run build
 
-# 2. derle
-node skills/swiss-neo-monolith/scripts/build-tokens.mjs
+# 3  kontrast kapısından geçer
+npm run check
 
-# 3. doğrula — kontrast kapısı geçmeden commit etme
-node skills/swiss-neo-monolith/scripts/check-contrast.mjs
-
-# 4. sürümü yükselt ($meta.version) ve CHANGELOG'a yaz
+# 4  $meta.version yükseltilir, CHANGELOG.md güncellenir
 ```
 
-`dist/` altındaki hiçbir dosya elle düzenlenmez; bir sonraki derlemede kaybolur.
+Kontrast denetimi 34 renk çiftini WCAG eşiklerine karşı sınar ve başarısızlıkta
+sıfırdan farklı çıkış kodu döndürür; sürekli entegrasyona doğrudan bağlanabilir.
+Ayrıca erişilebilirlik açısından yasaklanmış ton kullanımlarını koruma testleriyle
+kilitler — palette ileride değişse bile bu tonlar sessizce güvenli hâle gelemez.
 
 ---
 
-## 05 // PROJEDE KULLANIM
+## 05 // PROJEYE BAĞLAMA
 
 **Web**
+
 ```js
 // tailwind.config.js
-presets: [require('./vendor/snm/tailwind.preset.cjs')]
+module.exports = {
+  presets: [require('./vendor/snm/tailwind.preset.cjs')],
+};
 ```
+
 ```css
 @import 'vendor/snm/tokens.css';
 ```
 
-**Python (PDF/grafik)**
+**Python — PDF ve grafik**
+
 ```python
 from snm.tokens import token, rgb
-c = rgb("accent")        # (0.06, 0.73, 0.51)
+
+fill = rgb("accent")          # (0.06, 0.73, 0.51)
+text = token("text", "dark")  # "#f2f4f3"
 ```
 
 **Flutter**
+
 ```dart
 import 'snm/tokens.dart';
-color: SnmLight.accent,
+
+Container(color: SnmLight.bgRaised, ...)
 ```
 
-**TypeScript (canvas, SVG, e-posta)**
+**TypeScript — canvas, SVG, e-posta**
+
 ```ts
-import { token } from '@snm/tokens';
-token('bgInverse', 'dark');
+import { token, cssVar } from '@snm/tokens';
+
+ctx.fillStyle = token('bgInverse');   // literal, tema seçilebilir
+el.style.color = cssVar('textAccent'); // var(--snm-text-accent)
 ```
 
 ---
 
-## 06 // TELEMETRY
+## 06 // DİZİN YAPISI
 
 ```
-REV 1.0.0 · 2026-08-09 · STATUS: OPERATIONAL
-OKAN ÖZTÜRK · joxinyks.com · MIT
+swiss-neo-monolith/
+├─ install.ps1 · install.sh          kurulum
+└─ skills/swiss-neo-monolith/        kurulan birim, kendine yeterli
+   ├─ SKILL.md                       kanon ve yönlendirme
+   ├─ references/                    mecra kuralları, 12 dosya
+   ├─ tokens/
+   │  ├─ tokens.json                 tek gerçek kaynak
+   │  └─ dist/                       üretilen bağlamalar
+   ├─ assets/
+   │  ├─ web/                        FooterGlobal · useMechanicalClick · eslint
+   │  ├─ print/                      CSS Paged Media stil dosyası
+   │  └─ office/                     OOXML tema şeması
+   └─ scripts/
+      ├─ build-tokens.mjs
+      └─ check-contrast.mjs
+```
+
+---
+
+## 07 // KATKI VE SÜRÜMLEME
+
+`MAJOR` görsel kırılma, mevcut çıktılar yeniden üretilmelidir ·
+`MINOR` yeni token, kural veya mecra · `PATCH` düzeltme ve açıklama.
+
+Her değişiklik [`CHANGELOG.md`](CHANGELOG.md) içinde kayıt altına alınır.
+Kontrast kapısından geçmeyen değişiklik birleştirilmez.
+
+---
+
+```
+OKAN ÖZTÜRK · joxinyks.com
+REV 1.0.1 · 2026-08-09 · STATUS: OPERATIONAL · LICENSE: MIT
 ```

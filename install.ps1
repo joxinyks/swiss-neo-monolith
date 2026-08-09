@@ -3,19 +3,24 @@
   Swiss Neo-Monolith — install the design system skill on this machine.
 
 .DESCRIPTION
-  Copies (or links) skills/swiss-neo-monolith into ~/.claude/skills so Claude
-  picks it up in every project on this machine.
+  Places skills/swiss-neo-monolith into ~/.claude/skills, compiles the token
+  bindings and runs the contrast gate. Claude picks the skill up in every
+  project on this machine after a restart.
 
 .PARAMETER Link
   Create a directory junction instead of copying. Use this on the machine where
-  you develop the system — edits take effect immediately, no reinstall.
+  the system itself is edited: changes take effect without reinstalling.
 
 .PARAMETER Force
   Replace an existing installation without prompting.
 
 .EXAMPLE
-  .\install.ps1              # copy (use on your other machines)
-  .\install.ps1 -Link        # junction (use on your dev machine)
+  .\install.ps1
+  Copies the skill. Use on machines that only consume the system.
+
+.EXAMPLE
+  .\install.ps1 -Link
+  Links the skill. Use on the development machine.
 #>
 [CmdletBinding()]
 param(
@@ -25,20 +30,26 @@ param(
 
 $ErrorActionPreference = 'Stop'
 
-$Source = Join-Path $PSScriptRoot 'skills\swiss-neo-monolith'
+$Source    = Join-Path $PSScriptRoot 'skills\swiss-neo-monolith'
 $SkillsDir = Join-Path $HOME '.claude\skills'
-$Target = Join-Path $SkillsDir 'swiss-neo-monolith'
+$Target    = Join-Path $SkillsDir 'swiss-neo-monolith'
 
-function Write-Row($sym, $label, $value) {
-  Write-Host (" {0}  {1}  {2}" -f $sym, $label.PadRight(18), $value)
+# Output follows the system's own terminal rules (see references/14-terminal.md):
+# CAD heading, aligned columns, telemetry line, no emoji.
+function Write-Row([string]$Symbol, [string]$Field, [string]$Value) {
+  Write-Host ('  {0}  {1}  {2}' -f $Symbol, $Field.PadRight(12), $Value)
 }
+function Write-Rule { Write-Host ('-' * 62) }
 
-Write-Host ""
-Write-Host "01 // INSTALL"
-Write-Host ("-" * 60)
+Write-Host ''
+Write-Host '01 // INSTALL                              swiss-neo-monolith'
+Write-Rule
 
 if (-not (Test-Path (Join-Path $Source 'SKILL.md'))) {
-  Write-Row 'x' 'source' "bulunamadi: $Source"
+  Write-Row 'x' 'source' "not found: $Source"
+  Write-Rule
+  Write-Host 'FAILED  run this script from the repository root'
+  Write-Host ''
   exit 1
 }
 Write-Row '*' 'source' $Source
@@ -47,44 +58,55 @@ New-Item -ItemType Directory -Path $SkillsDir -Force | Out-Null
 
 if (Test-Path $Target) {
   if (-not $Force) {
-    $ans = Read-Host " !  '$Target' zaten var. Degistirilsin mi? [y/N]"
-    if ($ans -ne 'y' -and $ans -ne 'Y') { Write-Host " iptal edildi."; exit 1 }
+    Write-Host ''
+    Write-Host "  !  An installation already exists at:"
+    Write-Host "     $Target"
+    $answer = Read-Host '     Replace it? [y/N]'
+    if ($answer -notin @('y', 'Y')) {
+      Write-Host ''
+      Write-Host 'CANCELLED'
+      Write-Host ''
+      exit 1
+    }
+    Write-Host ''
   }
-  # Remove-Item on a junction removes the link, not the target contents.
+  # On a junction this removes the link, not the files it points at.
   Remove-Item $Target -Recurse -Force
-  Write-Row '*' 'previous' 'kaldirildi'
+  Write-Row '*' 'previous' 'removed'
 }
 
 if ($Link) {
   New-Item -ItemType Junction -Path $Target -Target $Source | Out-Null
-  Write-Row '*' 'mode' 'junction (canli)'
+  Write-Row '*' 'mode' 'junction (live)'
 } else {
   Copy-Item $Source $Target -Recurse
-  Write-Row '*' 'mode' 'kopya'
+  Write-Row '*' 'mode' 'copy'
 }
-
 Write-Row '*' 'target' $Target
 
-# Rebuild + verify. A skill that ships failing contrast is worse than no skill.
-$node = Get-Command node -ErrorAction SilentlyContinue
-if ($node) {
+# A skill that ships a failing contrast gate is worse than no skill at all.
+$verified = $true
+if (Get-Command node -ErrorAction SilentlyContinue) {
   & node (Join-Path $Target 'scripts\build-tokens.mjs') | Out-Null
-  Write-Row '*' 'tokens' 'derlendi'
+  Write-Row '*' 'tokens' 'compiled'
 
   & node (Join-Path $Target 'scripts\check-contrast.mjs') | Out-Null
   if ($LASTEXITCODE -eq 0) {
-    Write-Row '*' 'contrast' 'gecti'
+    Write-Row '*' 'contrast' 'pass'
   } else {
-    Write-Row 'x' 'contrast' 'BASARISIZ - check-contrast.mjs calistir'
+    Write-Row 'x' 'contrast' 'FAIL — run scripts\check-contrast.mjs for detail'
+    $verified = $false
   }
 } else {
-  Write-Row '!' 'node' 'bulunamadi - token derlemesi atlandi'
+  Write-Row '!' 'node' 'not found — token bindings not verified'
+  $verified = $false
 }
 
-Write-Host ("-" * 60)
+Write-Rule
 $stamp = (Get-Date).ToUniversalTime().ToString('yyyy-MM-dd HH:mm')
-Write-Host ("DONE - swiss-neo-monolith - {0}Z" -f $stamp)
-Write-Host ""
-Write-Host " Claude'u yeniden baslat, sonra dene:"
-Write-Host '   "bir teklif PDFi hazirla" / "bu butonu benim tarzimda yaz"'
-Write-Host ""
+Write-Host ('{0}  swiss-neo-monolith  {1}Z' -f $(if ($verified) { 'DONE   ' } else { 'PARTIAL' }), $stamp)
+Write-Host ''
+Write-Host '  Restart Claude to load the skill.'
+Write-Host ''
+
+exit $(if ($verified) { 0 } else { 1 })

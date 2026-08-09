@@ -2,7 +2,7 @@
   "$meta": {
     "system": "Swiss Neo-Monolith",
     "code": "SNM",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "author": "Okan Ozturk",
     "canvasBase": 4,
     "generated": true

@@ -6,6 +6,29 @@ Sürümleme: `MAJOR.MINOR.PATCH`
 
 ---
 
+## 1.0.1 — 2026-08-09
+
+Sunum katmanı düzeltmesi. Token'lar ve kurallar değişmedi.
+
+### Eklendi
+- **Depo başlık görseli** — `.github/banner-{light,dark}.svg`; README okuyucunun
+  temasına göre `<picture>` ile seçiliyor. Görselin kendisi kanona uyar: sıfır
+  yarıçap, düz dolgu, kural çizgileriyle kurulmuş yapı, 40/60 bölünme, telemetri
+  şeridi.
+
+### Değişti
+- **README** sistemin kendi diline getirildi: CAD numaralı bölümler, `flat-square`
+  rozetler, monospace telemetri künyesi, mecra ve referans tabloları.
+- **Kurulum betiklerinin çıktısı** `references/14-terminal.md` kurallarına
+  uyduruldu — CAD başlık, hizalı kolonlar, telemetri satırı. Metin İngilizceye
+  alındı; sistemin kendi kuralı gereği makine katmanı İngilizce konuşur
+  (`04-voice.md`) ve bu, Windows PowerShell'de Türkçe karakter kodlama riskini
+  de ortadan kaldırır.
+- Kurulum betikleri artık doğrulama başarısızsa sıfırdan farklı çıkış kodu
+  döndürüyor; `PARTIAL` durumu `DONE`'dan ayrıldı.
+
+---
+
 ## 1.0.0 — 2026-08-09
 
 İlk sürüm. Tek mecralı (web) bir stil dokümanından çok mecralı bir imza sistemine

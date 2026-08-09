@@ -2,9 +2,12 @@
 #
 # Swiss Neo-Monolith — install the design system skill on this machine.
 #
-#   ./install.sh          copy   (use on your other machines)
-#   ./install.sh --link   symlink (use on your dev machine)
-#   ./install.sh --force  replace without prompting
+# Places skills/swiss-neo-monolith into ~/.claude/skills, compiles the token
+# bindings and runs the contrast gate.
+#
+#   ./install.sh            copy    — machines that consume the system
+#   ./install.sh --link     symlink — the machine where the system is edited
+#   ./install.sh --force    replace an existing installation without prompting
 #
 set -euo pipefail
 
@@ -14,7 +17,8 @@ for arg in "$@"; do
   case "$arg" in
     --link)  LINK=1 ;;
     --force) FORCE=1 ;;
-    *) echo "bilinmeyen secenek: $arg" >&2; exit 2 ;;
+    -h|--help) sed -n '2,12p' "$0" | sed 's/^# \{0,1\}//'; exit 0 ;;
+    *) echo "unknown option: $arg" >&2; exit 2 ;;
   esac
 done
 
@@ -23,52 +27,74 @@ SOURCE="$ROOT/skills/swiss-neo-monolith"
 SKILLS_DIR="${HOME}/.claude/skills"
 TARGET="$SKILLS_DIR/swiss-neo-monolith"
 
-row() { printf ' %s  %-18s %s\n' "$1" "$2" "$3"; }
+# Output follows the system's own terminal rules (references/14-terminal.md):
+# CAD heading, aligned columns, telemetry line, no emoji.
+row()  { printf '  %s  %-12s %s\n' "$1" "$2" "$3"; }
+rule() { printf '%.0s-' $(seq 62); echo; }
 
 echo
-echo "01 // INSTALL"
-printf '%.0s-' {1..60}; echo
+echo "01 // INSTALL                              swiss-neo-monolith"
+rule
 
-[ -f "$SOURCE/SKILL.md" ] || { row 'x' 'source' "bulunamadı: $SOURCE"; exit 1; }
+if [ ! -f "$SOURCE/SKILL.md" ]; then
+  row 'x' 'source' "not found: $SOURCE"
+  rule
+  echo "FAILED  run this script from the repository root"
+  echo
+  exit 1
+fi
 row '*' 'source' "$SOURCE"
 
 mkdir -p "$SKILLS_DIR"
 
 if [ -e "$TARGET" ] || [ -L "$TARGET" ]; then
   if [ "$FORCE" -eq 0 ]; then
-    read -r -p " !  '$TARGET' zaten var. Değiştirilsin mi? [y/N] " ans
-    [[ "$ans" == "y" || "$ans" == "Y" ]] || { echo " iptal edildi."; exit 1; }
+    echo
+    echo "  !  An installation already exists at:"
+    echo "     $TARGET"
+    read -r -p "     Replace it? [y/N] " answer
+    case "$answer" in
+      y|Y) echo ;;
+      *) echo; echo "CANCELLED"; echo; exit 1 ;;
+    esac
   fi
   rm -rf "$TARGET"
-  row '*' 'previous' 'kaldırıldı'
+  row '*' 'previous' 'removed'
 fi
 
 if [ "$LINK" -eq 1 ]; then
   ln -s "$SOURCE" "$TARGET"
-  row '*' 'mode' 'symlink (canlı)'
+  row '*' 'mode' 'symlink (live)'
 else
   cp -R "$SOURCE" "$TARGET"
-  row '*' 'mode' 'kopya'
+  row '*' 'mode' 'copy'
 fi
-
 row '*' 'target' "$TARGET"
 
-# Rebuild + verify. A skill that ships failing contrast is worse than no skill.
+# A skill that ships a failing contrast gate is worse than no skill at all.
+verified=1
 if command -v node >/dev/null 2>&1; then
   node "$TARGET/scripts/build-tokens.mjs" >/dev/null
-  row '*' 'tokens' 'derlendi'
+  row '*' 'tokens' 'compiled'
   if node "$TARGET/scripts/check-contrast.mjs" >/dev/null; then
-    row '*' 'contrast' 'geçti'
+    row '*' 'contrast' 'pass'
   else
-    row 'x' 'contrast' 'BAŞARISIZ — check-contrast.mjs çalıştır'
+    row 'x' 'contrast' 'FAIL — run scripts/check-contrast.mjs for detail'
+    verified=0
   fi
 else
-  row '!' 'node' 'bulunamadı — token derlemesi atlandı'
+  row '!' 'node' 'not found — token bindings not verified'
+  verified=0
 fi
 
-printf '%.0s-' {1..60}; echo
-echo "DONE · swiss-neo-monolith · $(date -u '+%Y-%m-%d %H:%M')Z"
+rule
+if [ "$verified" -eq 1 ]; then
+  printf 'DONE     swiss-neo-monolith  %sZ\n' "$(date -u '+%Y-%m-%d %H:%M')"
+else
+  printf 'PARTIAL  swiss-neo-monolith  %sZ\n' "$(date -u '+%Y-%m-%d %H:%M')"
+fi
 echo
-echo " Claude'u yeniden başlat, sonra dene:"
-echo '   "bir teklif PDFi hazırla" / "bu butonu benim tarzımda yaz"'
+echo "  Restart Claude to load the skill."
 echo
+
+[ "$verified" -eq 1 ] || exit 1
