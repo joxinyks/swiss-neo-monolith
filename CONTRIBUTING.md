@@ -7,11 +7,11 @@ without breaking it. These are the working rules.
 
 ## 01 // THE ONE RULE
 
-**`skills/swiss-neo-monolith/tokens/tokens.json` is the only file edited by hand.**
+**`tokens/tokens.json` is the only file edited by hand.**
 
-Everything under `tokens/dist/` and `.github/preview/` is generated. Editing a
-generated file is not a small shortcut — it silently desynchronises the system,
-and the next build erases the change.
+Everything under `tokens/dist/` and `preview/` is generated. Editing a generated
+file is not a small shortcut — it silently desynchronises the system, and the next
+build erases the change.
 
 ```bash
 npm run build     # tokens -> bindings, and regenerate the showcase
@@ -24,8 +24,8 @@ npm run verify    # both, in order
 ## 02 // BEFORE OPENING A PULL REQUEST
 
 - [ ] `npm run verify` passes locally
-- [ ] Generated files are committed alongside their source (`dist/` and
-      `.github/preview/` are tracked deliberately, so consumers need no toolchain)
+- [ ] Generated files are committed alongside their source (`tokens/dist/` and
+      `preview/` are tracked deliberately, so consumers need no toolchain)
 - [ ] `$meta.version` raised, and `CHANGELOG.md` records the change
 - [ ] Any new rule is reflected in `references/99-checklist.md`
 - [ ] No Turkish in repository files — the repository is English throughout.
@@ -94,6 +94,18 @@ reasoning, not the diff.
 - Blur, gradients, glassmorphism, or any rounded corner
 - A dependency in the token pipeline — the scripts are deliberately zero-dependency
   Node, so any machine with Node 18+ can build the system
+- A packaged copy of the system. The repository root *is* the skill; a `dist/skill`
+  step would duplicate every file and break live editing on the dev machine.
+
+---
+
+## 08 // PREVIEW SHEETS
+
+`scripts/build-previews.mjs` authors at **880px**, which is roughly GitHub's README
+content column. Anything wider is scaled down and its type shrinks with it — an
+earlier 1200px version rendered 12px labels at about 9px and the contrast figures
+became unreadable. If you add a sheet, keep it at 880 and keep body type at 12px
+or above. The social card is the one exception at 1280×640, sized for Open Graph.
 
 ---
 

@@ -6,6 +6,46 @@ Versioning: `MAJOR.MINOR.PATCH`.
 
 ---
 
+## 1.1.0 — 2026-08-09
+
+The repository is restructured around its visitors rather than its packaging.
+
+### Changed
+- **The system moved to the repository root.** `references/`, `tokens/`, `assets/`
+  and `scripts/` were buried two levels down under `skills/swiss-neo-monolith/`,
+  so a visitor landing on the repository saw installer scripts and a `skills`
+  folder rather than the system itself. The root **is** the skill now: it carries
+  `SKILL.md`, and the installer links the root into `~/.claude/skills/`.
+
+  A `dist/skill` packaging step was considered and rejected — it would duplicate
+  every file and, worse, break live editing in `-Link` mode on the development
+  machine.
+
+- **README restructured as a landing page.** Installation was buried behind four
+  full-width showcase images; it is now the first section. The four-medium
+  comparison stays open as the hero, and the remaining sheets sit in `<details>`
+  blocks so the page stays short without hiding anything.
+
+- **Preview sheets re-authored at 880px** — roughly GitHub's README content
+  column. The previous 1200px sheets were scaled to about 73%, which rendered
+  12px labels at 9px and made the measured contrast figures, the best detail on
+  the colour sheet, effectively unreadable. The media sheet also moved from four
+  columns to a 2×2 grid, doubling the width of each panel.
+
+- Preview output moved from `.github/preview/` to `preview/` — it is content, not
+  repository plumbing.
+
+### Added
+- **Social card** (`preview/social-{light,dark}.svg`, 1280×640) for GitHub's Open
+  Graph slot, so a shared link renders as something other than a blank card.
+- The banner now states the six canon codes instead of leaving its right column
+  half empty.
+- CI additionally checks that `SKILL.md` still has its frontmatter and a complete
+  routing table — without either, the skill silently stops triggering.
+- Copy-mode installs now exclude `.git`, `node_modules` and `.github`.
+
+---
+
 ## 1.0.2 — 2026-08-09
 
 The repository becomes self-demonstrating, and switches to English throughout.

@@ -2,8 +2,9 @@
 #
 # Swiss Neo-Monolith — install the design system skill on this machine.
 #
-# Places skills/swiss-neo-monolith into ~/.claude/skills, compiles the token
-# bindings and runs the contrast gate.
+# The repository root IS the skill: it carries SKILL.md, references/, tokens/
+# and assets/. This script links or copies it into ~/.claude/skills, compiles the
+# token bindings and runs the contrast gate.
 #
 #   ./install.sh            copy    — machines that consume the system
 #   ./install.sh --link     symlink — the machine where the system is edited
@@ -17,13 +18,12 @@ for arg in "$@"; do
   case "$arg" in
     --link)  LINK=1 ;;
     --force) FORCE=1 ;;
-    -h|--help) sed -n '2,12p' "$0" | sed 's/^# \{0,1\}//'; exit 0 ;;
+    -h|--help) sed -n '2,14p' "$0" | sed 's/^# \{0,1\}//'; exit 0 ;;
     *) echo "unknown option: $arg" >&2; exit 2 ;;
   esac
 done
 
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-SOURCE="$ROOT/skills/swiss-neo-monolith"
+SOURCE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SKILLS_DIR="${HOME}/.claude/skills"
 TARGET="$SKILLS_DIR/swiss-neo-monolith"
 
@@ -37,7 +37,7 @@ echo "01 // INSTALL                              swiss-neo-monolith"
 rule
 
 if [ ! -f "$SOURCE/SKILL.md" ]; then
-  row 'x' 'source' "not found: $SOURCE"
+  row 'x' 'source' "SKILL.md not found in $SOURCE"
   rule
   echo "FAILED  run this script from the repository root"
   echo
@@ -66,7 +66,15 @@ if [ "$LINK" -eq 1 ]; then
   ln -s "$SOURCE" "$TARGET"
   row '*' 'mode' 'symlink (live)'
 else
-  cp -R "$SOURCE" "$TARGET"
+  # Copy the system, not the repository plumbing: .git alone can dwarf it.
+  mkdir -p "$TARGET"
+  for entry in "$SOURCE"/* "$SOURCE"/.[!.]*; do
+    [ -e "$entry" ] || continue
+    case "$(basename "$entry")" in
+      .git|node_modules|.github) continue ;;
+    esac
+    cp -R "$entry" "$TARGET/"
+  done
   row '*' 'mode' 'copy'
 fi
 row '*' 'target' "$TARGET"

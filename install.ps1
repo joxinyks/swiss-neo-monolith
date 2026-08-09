@@ -3,8 +3,9 @@
   Swiss Neo-Monolith — install the design system skill on this machine.
 
 .DESCRIPTION
-  Places skills/swiss-neo-monolith into ~/.claude/skills, compiles the token
-  bindings and runs the contrast gate. Claude picks the skill up in every
+  The repository root IS the skill: it carries SKILL.md, references/, tokens/ and
+  assets/. This script links or copies it into ~/.claude/skills, compiles the
+  token bindings and runs the contrast gate. Claude picks the skill up in every
   project on this machine after a restart.
 
 .PARAMETER Link
@@ -30,7 +31,7 @@ param(
 
 $ErrorActionPreference = 'Stop'
 
-$Source    = Join-Path $PSScriptRoot 'skills\swiss-neo-monolith'
+$Source    = $PSScriptRoot
 $SkillsDir = Join-Path $HOME '.claude\skills'
 $Target    = Join-Path $SkillsDir 'swiss-neo-monolith'
 
@@ -46,7 +47,7 @@ Write-Host '01 // INSTALL                              swiss-neo-monolith'
 Write-Rule
 
 if (-not (Test-Path (Join-Path $Source 'SKILL.md'))) {
-  Write-Row 'x' 'source' "not found: $Source"
+  Write-Row 'x' 'source' "SKILL.md not found in $Source"
   Write-Rule
   Write-Host 'FAILED  run this script from the repository root'
   Write-Host ''
@@ -59,7 +60,7 @@ New-Item -ItemType Directory -Path $SkillsDir -Force | Out-Null
 if (Test-Path $Target) {
   if (-not $Force) {
     Write-Host ''
-    Write-Host "  !  An installation already exists at:"
+    Write-Host '  !  An installation already exists at:'
     Write-Host "     $Target"
     $answer = Read-Host '     Replace it? [y/N]'
     if ($answer -notin @('y', 'Y')) {
@@ -79,7 +80,12 @@ if ($Link) {
   New-Item -ItemType Junction -Path $Target -Target $Source | Out-Null
   Write-Row '*' 'mode' 'junction (live)'
 } else {
-  Copy-Item $Source $Target -Recurse
+  # Copy the system, not the repository plumbing: .git alone can dwarf it.
+  New-Item -ItemType Directory -Path $Target -Force | Out-Null
+  $exclude = @('.git', 'node_modules', '.github')
+  Get-ChildItem $Source -Force |
+    Where-Object { $exclude -notcontains $_.Name } |
+    ForEach-Object { Copy-Item $_.FullName -Destination $Target -Recurse -Force }
   Write-Row '*' 'mode' 'copy'
 }
 Write-Row '*' 'target' $Target

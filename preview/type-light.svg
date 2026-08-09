@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 513" width="880" height="513" role="img" aria-label="Typography">
+<title>Typography</title>
+<rect x="0" y="0" width="880" height="513" fill="#f2f4f3" shape-rendering="crispEdges"/>
+<text x="32" y="34" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="700" letter-spacing="1.04" fill="#047857">04 //</text>
+<text x="86.2" y="34" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="700" letter-spacing="1.04" fill="#4b5563">TYPOGRAPHY</text>
+<text x="848" y="34" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="700" letter-spacing="1.04" fill="#4b5563" text-anchor="end">INTER · JETBRAINS MONO</text>
+<line x1="32" y1="48" x2="848" y2="48" stroke="#121316" stroke-width="1" stroke-opacity="0.2" shape-rendering="crispEdges"/>
+<text x="32" y="86" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="700" letter-spacing="0.96" fill="#047857">4XL</text>
+<text x="94" y="86" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="400" letter-spacing="0.96" fill="#4b5563">56px</text>
+<text x="156" y="86" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="400" letter-spacing="0.96" fill="#4b5563">Hero</text>
+<text x="358" y="90" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="40" font-weight="700" letter-spacing="-1.20" fill="#121316">Structure before decoration</text>
+<line x1="32" y1="106" x2="848" y2="106" stroke="#121316" stroke-width="1" stroke-opacity="0.15" shape-rendering="crispEdges"/>
+<text x="32" y="154" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="700" letter-spacing="0.96" fill="#047857">3XL</text>
+<text x="94" y="154" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="400" letter-spacing="0.96" fill="#4b5563">40px</text>
+<text x="156" y="154" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="400" letter-spacing="0.96" fill="#4b5563">H1</text>
+<text x="358" y="158" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="32" font-weight="700" letter-spacing="-0.96" fill="#121316">Structure before decoration</text>
+<line x1="32" y1="174" x2="848" y2="174" stroke="#121316" stroke-width="1" stroke-opacity="0.15" shape-rendering="crispEdges"/>
+<text x="32" y="214" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="700" letter-spacing="0.96" fill="#047857">2XL</text>
+<text x="94" y="214" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="400" letter-spacing="0.96" fill="#4b5563">32px</text>
+<text x="156" y="214" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="400" letter-spacing="0.96" fill="#4b5563">H2</text>
+<text x="358" y="218" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="27" font-weight="700" letter-spacing="-0.81" fill="#121316">Structure before decoration</text>
+<line x1="32" y1="234" x2="848" y2="234" stroke="#121316" stroke-width="1" stroke-opacity="0.15" shape-rendering="crispEdges"/>
+<text x="32" y="269" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="700" letter-spacing="0.96" fill="#047857">XL</text>
+<text x="94" y="269" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="400" letter-spacing="0.96" fill="#4b5563">24px</text>
+<text x="156" y="269" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="400" letter-spacing="0.96" fill="#4b5563">H3</text>
+<text x="358" y="273" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="22" font-weight="700" letter-spacing="-0.66" fill="#121316">Structure before decoration</text>
+<line x1="32" y1="289" x2="848" y2="289" stroke="#121316" stroke-width="1" stroke-opacity="0.15" shape-rendering="crispEdges"/>
+<text x="32" y="319" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="700" letter-spacing="0.96" fill="#047857">BASE</text>
+<text x="94" y="319" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="400" letter-spacing="0.96" fill="#4b5563">16px</text>
+<text x="156" y="319" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="400" letter-spacing="0.96" fill="#4b5563">Body</text>
+<text x="358" y="323" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="16" font-weight="400" letter-spacing="-0.48" fill="#121316">Structure before decoration</text>
+<line x1="32" y1="339" x2="848" y2="339" stroke="#121316" stroke-width="1" stroke-opacity="0.15" shape-rendering="crispEdges"/>
+<text x="32" y="363" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="700" letter-spacing="0.96" fill="#047857">SM</text>
+<text x="94" y="363" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="400" letter-spacing="0.96" fill="#4b5563">14px</text>
+<text x="156" y="363" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="400" letter-spacing="0.96" fill="#4b5563">Secondary</text>
+<text x="358" y="367" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="400" letter-spacing="-0.42" fill="#121316">Structure before decoration</text>
+<line x1="32" y1="383" x2="848" y2="383" stroke="#121316" stroke-width="1" stroke-opacity="0.15" shape-rendering="crispEdges"/>
+<text x="32" y="427" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="700" letter-spacing="0.96" fill="#4b5563">SANS — NARRATIVE</text>
+<text x="32" y="453" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="19" font-weight="700" letter-spacing="0.00" fill="#121316">Anything a person wrote.</text>
+<text x="358" y="427" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="700" letter-spacing="0.96" fill="#4b5563">MONO — SYSTEM</text>
+<text x="358" y="453" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="17" font-weight="700" letter-spacing="1.36" fill="#121316">2026-08-09  03/12</text>
+<text x="358" y="473" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="400" letter-spacing="0.96" fill="#4b5563">Anything a machine produced.</text>
+<line x1="32" y1="475" x2="848" y2="475" stroke="#121316" stroke-width="1" stroke-opacity="0.2" shape-rendering="crispEdges"/>
+<text x="32" y="497" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="400" letter-spacing="0.96" fill="#4b5563">OKAN ÖZTÜRK</text>
+<text x="848" y="497" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="700" letter-spacing="0.96" fill="#047857" text-anchor="end">REV 1.1.0 · 2026-08-09</text>
+</svg>

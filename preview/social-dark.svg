@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 640" width="1280" height="640" role="img" aria-label="Swiss Neo-Monolith">
+<title>Swiss Neo-Monolith</title>
+<rect x="0" y="0" width="1280" height="640" fill="#121316" shape-rendering="crispEdges"/>
+<line x1="80" y1="128" x2="1200" y2="128" stroke="#f2f4f3" stroke-width="1" stroke-opacity="0.2" shape-rendering="crispEdges"/>
+<line x1="80" y1="512" x2="1200" y2="512" stroke="#f2f4f3" stroke-width="1" stroke-opacity="0.2" shape-rendering="crispEdges"/>
+<text x="80" y="96" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="22" font-weight="700" letter-spacing="1.76" fill="#6ee7b7">00 //</text>
+<text x="172" y="96" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="22" font-weight="700" letter-spacing="1.76" fill="#9ca3af">DESIGN SYSTEM</text>
+<text x="1200" y="96" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="22" font-weight="700" letter-spacing="1.76" fill="#9ca3af" text-anchor="end">REV 1.1.0</text>
+
+<rect x="80" y="210" width="8" height="168" fill="#10b981" shape-rendering="crispEdges"/>
+<text x="120" y="288" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="92" font-weight="800" letter-spacing="-3.68" fill="#f2f4f3">SWISS</text>
+<text x="120" y="380" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="92" font-weight="800" letter-spacing="-3.68" fill="#f2f4f3" textLength="700" lengthAdjust="spacing">NEO-MONOLITH</text>
+<text x="120" y="432" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="26" font-weight="400" letter-spacing="0.00" fill="#9ca3af">One design language — web, applications, print, office, terminal.</text>
+
+<text x="80" y="556" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="22" font-weight="400" letter-spacing="1.76" fill="#9ca3af">OKAN ÖZTÜRK · JOXINYKS.COM</text>
+<text x="1200" y="556" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="22" font-weight="700" letter-spacing="1.76" fill="#6ee7b7" text-anchor="end">STATUS: OPERATIONAL</text>
+</svg>

@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 752" width="880" height="752" role="img" aria-label="Colour">
+<title>Colour</title>
+<rect x="0" y="0" width="880" height="752" fill="#121316" shape-rendering="crispEdges"/>
+<text x="32" y="34" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="700" letter-spacing="1.04" fill="#6ee7b7">03 //</text>
+<text x="86.2" y="34" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="700" letter-spacing="1.04" fill="#9ca3af">COLOUR</text>
+<text x="848" y="34" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="700" letter-spacing="1.04" fill="#9ca3af" text-anchor="end">vs #121316</text>
+<line x1="32" y1="48" x2="848" y2="48" stroke="#f2f4f3" stroke-width="1" stroke-opacity="0.2" shape-rendering="crispEdges"/>
+<text x="32" y="76" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="700" letter-spacing="0.96" fill="#9ca3af">BONE</text>
+<rect x="32" y="84" width="192" height="44" fill="#ffffff" stroke="#f2f4f3" stroke-width="2" shape-rendering="crispEdges"/>
+<text x="32" y="146" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="700" letter-spacing="0.96" fill="#f2f4f3">bone-50</text>
+<text x="32" y="162" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="400" letter-spacing="0.96" fill="#9ca3af">#FFFFFF</text>
+<text x="32" y="178" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="400" letter-spacing="0.96" fill="#6ee7b7">18.58:1 AA text</text>
+<rect x="240" y="84" width="192" height="44" fill="#f2f4f3" stroke="#f2f4f3" stroke-width="2" shape-rendering="crispEdges"/>
+<text x="240" y="146" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="700" letter-spacing="0.96" fill="#f2f4f3">bone-200</text>
+<text x="240" y="162" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="400" letter-spacing="0.96" fill="#9ca3af">#F2F4F3</text>
+<text x="240" y="178" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="400" letter-spacing="0.96" fill="#6ee7b7">16.82:1 AA text</text>
+<rect x="448" y="84" width="192" height="44" fill="#e6e9e8" stroke="#f2f4f3" stroke-width="2" shape-rendering="crispEdges"/>
+<text x="448" y="146" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="700" letter-spacing="0.96" fill="#f2f4f3">bone-300</text>
+<text x="448" y="162" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="400" letter-spacing="0.96" fill="#9ca3af">#E6E9E8</text>
+<text x="448" y="178" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="400" letter-spacing="0.96" fill="#6ee7b7">15.20:1 AA text</text>
+<rect x="656" y="84" width="192" height="44" fill="#d4d8d7" stroke="#f2f4f3" stroke-width="2" shape-rendering="crispEdges"/>
+<text x="656" y="146" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="700" letter-spacing="0.96" fill="#f2f4f3">bone-400</text>
+<text x="656" y="162" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="400" letter-spacing="0.96" fill="#9ca3af">#D4D8D7</text>
+<text x="656" y="178" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="400" letter-spacing="0.96" fill="#6ee7b7">12.92:1 AA text</text>
+<text x="32" y="204" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="700" letter-spacing="0.96" fill="#9ca3af">OBSIDIAN</text>
+<rect x="32" y="212" width="192" height="44" fill="#121316" stroke="#f2f4f3" stroke-width="2" shape-rendering="crispEdges"/>
+<text x="32" y="274" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="700" letter-spacing="0.96" fill="#f2f4f3">obsidian-900</text>
+<text x="32" y="290" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="400" letter-spacing="0.96" fill="#9ca3af">#121316</text>
+<text x="32" y="306" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="400" letter-spacing="0.96" fill="#9ca3af">1.00:1 fill only</text>
+<rect x="240" y="212" width="192" height="44" fill="#1c1e22" stroke="#f2f4f3" stroke-width="2" shape-rendering="crispEdges"/>
+<text x="240" y="274" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="700" letter-spacing="0.96" fill="#f2f4f3">obsidian-800</text>
+<text x="240" y="290" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="400" letter-spacing="0.96" fill="#9ca3af">#1C1E22</text>
+<text x="240" y="306" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="400" letter-spacing="0.96" fill="#9ca3af">1.11:1 fill only</text>
+<rect x="448" y="212" width="192" height="44" fill="#2a2d33" stroke="#f2f4f3" stroke-width="2" shape-rendering="crispEdges"/>
+<text x="448" y="274" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="700" letter-spacing="0.96" fill="#f2f4f3">obsidian-700</text>
+<text x="448" y="290" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="400" letter-spacing="0.96" fill="#9ca3af">#2A2D33</text>
+<text x="448" y="306" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="400" letter-spacing="0.96" fill="#9ca3af">1.35:1 fill only</text>
+<rect x="656" y="212" width="192" height="44" fill="#3a3e46" stroke="#f2f4f3" stroke-width="2" shape-rendering="crispEdges"/>
+<text x="656" y="274" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="700" letter-spacing="0.96" fill="#f2f4f3">obsidian-600</text>
+<text x="656" y="290" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="400" letter-spacing="0.96" fill="#9ca3af">#3A3E46</text>
+<text x="656" y="306" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="400" letter-spacing="0.96" fill="#9ca3af">1.73:1 fill only</text>
+<text x="32" y="332" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="700" letter-spacing="0.96" fill="#9ca3af">MINT</text>
+<rect x="32" y="340" width="192" height="44" fill="#6ee7b7" stroke="#f2f4f3" stroke-width="2" shape-rendering="crispEdges"/>
+<text x="32" y="402" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="700" letter-spacing="0.96" fill="#f2f4f3">mint-300</text>
+<text x="32" y="418" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="400" letter-spacing="0.96" fill="#9ca3af">#6EE7B7</text>
+<text x="32" y="434" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="400" letter-spacing="0.96" fill="#6ee7b7">12.19:1 AA text</text>
+<rect x="240" y="340" width="192" height="44" fill="#10b981" stroke="#f2f4f3" stroke-width="2" shape-rendering="crispEdges"/>
+<text x="240" y="402" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="700" letter-spacing="0.96" fill="#f2f4f3">mint-500</text>
+<text x="240" y="418" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="400" letter-spacing="0.96" fill="#9ca3af">#10B981</text>
+<text x="240" y="434" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="400" letter-spacing="0.96" fill="#6ee7b7">7.32:1 AA text</text>
+<rect x="448" y="340" width="192" height="44" fill="#059669" stroke="#f2f4f3" stroke-width="2" shape-rendering="crispEdges"/>
+<text x="448" y="402" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="700" letter-spacing="0.96" fill="#f2f4f3">mint-600</text>
+<text x="448" y="418" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="400" letter-spacing="0.96" fill="#9ca3af">#059669</text>
+<text x="448" y="434" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="400" letter-spacing="0.96" fill="#6ee7b7">4.93:1 AA text</text>
+<rect x="656" y="340" width="192" height="44" fill="#047857" stroke="#f2f4f3" stroke-width="2" shape-rendering="crispEdges"/>
+<text x="656" y="402" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="700" letter-spacing="0.96" fill="#f2f4f3">mint-700</text>
+<text x="656" y="418" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="400" letter-spacing="0.96" fill="#9ca3af">#047857</text>
+<text x="656" y="434" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="400" letter-spacing="0.96" fill="#6ee7b7">3.39:1 AA non-text</text>
+<text x="32" y="460" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="700" letter-spacing="0.96" fill="#9ca3af">STEEL</text>
+<rect x="32" y="468" width="192" height="44" fill="#9ca3af" stroke="#f2f4f3" stroke-width="2" shape-rendering="crispEdges"/>
+<text x="32" y="530" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="700" letter-spacing="0.96" fill="#f2f4f3">steel-400</text>
+<text x="32" y="546" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="400" letter-spacing="0.96" fill="#9ca3af">#9CA3AF</text>
+<text x="32" y="562" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="400" letter-spacing="0.96" fill="#6ee7b7">7.32:1 AA text</text>
+<rect x="240" y="468" width="192" height="44" fill="#6b7280" stroke="#f2f4f3" stroke-width="2" shape-rendering="crispEdges"/>
+<text x="240" y="530" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="700" letter-spacing="0.96" fill="#f2f4f3">steel-500</text>
+<text x="240" y="546" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="400" letter-spacing="0.96" fill="#9ca3af">#6B7280</text>
+<text x="240" y="562" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="400" letter-spacing="0.96" fill="#6ee7b7">3.84:1 AA non-text</text>
+<rect x="448" y="468" width="192" height="44" fill="#4b5563" stroke="#f2f4f3" stroke-width="2" shape-rendering="crispEdges"/>
+<text x="448" y="530" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="700" letter-spacing="0.96" fill="#f2f4f3">steel-600</text>
+<text x="448" y="546" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="400" letter-spacing="0.96" fill="#9ca3af">#4B5563</text>
+<text x="448" y="562" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="400" letter-spacing="0.96" fill="#9ca3af">2.46:1 fill only</text>
+<rect x="656" y="468" width="192" height="44" fill="#374151" stroke="#f2f4f3" stroke-width="2" shape-rendering="crispEdges"/>
+<text x="656" y="530" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="700" letter-spacing="0.96" fill="#f2f4f3">steel-700</text>
+<text x="656" y="546" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="400" letter-spacing="0.96" fill="#9ca3af">#374151</text>
+<text x="656" y="562" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="400" letter-spacing="0.96" fill="#9ca3af">1.80:1 fill only</text>
+<text x="32" y="588" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="700" letter-spacing="0.96" fill="#9ca3af">SIGNAL</text>
+<rect x="32" y="596" width="192" height="44" fill="#f87171" stroke="#f2f4f3" stroke-width="2" shape-rendering="crispEdges"/>
+<text x="32" y="658" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="700" letter-spacing="0.96" fill="#f2f4f3">danger</text>
+<text x="32" y="674" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="400" letter-spacing="0.96" fill="#9ca3af">#F87171</text>
+<text x="32" y="690" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="400" letter-spacing="0.96" fill="#6ee7b7">6.72:1 AA text</text>
+<rect x="240" y="596" width="192" height="44" fill="#fbbf24" stroke="#f2f4f3" stroke-width="2" shape-rendering="crispEdges"/>
+<text x="240" y="658" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="700" letter-spacing="0.96" fill="#f2f4f3">warn</text>
+<text x="240" y="674" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="400" letter-spacing="0.96" fill="#9ca3af">#FBBF24</text>
+<text x="240" y="690" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="400" letter-spacing="0.96" fill="#6ee7b7">11.13:1 AA text</text>
+<rect x="448" y="596" width="192" height="44" fill="#93c5fd" stroke="#f2f4f3" stroke-width="2" shape-rendering="crispEdges"/>
+<text x="448" y="658" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="700" letter-spacing="0.96" fill="#f2f4f3">info</text>
+<text x="448" y="674" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="400" letter-spacing="0.96" fill="#9ca3af">#93C5FD</text>
+<text x="448" y="690" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="400" letter-spacing="0.96" fill="#6ee7b7">10.30:1 AA text</text>
+<text x="32" y="712" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="400" letter-spacing="0.96" fill="#9ca3af">Contrast measured against this sheet's background, at build time — not typed by hand.</text>
+<line x1="32" y1="714" x2="848" y2="714" stroke="#f2f4f3" stroke-width="1" stroke-opacity="0.2" shape-rendering="crispEdges"/>
+<text x="32" y="736" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="400" letter-spacing="0.96" fill="#9ca3af">OKAN ÖZTÜRK</text>
+<text x="848" y="736" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="700" letter-spacing="0.96" fill="#6ee7b7" text-anchor="end">REV 1.1.0 · 2026-08-09</text>
+</svg>

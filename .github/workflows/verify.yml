@@ -18,10 +18,10 @@ jobs:
 
       # The pipeline has no dependencies by design, so there is nothing to install.
       - name: Compile token bindings
-        run: node skills/swiss-neo-monolith/scripts/build-tokens.mjs
+        run: node scripts/build-tokens.mjs
 
       - name: Generate showcase
-        run: node skills/swiss-neo-monolith/scripts/build-previews.mjs
+        run: node scripts/build-previews.mjs
 
       # Generated files are committed so consumers need no toolchain. If a build
       # produces something different from what was committed, the two have drifted
@@ -35,9 +35,16 @@ jobs:
           fi
 
       - name: Contrast gate
-        run: node skills/swiss-neo-monolith/scripts/check-contrast.mjs
+        run: node scripts/check-contrast.mjs
 
       # The installer is the entry point on four machines; a syntax error in it
       # is only discovered at the worst possible moment.
       - name: Lint installer
         run: bash -n install.sh
+
+      # SKILL.md is what Claude reads first. If it loses its frontmatter or its
+      # routing table, the skill silently stops triggering.
+      - name: Check skill entry point
+        run: |
+          head -1 SKILL.md | grep -q '^---$' || { echo "::error::SKILL.md is missing frontmatter"; exit 1; }
+          grep -q 'references/99-checklist.md' SKILL.md || { echo "::error::SKILL.md routing table is incomplete"; exit 1; }

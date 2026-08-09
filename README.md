@@ -1,75 +1,25 @@
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset=".github/preview/banner-dark.svg">
-  <img alt="Swiss Neo-Monolith — a cross-medium design system" src=".github/preview/banner-light.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="preview/banner-dark.svg">
+  <img alt="Swiss Neo-Monolith — a cross-medium design system" src="preview/banner-light.svg">
 </picture>
 
+**One design language across every medium.** Swiss editorial typography,
+industrial CAD schematics, zero radius. A web component, a printed proposal and a
+terminal report read as the work of one hand — because they follow the same six
+rules and the same tokens.
+
+It ships as a **Claude skill**, so on any machine where it is installed the system
+gets applied automatically, whatever you are building.
+
 [![verify](https://github.com/joxinyks/swiss-neo-monolith/actions/workflows/verify.yml/badge.svg)](https://github.com/joxinyks/swiss-neo-monolith/actions/workflows/verify.yml)
-![revision](https://img.shields.io/badge/REV-1.0.2-10b981?style=flat-square&labelColor=121316)
+![revision](https://img.shields.io/badge/REV-1.1.0-10b981?style=flat-square&labelColor=121316)
 ![contrast](https://img.shields.io/badge/WCAG-34%2F34%20PASS-10b981?style=flat-square&labelColor=121316)
 ![media](https://img.shields.io/badge/MEDIA-7-4b5563?style=flat-square&labelColor=121316)
 ![licence](https://img.shields.io/badge/LICENCE-MIT-4b5563?style=flat-square&labelColor=121316)
 
-One design language, from a web interface to a printed proposal, from a desktop
-application to a terminal report. A component, a cover page and a command-line
-summary read as the work of one hand.
-
-This repository is two things at once:
-
-| | |
-|---|---|
-| **A design system** | Tokens, rules, reference implementations and audit tooling. |
-| **A Claude skill** | On any machine where it is installed, Claude applies the system automatically. |
-
 ---
 
-## 01 // SEE IT
-
-Every image below is **generated from the tokens** by `scripts/build-previews.mjs`.
-Change a token, rerun, and the showcase follows. It cannot drift from the system
-it documents — and the contrast figures are computed live, not typed.
-
-### One language, seven media
-
-The same canon rendered as a web page, a print page, a slide and a terminal.
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset=".github/preview/media-dark.svg">
-  <img alt="The same design canon applied to web, print, slide and terminal output" src=".github/preview/media-light.svg">
-</picture>
-
-### Components
-
-Zero radius, hard-offset shadows, the tactile press state, and the one round shape
-the system permits.
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset=".github/preview/components-dark.svg">
-  <img alt="Buttons, inputs, focus ring, KPI tile, status pulse, progress bar and table" src=".github/preview/components-light.svg">
-</picture>
-
-### Colour
-
-Each swatch states its own contrast ratio against the sheet background, and
-whether that permits text, non-text, or fill only.
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset=".github/preview/palette-dark.svg">
-  <img alt="Colour tokens with live contrast ratios and WCAG verdicts" src=".github/preview/palette-light.svg">
-</picture>
-
-### Typography
-
-Two families with one hard rule: anything a machine produced is monospace,
-anything a person wrote is sans.
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset=".github/preview/type-dark.svg">
-  <img alt="Type scale specimen from display to secondary text" src=".github/preview/type-light.svg">
-</picture>
-
----
-
-## 02 // INSTALL
+## 01 // QUICKSTART
 
 ```bash
 git clone https://github.com/joxinyks/swiss-neo-monolith.git
@@ -88,14 +38,16 @@ cd swiss-neo-monolith
 chmod +x install.sh && ./install.sh
 ```
 
-The script places `skills/swiss-neo-monolith` under `~/.claude/skills/`, compiles
-the token bindings and runs the contrast gate. Restart Claude and the skill is
-active in every project.
+Restart Claude. That is the whole setup — the installer links the repository into
+`~/.claude/skills/`, compiles the token bindings and runs the contrast gate.
 
-### Development machine
+<details>
+<summary><b>Other install modes</b></summary>
 
-On the machine where the system itself is edited, link instead of copying so
-changes take effect without reinstalling.
+<br>
+
+On the machine where you edit the system, link instead of copying so changes take
+effect without reinstalling:
 
 ```powershell
 .\install.ps1 -Link
@@ -105,19 +57,73 @@ changes take effect without reinstalling.
 ./install.sh --link
 ```
 
-### Updating
+Update an existing installation:
 
 ```bash
 git pull && .\install.ps1 -Force
 ```
 
-### Verifying
+Verify at any time:
 
 ```bash
 npm run verify
 ```
 
 Anything other than `PASS` means the installation is incomplete or broken.
+
+</details>
+
+---
+
+## 02 // SEE IT
+
+The same canon rendered as a web page, a print page, a slide and a terminal.
+Every image in this README is **generated from the tokens** — change a token,
+rerun `npm run build`, and the showcase follows. It cannot drift from the system
+it documents.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="preview/media-dark.svg">
+  <img alt="The same design canon applied to web, print, slide and terminal output" src="preview/media-light.svg">
+</picture>
+
+<details>
+<summary><b>Components</b> — zero radius, hard-offset shadows, the tactile press state</summary>
+
+<br>
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="preview/components-dark.svg">
+  <img alt="Buttons, focus ring, KPI tile, status pulse, progress bar and table" src="preview/components-light.svg">
+</picture>
+
+</details>
+
+<details>
+<summary><b>Colour</b> — every swatch states its own measured contrast ratio</summary>
+
+<br>
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="preview/palette-dark.svg">
+  <img alt="Colour tokens with live contrast ratios and WCAG verdicts" src="preview/palette-light.svg">
+</picture>
+
+</details>
+
+<details>
+<summary><b>Typography</b> — two families, one hard rule</summary>
+
+<br>
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="preview/type-dark.svg">
+  <img alt="Type scale specimen from hero to secondary text" src="preview/type-light.svg">
+</picture>
+
+Anything a machine produced is monospace; anything a person wrote is sans.
+
+</details>
 
 ---
 
@@ -126,110 +132,76 @@ Anything other than `PASS` means the installation is incomplete or broken.
 Six invariants, independent of medium. Whether an output belongs to this system is
 decided here.
 
-| Code | Rule |
+| | Rule |
 |---|---|
 | `C01` | **Zero radius.** No rounded corners; the only exception is the status pulse dot. |
 | `C02` | **CAD indexing.** Every section opens with a two-digit monospace tag: `01 // SECTION`. |
 | `C03` | **One chromatic accent.** No colour but mint; mint stays under 10% of visible area. |
-| `C04` | **Structure is drawn with rules.** Crisp rules instead of blurred shadows, gradients and texture. |
+| `C04` | **Rules, not shadows.** Crisp rules instead of blur, gradients and texture. |
 | `C05` | **Telemetry colophon.** Every output carries revision, ISO date and status. |
 | `C06` | **Asymmetry.** A 40/60 split by default; nothing is centred. |
 
-Full detail: [`SKILL.md`](skills/swiss-neo-monolith/SKILL.md)
+Full detail and the red lines: **[`SKILL.md`](SKILL.md)**
 
 ---
 
-## 04 // COVERAGE
+## 04 // DOCS
 
-| Medium | Reference |
+| Medium | |
 |---|---|
-| Web — React, Tailwind, HTML | [`10-web.md`](skills/swiss-neo-monolith/references/10-web.md) |
-| Applications — desktop and mobile | [`11-app.md`](skills/swiss-neo-monolith/references/11-app.md) |
-| Print and PDF | [`12-print.md`](skills/swiss-neo-monolith/references/12-print.md) |
-| Office — PPTX, DOCX, XLSX | [`13-office.md`](skills/swiss-neo-monolith/references/13-office.md) |
-| Terminal and CLI | [`14-terminal.md`](skills/swiss-neo-monolith/references/14-terminal.md) |
-| Data visualisation | [`15-data-viz.md`](skills/swiss-neo-monolith/references/15-data-viz.md) |
-| Brand assets | [`16-brand-assets.md`](skills/swiss-neo-monolith/references/16-brand-assets.md) |
+| Web — React, Tailwind, HTML | [`10-web.md`](references/10-web.md) |
+| Applications — desktop, mobile | [`11-app.md`](references/11-app.md) |
+| Print and PDF | [`12-print.md`](references/12-print.md) |
+| Office — PPTX, DOCX, XLSX | [`13-office.md`](references/13-office.md) |
+| Terminal and CLI | [`14-terminal.md`](references/14-terminal.md) |
+| Data visualisation | [`15-data-viz.md`](references/15-data-viz.md) |
+| Brand assets | [`16-brand-assets.md`](references/16-brand-assets.md) |
 
-The base layer applies to all of them:
-[colour and scale](skills/swiss-neo-monolith/references/01-foundations.md) ·
-[typography](skills/swiss-neo-monolith/references/02-typography.md) ·
-[motion and sound](skills/swiss-neo-monolith/references/03-motion-sound.md) ·
-[voice and format](skills/swiss-neo-monolith/references/04-voice.md) ·
-[delivery checklist](skills/swiss-neo-monolith/references/99-checklist.md)
-
----
-
-## 05 // TOKEN PIPELINE
-
-`tokens/tokens.json` is the only file edited by hand. Every binding is generated
-from it; nothing under `dist/` is edited directly.
-
-```
-tokens.json
-    |
-    +-- build-tokens.mjs
-    |       +-- tokens.css              CSS custom properties, light and dark
-    |       +-- tokens.scss
-    |       +-- tokens.ts               typed access, literal values
-    |       +-- tailwind.preset.cjs     catches off-palette values at build time
-    |       +-- tokens.py               ReportLab · WeasyPrint · matplotlib
-    |       +-- tokens.dart             Flutter
-    |       +-- tokens.resolved.json    Office · email · native platforms
-    |
-    +-- build-previews.mjs  -->  .github/preview/*.svg   (this README's showcase)
-    |
-    +-- check-contrast.mjs  -->  WCAG gate, exits non-zero on failure
-```
-
-### Changing a token
-
-```bash
-# 1  edit tokens/tokens.json
-# 2  regenerate bindings and showcase
-npm run build
-
-# 3  pass the contrast gate
-npm run check
-
-# 4  raise $meta.version, record it in CHANGELOG.md
-```
-
-The gate audits 34 foreground/background pairs against WCAG thresholds in both
-themes. It also holds guard tests over tones that are banned for text, so a future
-palette edit cannot quietly make them look safe.
+Base layer, applying to all of them:
+[colour and scale](references/01-foundations.md) ·
+[typography](references/02-typography.md) ·
+[motion and sound](references/03-motion-sound.md) ·
+[voice and format](references/04-voice.md) ·
+[delivery checklist](references/99-checklist.md)
 
 ---
 
-## 06 // USING IT
+## 05 // TOKENS
+
+`tokens/tokens.json` is the only file edited by hand. Everything else is generated
+from it.
+
+```
+tokens.json ──▶ tokens.css · tokens.scss · tokens.ts · tailwind.preset.cjs
+                tokens.py  · tokens.dart · tokens.resolved.json
+                preview/*.svg          the showcase above
+                check-contrast         WCAG gate, non-zero exit on failure
+```
+
+<details>
+<summary><b>Using the tokens in a project</b></summary>
+
+<br>
 
 **Web**
 
 ```js
-// tailwind.config.js
-module.exports = {
-  presets: [require('./vendor/snm/tailwind.preset.cjs')],
-};
-```
-
-```css
-@import 'vendor/snm/tokens.css';
+// tailwind.config.js — the preset replaces the palette, so an off-palette
+// colour produces no class and fails at build time.
+module.exports = { presets: [require('./vendor/snm/tailwind.preset.cjs')] };
 ```
 
 **Python — PDF and charts**
 
 ```python
 from snm.tokens import token, rgb
-
-fill = rgb("accent")           # (0.06, 0.73, 0.51)
-text = token("text", "dark")   # "#f2f4f3"
+fill = rgb("accent")            # (0.06, 0.73, 0.51)
 ```
 
 **Flutter**
 
 ```dart
 import 'snm/tokens.dart';
-
 Container(color: SnmLight.bgRaised, ...)
 ```
 
@@ -237,50 +209,48 @@ Container(color: SnmLight.bgRaised, ...)
 
 ```ts
 import { token, cssVar } from '@snm/tokens';
-
-ctx.fillStyle = token('bgInverse');      // literal, theme selectable
-el.style.color = cssVar('textAccent');   // var(--snm-text-accent)
+ctx.fillStyle = token('bgInverse');
 ```
+
+</details>
+
+<details>
+<summary><b>Changing a token</b></summary>
+
+<br>
+
+```bash
+# 1  edit tokens/tokens.json
+npm run build      # regenerate every binding and the showcase
+npm run check      # 34 contrast pairs, both themes
+# 2  raise $meta.version, record it in CHANGELOG.md
+```
+
+The gate also holds guard tests over tones banned for text, so a future palette
+edit cannot quietly make them look safe. See [`CONTRIBUTING.md`](CONTRIBUTING.md).
+
+</details>
 
 ---
 
-## 07 // LAYOUT
+## 06 // LAYOUT
 
 ```
-swiss-neo-monolith/
-├─ install.ps1 · install.sh          installers
-├─ .github/preview/                  generated showcase — do not edit
-└─ skills/swiss-neo-monolith/        the installed unit, self-contained
-   ├─ SKILL.md                       canon and routing
-   ├─ references/                    12 medium and base-layer references
-   ├─ tokens/
-   │  ├─ tokens.json                 single source of truth
-   │  └─ dist/                       generated bindings
-   ├─ assets/
-   │  ├─ web/                        FooterGlobal · useMechanicalClick · eslint
-   │  ├─ print/                      CSS Paged Media stylesheet
-   │  └─ office/                     OOXML theme scheme
-   └─ scripts/
-      ├─ lib/color.mjs               shared WCAG maths
-      ├─ build-tokens.mjs
-      ├─ build-previews.mjs
-      └─ check-contrast.mjs
+SKILL.md          the constitution — also the skill entry point
+references/       12 medium and base-layer references
+tokens/           tokens.json + generated bindings in dist/
+assets/           web · print · office reference implementations
+scripts/          build · preview · contrast gate
+preview/          generated showcase — do not edit
+install.ps1 .sh   installers
 ```
 
----
-
-## 08 // VERSIONING
-
-`MAJOR` a visual break — existing outputs must be regenerated ·
-`MINOR` a new token, rule or medium · `PATCH` a fix or clarification.
-
-Every change is recorded in [`CHANGELOG.md`](CHANGELOG.md). See
-[`CONTRIBUTING.md`](CONTRIBUTING.md) for the working rules. Nothing merges without
-passing the contrast gate.
+The repository root *is* the skill: the installer links it into
+`~/.claude/skills/`, so there is no packaged copy to fall out of date.
 
 ---
 
 ```
 OKAN ÖZTÜRK · joxinyks.com
-REV 1.0.2 · STATUS: OPERATIONAL · LICENCE: MIT
+REV 1.1.0 · STATUS: OPERATIONAL · LICENCE: MIT
 ```
