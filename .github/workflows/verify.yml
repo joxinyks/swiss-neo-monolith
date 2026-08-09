@@ -1,0 +1,43 @@
+name: verify
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # The pipeline has no dependencies by design, so there is nothing to install.
+      - name: Compile token bindings
+        run: node skills/swiss-neo-monolith/scripts/build-tokens.mjs
+
+      - name: Generate showcase
+        run: node skills/swiss-neo-monolith/scripts/build-previews.mjs
+
+      # Generated files are committed so consumers need no toolchain. If a build
+      # produces something different from what was committed, the two have drifted
+      # and the showcase in the README no longer describes the real tokens.
+      - name: Check generated files are in sync
+        run: |
+          if ! git diff --quiet; then
+            echo "::error::Generated files are out of date. Run 'npm run build' and commit the result."
+            git diff --stat
+            exit 1
+          fi
+
+      - name: Contrast gate
+        run: node skills/swiss-neo-monolith/scripts/check-contrast.mjs
+
+      # The installer is the entry point on four machines; a syntax error in it
+      # is only discovered at the worst possible moment.
+      - name: Lint installer
+        run: bash -n install.sh

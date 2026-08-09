@@ -1,100 +1,105 @@
 # 01 // FOUNDATIONS
 
-Renk, aralık, kontur, yükseklik. Mecradan bağımsız temel katman.
+Colour, spacing, rules, elevation. The medium-independent base layer.
 
-## Token mimarisi
+## Token architecture
 
-Üç katman var, ve **ürün kodu yalnızca 2. katmana dokunur**:
+Three layers exist, and **product code only ever touches layer 2**:
 
 ```
-1. Primitive   color.mint.500        ham değer, isimlendirilmiş
-2. Semantic    --snm-text-accent     amaca göre, temaya duyarlı  ← BUNU KULLAN
-3. Component   --snm-btn-bg          nadir; yalnızca 2. katman yetmediğinde
+1. Primitive   color.mint.500        raw, named value
+2. Semantic    --snm-text-accent     purpose-bound, theme-aware   <- USE THIS
+3. Component   --snm-btn-bg          rare; only when layer 2 cannot express it
 ```
 
-Ürün kodunda `#10b981` veya `color.mint.500` görürsen bu bir hatadır.
-Doğru form: `var(--snm-accent)` / `text-accent` / `token("accent")`.
+Seeing `#10b981` or `color.mint.500` in product code is a defect.
+The correct forms are `var(--snm-accent)`, `text-accent`, `token("accent")`.
 
-## Renk sistemi
+## Colour
 
-### Nötrler
+### Neutrals
 
-| Rol | Açık tema | Koyu tema |
+| Role | Light | Dark |
 |---|---|---|
-| Zemin | `bone.200` `#f2f4f3` | `obsidian.900` `#121316` |
-| Yükseltilmiş yüzey | `bone.50` `#ffffff` | `obsidian.800` `#1c1e22` |
-| Metin | `obsidian.900` | `bone.200` |
-| İkincil metin | `steel.600` `#4b5563` | `steel.400` |
-| Kontur (ince) | `rgba(18,19,22,.15)` | `rgba(242,244,243,.15)` |
-| Kontur (yapısal) | `obsidian.900` | `bone.200` |
+| Background | `bone.200` `#f2f4f3` | `obsidian.900` `#121316` |
+| Raised surface | `bone.50` `#ffffff` | `obsidian.800` `#1c1e22` |
+| Text | `obsidian.900` | `bone.200` |
+| Secondary text | `steel.600` `#4b5563` | `steel.400` |
+| Rule (hairline) | `rgba(18,19,22,.15)` | `rgba(242,244,243,.15)` |
+| Rule (structural) | `obsidian.900` | `bone.200` |
 
-### Mint — kullanım kuralları
+### Mint — usage contract
 
-Mint sistemin tek kromatik sesidir; bu yüzden nerede kullanıldığı sıkı kurallıdır.
+Mint is the system's only chromatic voice, so where it may appear is tightly
+governed.
 
-| Ton | Kontrast (kemik üzeri) | İzin verilen kullanım |
+| Tone | Contrast on bone | Permitted use |
 |---|---|---|
-| `mint.500` `#10b981` | **2.4:1** | Obsidyen üzeri metin (7.3:1 ✓), dolgu, çizgi, ikon, grafik serisi. **Kemik üzeri metin YASAK.** |
-| `mint.600` `#059669` | 3.4:1 | Anlam taşıyan grafik öğe / kontur / ikon (AA non-text 3:1 ✓). Metin değil. Semantic adı: `accentUi`. |
-| `mint.700` `#047857` | **4.9:1** ✓ | Kemik üzeri metin ve link için **tek geçerli mint**. |
-| `mint.300` `#6ee7b7` | — | Obsidyen üzeri metin ve link. |
+| `mint.500` `#10b981` | **2.3:1** | Text on obsidian (7.3:1 ✓), fills, rules, icons, chart series. **Never text on bone.** |
+| `mint.600` `#059669` | 3.4:1 | Meaning-bearing icons, borders, graphics (AA non-text ✓). Not text. |
+| `mint.700` `#047857` | **4.9:1** ✓ | The only mint permitted for text and links on light. |
+| `mint.300` `#6ee7b7` | — | Text and links on obsidian. |
 
-İki ayrı semantic token var, karıştırma:
+Three separate semantic tokens exist; do not conflate them:
 
-- **`accent`** = `mint.500` — marka dolgusu. Üzerine ters metin gelir, kendisi
-  bilgi taşımaz. Açık zeminde kontrastı 2.3:1'dir; bu kabul edilebilir çünkü
-  bir *dolgu*dur, anlam taşıyan bir çizgi değil.
-- **`accentUi`** = `mint.600` (açık) / `mint.500` (koyu) — **anlam taşıyan**
-  ikon, kontur, grafik öğesi. 3:1 eşiğini geçer.
-- **`textAccent`** = `mint.700` (açık) / `mint.300` (koyu) — metin ve link.
+- **`accent`** = `mint.500` — the brand fill. Carries inverse text on top; it does
+  not itself convey information. Its 2.3:1 on light is acceptable *because* it is
+  a fill, not a meaning-bearing line.
+- **`accentUi`** = `mint.600` light / `mint.500` dark — meaning-bearing icons,
+  borders and graphic elements. Clears 3:1.
+- **`textAccent`** = `mint.700` light / `mint.300` dark — text and links.
 
-Alan bütçesi: mint, herhangi bir ekranın/sayfanın görünür alanının **%10'unu**
-geçmez. Geçiyorsa vurgu vurgu olmaktan çıkmıştır.
+Area budget: mint covers at most **10%** of any visible screen or page. Beyond
+that it stops functioning as an accent.
 
-### Durum renkleri
+### State colours
 
-`danger` `#b91c1c` · `warn` `#92400e` · `info` `#1d4ed8` (koyu temada açık karşılıkları).
-Yalnızca gerçek durum bildirir. Dekoratif kullanım yok. Renk asla tek başına anlam
-taşımaz — her zaman bir ikon veya etiket eşlik eder (renk körlüğü).
+`danger` `#b91c1c` · `warn` `#92400e` · `info` `#1d4ed8`, with lighter dark-theme
+counterparts. They report real states only, never decoration. Colour alone never
+carries meaning — an icon or label always accompanies it.
 
-### Kontrast eşiği
+### Contrast thresholds
 
-- Gövde metni: **4.5:1** minimum.
-- 24px+ veya 19px+bold metin: 3:1.
-- İkon, kontur, form kenarı, grafik: 3:1.
-- Devre dışı öğeler muaf ama bilgi taşıyamaz.
+- Body text: **4.5:1** minimum
+- Text at 24px+, or 19px+ bold: 3:1
+- Icons, rules, form borders, chart marks: 3:1
 
-Yeni bir renk önerdiğinde kontrastı hesapla ve rakamı belirt. Hesaplamadıysan kullanma.
+Disabled elements are exempt but must not be the sole carrier of information.
 
-## Aralık ölçeği
+When proposing a new colour, compute its contrast and state the figure. If you
+have not computed it, do not use it.
 
-4px tabanlı. **İzin verilen tek değerler:**
+## Spacing scale
+
+4px base. **These are the only permitted values:**
 
 ```
 0   4   8   12   16   24   32   48   64   96   128
 s0  s1  s2  s3   s4   s5   s6   s7   s8   s9   s10
 ```
 
-Ara değer (10px, 20px, 36px) yazma. İhtiyaç duyuyorsan kompozisyon yanlıştır.
+Never write an intermediate value (10px, 20px, 36px). Needing one means the
+composition is wrong.
 
-Ritim kuralı: bir bileşenin **iç** boşluğu, **dış** boşluğundan küçük olmalı —
-`p-4` içeren bir kart `mb-6` ile ayrılır. Aksi hâlde gruplama okunmaz.
+Rhythm rule: a component's **inner** padding must be smaller than the **outer**
+gap that separates it — a card with `p-4` is separated by `mb-6`. Otherwise the
+grouping cannot be read.
 
-## Kontur
+## Rules and borders
 
-| Ad | Kalınlık | Kullanım |
+| Name | Width | Use |
 |---|---|---|
-| hairline | 1px | Ayraç, tablo satırı, ikincil kart |
-| structural | 2px | Birincil kart, buton, modal, aktif durum |
-| heavy | 3px | Nadir — kapak çerçevesi, seçili durum |
+| hairline | 1px | Dividers, table rows, secondary cards |
+| structural | 2px | Primary cards, buttons, modals, active state |
+| heavy | 3px | Rare — cover frames, selected state |
 
-Kontur rengi zemin ile kontrastta 3:1 olmalı. `rgba(...,0.15)` konturlar **yalnızca
-dekoratif ayraçlar** içindir; form kenarı gibi bilgi taşıyan konturlar
-`borderStrong` veya en az `steel.500` olmalı.
+Rule colour must reach 3:1 against its background. The `rgba(...,0.15)` rules are
+for **decorative dividers only**; anything information-bearing, such as a form
+border, uses `borderStrong` or at minimum `steel.500`.
 
-## Yükseklik (elevation)
+## Elevation
 
-Blur yok. Sert ofset:
+No blur. Hard offset only:
 
 ```css
 --snm-elevation-1: 2px 2px 0 0 var(--snm-border-strong);
@@ -102,30 +107,32 @@ Blur yok. Sert ofset:
 --snm-elevation-3: 8px 8px 0 0 var(--snm-border-strong);
 ```
 
-Ofset her zaman **sağ-aşağı**, her zaman **tam piksel**, her zaman **tek renk**.
-Aynı ekranda ikiden fazla yükseklik seviyesi kullanma. Baskıda elevation yerine
-2px kontur kullanılır (bkz. `12-print.md`).
+The offset is always down-right, always whole pixels, always a single flat colour.
+Never use more than two elevation levels on one screen. In print, elevation
+becomes a 1pt rule instead (see `12-print.md`).
 
-## Izgara ve ölçü
+## Grid and measure
 
-- Maksimum içerik genişliği: **1440px**
-- Okuma satır uzunluğu: **68ch** (bunu aşan gövde metni bölünür)
-- Kolon: 12'li, gutter `s5` (24px)
-- Varsayılan bölünme: **40 / 60** asimetrik (SNM-CANON-06)
-- Dokunma hedefi minimum: **44 × 44px** (görsel öğe küçük olabilir, hit alanı olamaz)
+- Maximum content width: **1440px**
+- Reading measure: **68ch** — body copy beyond this is split or narrowed
+- Columns: 12, gutter `s5` (24px)
+- Default division: **40 / 60** asymmetric (SNM-CANON-06)
+- Minimum touch target: **44 × 44px** — the visual mark may be smaller, the hit
+  area may not
 
-## Tema
+## Theming
 
-Sistem hem açık hem koyu temayı destekler. Kural:
+Both themes are supported.
 
-- OS tercihi varsayılandır (`prefers-color-scheme`).
-- Kullanıcının açık seçimi (`[data-theme]`) **her iki yönde de** OS'i ezer.
-- Tema geçişi animasyonsuzdur — anlık.
-- Mint her iki temada da aynı `500` tonundadır; değişen şey metin tonudur.
+- The OS preference is the default (`prefers-color-scheme`).
+- An explicit user choice (`[data-theme]`) overrides the OS **in both directions**.
+- Theme switching is not animated; it is instant.
+- Mint stays at `500` in both themes; what changes is the text tone.
 
-## Doğrulama
+## Verification
 
 ```bash
-node scripts/build-tokens.mjs      # token'ları yeniden derle
-node scripts/check-contrast.mjs    # tüm metin/zemin çiftlerini WCAG'e karşı denetle
+node scripts/build-tokens.mjs      # recompile bindings
+node scripts/check-contrast.mjs    # audit every shipped pair against WCAG
+node scripts/build-previews.mjs    # regenerate the visual showcase
 ```

@@ -10,15 +10,15 @@
  */
 
 const NO_ARBITRARY_HEX =
-  'SNM: elle hex yazma. Token kullan (bg-inverse, text-accent, var(--snm-…)).';
+  'SNM: no hand-written hex. Use a token (bg-inverse, text-accent, var(--snm-…)).';
 const NO_ROUNDED =
-  'SNM-CANON-01: yuvarlatılmış köşe yasak. Tek istisna .snm-pulse.';
+  'SNM-CANON-01: rounded corners are forbidden. The only exception is .snm-pulse.';
 const NO_TRANSITION_ALL =
-  'SNM: "transition: all" yasak. Property listesini açıkça yaz.';
+  'SNM: "transition: all" is forbidden. Enumerate the properties.';
 const NO_VH =
-  'SNM-LAY-02: 100vh yerine 100dvh kullan (mobil adres çubuğu).';
+  'SNM-LAY-02: use 100dvh, not 100vh (the mobile address bar breaks vh).';
 const NO_BLUR_SHADOW =
-  'SNM-CANON-04: bulanık gölge/blur yasak. shadow-1/2/3 (sert ofset) kullan.';
+  'SNM-CANON-04: blurred shadows and blur filters are forbidden. Use shadow-1/2/3 (hard offset).';
 
 module.exports = [
   {

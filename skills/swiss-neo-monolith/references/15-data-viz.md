@@ -1,15 +1,15 @@
 # 15 // DATA VISUALIZATION
 
-Grafik, dashboard, sparkline, KPI kutusu. Mecra ne olursa olsun (web, PDF, slayt,
-Excel) aynı kurallar.
+Charts, dashboards, sparklines, KPI tiles. The same rules apply regardless of
+medium — web, PDF, slide or spreadsheet.
 
-> Genel veri görselleştirme prensipleri için `dataviz` skill'i de yükle. Bu dosya
-> onun üzerine SNM'ye özgü kısıtları koyar.
+> Also load the `dataviz` skill for general visualisation principles. This file
+> layers SNM-specific constraints on top of it.
 
-## Seri palet sırası
+## Series palette order
 
-Mint tek aksan olduğu için (SNM-CANON-03) çoklu seride **tonlama + doku** kullanılır,
-gökkuşağı değil. Bu sıra ile:
+Because mint is the only accent (SNM-CANON-03), multi-series charts use tone and
+texture rather than a rainbow. In this order:
 
 ```
 1. #10b981  mint 500          5. #9ca3af  steel 400
@@ -18,17 +18,17 @@ gökkuşağı değil. Bu sıra ile:
 4. #065f46  mint 800          8. #2a2d33  obsidian 700
 ```
 
-5'ten fazla seri gerekiyorsa grafik yanlış seçilmiştir — küçük çokluk
-(small multiples) kullan.
+Needing more than five series means the wrong chart was chosen — use small
+multiples.
 
-Sıralı (sequential) ölçek: `#f2f4f3 → #6ee7b7 → #10b981 → #065f46`.
-Iraksak (diverging): `#b91c1c ← #f2f4f3 → #10b981`.
+Sequential scale: `#f2f4f3 → #6ee7b7 → #10b981 → #065f46`.
+Diverging scale: `#b91c1c ← #f2f4f3 → #10b981`.
 
-Renk körlüğü: mint/steel ayrımı luminans farkıyla da okunur; ayrıca çizgi
-grafiklerde çizgi stili (düz/kesikli/noktalı), alan grafiklerinde tarama deseni
-kullanılır. **Renk tek başına seri ayırt etmez.**
+Colour vision: the mint/steel distinction also reads as a luminance difference.
+In addition, line charts vary line style (solid, dashed, dotted) and area charts
+vary hatch pattern. **Colour alone never distinguishes a series.**
 
-## Grafik anatomisi
+## Chart anatomy
 
 ```
 01 // REVENUE BY QUARTER                    2024–2026
@@ -37,62 +37,63 @@ kullanılır. **Renk tek başına seri ayırt etmez.**
  │     ┌──┐
  │  ┌──┤  │  ┌──┐
  │  │  │  │  │  │
- └──┴──┴──┴──┴──┴───────────────────────────────►
+ └──┴──┴──┴──┴──┴───────────────────────────────▶
    Q1  Q2  Q3  Q4
 ─────────────────────────────────────────────────────
- SOURCE: internal · 2026-08-09 · TRY, KDV hariç
+ SOURCE: internal · 2026-08-09 · TRY, excl. VAT
 ```
 
-Zorunlu parçalar: CAD başlık · üst kural çizgisi · grafik · alt kural çizgisi ·
-kaynak/birim künyesi. Künye SNM-CANON-05'in grafik karşılığıdır.
+Required parts: CAD heading · top rule · plot · bottom rule · source and unit
+colophon. That colophon is the chart's form of SNM-CANON-05.
 
-## Kurallar
+## Rules
 
-- **Yuvarlak uç yok.** Bar köşeleri keskin, çizgi uçları `stroke-linecap: butt`,
-  pasta dilimi kenarları keskin.
-- **Degrade dolgu yok.** Alan grafiklerinde düz renk + %15 opaklık.
-- **3B yok. Gölge yok. Parıltı yok.**
-- **Izgara**: yalnızca yatay, 1px, `border` rengi. Dikey ızgara yok.
-- **Eksen**: 1px `borderStrong`. Eksen etiketleri mono `xs`. Sıfır çizgisi 2px.
-- **Y ekseni sıfırdan başlar** (bar/alan grafiklerde pazarlıksız).
-- **Etiket doğrudan**: mümkünse legend yerine seriyi ucunda etiketle.
-- **Tüm sayılar** mono + `tabular-nums` + `Intl` ile biçimlendirilmiş.
-- **Pasta grafik** yalnızca 2–3 dilimde ve yüzde toplamı 100 olduğunda. Donut yok
-  (yuvarlak). Tercih: yatay yığılmış tek bar.
-- **Tooltip**: keskin köşeli, 2px kontur, obsidyen zemin, mono içerik, animasyonsuz
-  görünür (`duration-fast` opaklık kabul).
+- **No rounded caps.** Bar corners are sharp, lines use `stroke-linecap: butt`,
+  pie segment edges are sharp.
+- **No gradient fills.** Area charts use a flat colour at 15% opacity.
+- **No 3-D, no shadows, no glow.**
+- **Gridlines**: horizontal only, 1px, in the rule colour. Never vertical.
+- **Axes**: 1px `borderStrong`. Axis labels in mono `xs`. The zero line is 2px.
+- **Y axis starts at zero** — non-negotiable for bar and area charts.
+- **Label directly**: prefer labelling a series at its end over a legend.
+- **All numbers** are mono, `tabular-nums`, formatted through `Intl`.
+- **Pie charts** only for two or three segments summing to 100%. No donuts (round).
+  Prefer a single horizontal stacked bar.
+- **Tooltip**: sharp corners, 2px rule, obsidian surface, mono content, appearing
+  without animation (a `duration-fast` opacity change is acceptable).
 
-## KPI / stat kutusu
+## KPI tile
 
 ```
-┌──────────────────────┐
-│ TOTAL REVENUE        │  ← mono micro, textMuted
-│ 12.500,00 ₺          │  ← mono 3xl, tabular, text
-│ ▲ 12.4%  vs Q3       │  ← mono xs, accent (artış) / danger (azalış) + ok işareti
-└──────────────────────┘  2px border, 0 radius
++----------------------+
+| TOTAL REVENUE        |  mono micro, textMuted
+| 12.500,00 ₺          |  mono 3xl, tabular, text
+| ▲ 12.4%  vs Q3       |  mono xs, accent (up) / danger (down), with an arrow
++----------------------+  2px rule, zero radius
 ```
 
-Değişim yönü **ok işaretiyle de** gösterilir — renk tek başına yeterli değil.
+Direction of change is shown **by the arrow as well as** the colour.
 
 ## Sparkline
 
-1px çizgi, mint, dolgusuz, eksen yok, 24px yükseklik, son noktada 3px kare işaret
-(daire değil).
+1px line, mint, no fill, no axis, 24px tall, with a 3px square marker at the final
+point (not a circle).
 
-## Mecraya özgü
+## Per-medium notes
 
-| Mecra | Not |
+| Medium | Notes |
 |---|---|
-| Web | SVG tercih; `viewBox` ile ölçeklenir. Canvas yalnızca >1000 nokta. Renkler `var(--snm-…)` ile temaya duyarlı. |
-| PDF/baskı | Vektör (SVG→PDF). Çizgi kalınlığı min 0.5pt. Siyah-beyaz baskıda desenle ayrıştır. |
-| Slayt | Slayt başına tek grafik. Eksen etiketleri min 12pt. |
-| Excel | Yerleşik grafik; palette elle SNM sırasına ayarlanır, ızgara ve gölge kapatılır. |
-| Terminal | Unicode blok karakterleri (`▁▂▃▄▅▆▇█`) ile sparkline; renk NO_COLOR'a duyarlı. |
+| Web | Prefer SVG with a `viewBox`. Canvas only above ~1000 points. Colours via `var(--snm-…)` so they follow the theme. |
+| Print / PDF | Vector (SVG → PDF). Minimum 0.5pt stroke. Distinguish series by pattern for greyscale output. |
+| Slide | One chart per slide. Axis labels at 12pt minimum. |
+| Spreadsheet | Native charts with the palette set manually in SNM order; gridlines and shadows off. |
+| Terminal | Unicode block characters (`▁▂▃▄▅▆▇█`) for sparklines; honour `NO_COLOR`. |
 
-## Erişilebilirlik
+## Accessibility
 
-- Her grafiğin metin alternatifi var: `<figcaption>` ya da `alt` — eğilimi ve
-  uç değerleri cümleyle anlat, "grafik" deme.
-- Temel veri tablo olarak da erişilebilir olmalı (`<details>` içinde tablo kabul).
-- Etkileşimli grafiklerde klavye ile nokta nokta gezinme.
-- Kontrast: seri renkleri zeminle 3:1, birbirleriyle ayırt edilebilir.
+- Every chart has a text alternative — a `<figcaption>` or `alt` describing the
+  trend and the outliers in a sentence. Never say "chart".
+- The underlying data is reachable as a table (inside a `<details>` is fine).
+- Interactive charts support point-by-point keyboard traversal.
+- Contrast: series against the background at 3:1, and distinguishable from each
+  other.

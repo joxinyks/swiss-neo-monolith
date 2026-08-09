@@ -1,89 +1,89 @@
 # 14 // TERMINAL & CLI
 
-Bir CLI de tasarlanmış bir yüzeydir. Bu sistemin CAD estetiği terminale doğal
-olarak oturur — zaten monospace bir dünyadır.
+A CLI is a designed surface too. This system's CAD aesthetic sits naturally in a
+terminal — it is already a monospace world.
 
-## Renk
+## Colour
 
-Terminaller 256 renk / truecolor destekler ama **renk asla tek bilgi taşıyıcı
-değildir**; her zaman bir sembol ya da etiket eşlik eder (NO_COLOR, pipe, log dosyası).
+Terminals support 256 colours or truecolor, but **colour is never the sole carrier
+of information**; a symbol or label always accompanies it, for `NO_COLOR`, pipes
+and log files.
 
-| Rol | Truecolor | ANSI 256 fallback |
+| Role | Truecolor | ANSI 256 fallback |
 |---|---|---|
-| Aksan / başarı | `#10b981` | `\e[38;5;42m` |
-| Metin | varsayılan | — |
-| Sönük / meta | `#6b7280` | `\e[38;5;244m` |
-| Hata | `#f87171` | `\e[38;5;203m` |
-| Uyarı | `#fbbf24` | `\e[38;5;220m` |
-| Bilgi | `#93c5fd` | `\e[38;5;111m` |
+| Accent, success | `#10b981` | `\e[38;5;42m` |
+| Text | default | — |
+| Dim, meta | `#6b7280` | `\e[38;5;244m` |
+| Error | `#f87171` | `\e[38;5;203m` |
+| Warning | `#fbbf24` | `\e[38;5;220m` |
+| Info | `#93c5fd` | `\e[38;5;111m` |
 
-Zorunlu: `NO_COLOR` ortam değişkenine uy · stdout TTY değilse renk kapat ·
-`--no-color` bayrağı · `FORCE_COLOR` desteği.
+Required: honour `NO_COLOR` · disable colour when stdout is not a TTY · provide
+`--no-color` · support `FORCE_COLOR`.
 
-## Kutu çizimi
+## Box drawing
 
-Yalnızca **keskin köşeli** Unicode box-drawing karakterleri. Yuvarlak köşe
-(`╭ ╮ ╰ ╯`) SNM-CANON-01 ihlalidir.
+Only **sharp-cornered** Unicode box-drawing characters. Rounded corners
+(`╭ ╮ ╰ ╯`) violate SNM-CANON-01.
 
 ```
 ┌─────────────────────────────────────────────┐
-│ 01 // BUILD                        REV 1.0.0│
+│ 01 // BUILD                        REV 1.0.1│
 ├─────────────────────────────────────────────┤
-│ ● tokens        compiled          109 tokens│
-│ ● contrast      passed             24 pairs │
-│ ○ bundle        pending                    │
+│ ● tokens        compiled          110 tokens│
+│ ● contrast      passed             34 pairs │
+│ ○ previews      pending                     │
 └─────────────────────────────────────────────┘
  OKAN ÖZTÜRK · 2026-08-09 14:30 · 1.24s
 ```
 
-ASCII fallback (`--ascii` veya Unicode desteklenmiyorsa): `+ - |`.
+ASCII fallback (`--ascii`, or when Unicode is unsupported): `+ - |`.
 
-## Başlık ve künye (SNM-CANON-02 / 05)
+## Heading and colophon (SNM-CANON-02 / 05)
 
-Her komut çıktısı bir CAD başlığıyla açılır ve bir telemetri satırıyla kapanır:
+Every command opens with a CAD heading and closes with a telemetry line:
 
 ```
-01 // BUILD                                  REV 1.0.0
+01 // BUILD                                  REV 1.0.1
 …
 ─────────────────────────────────────────────────────
-DONE · 109 tokens · 1.24s · 2026-08-09 14:30
+DONE · 110 tokens · 1.24s · 2026-08-09 14:30
 ```
 
-Telemetri satırı: sonuç · sayım · süre · ISO zaman damgası. Sönük renkte.
+The telemetry line carries outcome · count · duration · ISO timestamp, dimmed.
 
-## Durum sembolleri
-
-```
-●  tamamlandı      ○  bekliyor       ◐  çalışıyor
-✕  hata            !  uyarı          →  bilgi / adım
-```
-
-Emoji kullanma. Spinner dönmez — `◐ ◓ ◑ ◒` dört kareli `steps` döngüsü ya da
-sabit `◐` + ilerleme sayacı (`03/12`).
-
-İlerleme çubuğu: `████████░░░░░░░░  62%` — keskin blok karakterler, yuvarlak uç yok.
-
-## Hizalama
-
-- Tablo kolonları sabit genişlikte, sola dayalı; sayılar sağa dayalı.
-- Terminal genişliği okunur (`process.stdout.columns`), 80 sütun altına düşerse
-  sadeleşmiş düzene geçilir.
-- Girinti 2 boşluk. Tab kullanma.
-
-## Log formatı
-
-Makine okunur olmalı ve aynı zamanda SNM okunmalı:
+## Status symbols
 
 ```
-2026-08-09T14:30:12Z  INFO   build    tokens compiled  count=109 dur=1.24s
+●  done          ○  pending       ◐  running
+✕  error         !  warning       →  info / step
+```
+
+No emoji. Nothing rotates — use a four-frame `◐ ◓ ◑ ◒` cycle driven by `steps`, or
+a fixed `◐` with a counter (`03/12`).
+
+Progress bar: `████████░░░░░░░░  62%` — sharp block characters, no rounded caps.
+
+## Alignment
+
+- Table columns are fixed width and left aligned; numbers are right aligned.
+- Read the terminal width (`process.stdout.columns`); below 80 columns switch to a
+  reduced layout.
+- Indent by two spaces. Never use tabs.
+
+## Log format
+
+Machine readable and still recognisably SNM:
+
+```
+2026-08-09T14:30:12Z  INFO   build    tokens compiled  count=110 dur=1.24s
 2026-08-09T14:30:13Z  ERROR  build    contrast failed  pair=steel500/bone200 ratio=4.38
 ```
 
-ISO 8601 UTC zaman damgası · sabit genişlikte seviye · bileşen adı ·
-mesaj · `key=value` yapılandırılmış alanlar. JSON log gerekiyorsa aynı alan
-adlarıyla.
+ISO 8601 UTC timestamp · fixed-width level · component · message · `key=value`
+structured fields. JSON logs use the same field names.
 
-## Yardım metni
+## Help text
 
 ```
 snm — Swiss Neo-Monolith toolkit
@@ -92,23 +92,23 @@ USAGE
   snm <command> [options]
 
 COMMANDS
-  build            token'ları derle
-  check            kontrast ve kanon denetimi
-  init <medium>    yeni proje iskeleti
+  build            compile token bindings
+  check            run the contrast and canon audit
+  preview          regenerate the visual showcase
 
 OPTIONS
-  --no-color       renkli çıktıyı kapat
-  --ascii          ASCII kutu karakterleri kullan
-  -v, --version    sürüm
+  --no-color       disable coloured output
+  --ascii          use ASCII box characters
+  -v, --version    print version
 
   Okan Öztürk · joxinyks.com
 ```
 
-Bölüm başlıkları büyük harf, iki boşluk girinti, hizalanmış açıklama kolonu.
+Section headings uppercase, two-space indent, aligned description column.
 
-## Etkileşimli istemler
+## Interactive prompts
 
-- Seçim listesi: `❯` işaretçisi (ok değil), seçili satır mint.
-- Onay: varsayılan **hayır** olan yıkıcı işlemler için `[y/N]`.
-- TTY değilse etkileşimli mod otomatik kapanır ve hata verir; sessizce varsayılana
-  düşmez.
+- Selection list: a `❯` marker (not an arrow); the selected row in mint.
+- Confirmation: `[y/N]` for destructive operations, defaulting to no.
+- When not attached to a TTY, interactive mode switches off and the command
+  errors — it never silently falls back to a default.

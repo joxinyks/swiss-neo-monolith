@@ -1,8 +1,8 @@
 # 10 // WEB
 
-React + Tailwind varsayılan; düz HTML/CSS için `tokens.css` doğrudan kullanılır.
+React + Tailwind is the default; plain HTML/CSS uses `tokens.css` directly.
 
-## Kurulum
+## Setup
 
 ```js
 // tailwind.config.js
@@ -13,35 +13,36 @@ module.exports = {
 ```
 
 ```css
-/* app.css — en üstte */
+/* app.css — first */
 @import '@snm/tokens/tokens.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 ```
 
-Preset renk ve aralık ölçeklerini **değiştirir** (extend etmez): palette dışı bir
-renk veya ölçek dışı bir aralık yazdığında sınıf üretilmez ve hatayı derlemede
-görürsün. Bu kasıtlıdır.
+The preset **replaces** the colour and spacing scales rather than extending them:
+an off-palette colour or off-scale spacing value produces no class, and the error
+surfaces at build time. This is intentional.
 
-**Arbitrary değer yasağı:** `bg-[#121316]`, `p-[10px]`, `text-[11px]` yazma.
-ESLint ile zorla: `assets/web/eslint-snm.cjs`.
+**No arbitrary values:** never write `bg-[#121316]`, `p-[10px]`, `text-[11px]`.
+Enforce it with `assets/web/eslint-snm.cjs`.
 
 ## Layout
 
-### Sahne (viewport-locked hero)
+### Stage (viewport-locked hero)
 
 ```jsx
-<section className="min-h-stage overflow-hidden max-[699px]:min-h-0 max-[699px]:overflow-visible">
+<section className="min-h-stage overflow-hidden
+                    max-[699px]:min-h-0 max-[699px]:overflow-visible">
 ```
 
-- `100dvh` kullanılır, `100vh` **asla** (mobil adres çubuğu).
-- Header yüksekliği token'dan gelir (`--snm-header-h`), hardcode edilmez.
-- Viewport kilidi yalnızca `@media (min-height: 700px)` altında uygulanır. Kısa
-  ekranda, yatay telefonda ve %200 zoom'da içerik doğal akar — aksi hâlde içerik
-  erişilemez hâle gelir (WCAG 1.4.10).
+- Use `100dvh`, **never** `100vh` — the mobile address bar breaks the latter.
+- Header height comes from `--snm-header-h`, never hard-coded.
+- The viewport lock applies only above `@media (min-height: 700px)`. On short
+  screens, landscape phones and at 200% zoom the content flows naturally;
+  otherwise it becomes unreachable (WCAG 1.4.10).
 
-### 40/60 asimetrik yapışkan ızgara
+### 40/60 asymmetric sticky grid
 
 ```jsx
 <div className="grid grid-cols-1 lg:grid-cols-[40fr_60fr] gap-6">
@@ -50,17 +51,17 @@ ESLint ile zorla: `assets/web/eslint-snm.cjs`.
 </div>
 ```
 
-Mobilde tek kolona iner, `aside` yapışkanlığını kaybeder ve **üstte** kalır.
-`min-w-0` zorunlu — yoksa uzun içerik grid'i taşırır.
+On mobile this collapses to one column, the aside loses stickiness and stays
+**above**. `min-w-0` is required, or long content overflows the grid.
 
-## Komponent kataloğu
+## Component catalogue
 
-### Buton
+### Button
 
-Üç varyant. Hepsi 0 yarıçap, hepsi `44px` minimum hit alanı.
+Three variants. All zero radius, all with a 44px minimum hit area.
 
 ```jsx
-// primary — obsidyen dolgu
+// primary — obsidian fill
 "bg-inverse text-inverse border-2 border-border-strong px-5 py-3
  font-mono text-micro font-bold uppercase tracking-[0.08em]
  shadow-1 transition-[transform,box-shadow,background-color]
@@ -71,16 +72,16 @@ Mobilde tek kolona iner, `aside` yapışkanlığını kaybeder ve **üstte** kal
  focus-visible:outline-focus
  disabled:opacity-40 disabled:pointer-events-none disabled:shadow-none"
 
-// secondary — kontur
+// secondary — outlined
 "bg-transparent text-text border-2 border-border-strong … hover:bg-inverse hover:text-inverse"
 
-// ghost — yalnızca alt çizgi
+// ghost — underline only
 "bg-transparent text-text border-b border-border … hover:border-border-strong"
 ```
 
-Buton içeriği her zaman mono + büyük harf. İkon soldaysa 16px, `gap-2`.
+Button labels are always mono and uppercase. A leading icon is 16px with `gap-2`.
 
-### Input / Textarea / Select
+### Input, textarea, select
 
 ```jsx
 "w-full bg-raised text-text border-2 border-border-strong px-4 py-3
@@ -91,12 +92,12 @@ Buton içeriği her zaman mono + büyük harf. İkon soldaysa 16px, `gap-2`.
  aria-[invalid=true]:border-danger"
 ```
 
-- `<label>` **zorunlu**, gizlenmiş placeholder-label kabul edilmez.
-- Hata mesajı input'un altında, `role="alert"`, mono, `text-xs`, `text-danger`,
-  yanında bir uyarı ikonu (renk tek başına anlam taşımaz).
-- Zorunlu alan `*` ile değil, opsiyonel alan `(opsiyonel)` ile işaretlenir.
+- A real `<label>` is **required**; placeholder-as-label is not accepted.
+- Error text sits below the input with `role="alert"`, mono, `text-xs`,
+  `text-danger`, alongside a warning icon — colour alone never carries meaning.
+- Mark optional fields "(optional)" rather than marking required ones with `*`.
 
-### CAD sosyal / bağlantı satırı
+### CAD link row
 
 ```jsx
 <a href="…" target="_blank" rel="noreferrer"
@@ -107,73 +108,75 @@ Buton içeriği her zaman mono + büyük harf. İkon soldaysa 16px, `gap-2`.
              focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2
              focus-visible:outline-focus">
   <span className="flex items-center gap-3">
-    <span aria-hidden className="text-micro font-bold text-accent
-                                 group-hover:text-accent">01</span>
+    <span aria-hidden className="text-micro font-bold text-accent">01</span>
     <span className="text-xs font-bold tracking-[0.04em]">GitHub</span>
   </span>
   <GitHubIcon className="size-4 text-muted group-hover:text-accent" aria-hidden />
 </a>
 ```
 
-Not: index rakamı açık temada `text-accent` = `mint-700` (kontrast güvenli), hover'da
-zemin obsidyene döndüğü için `mint-500` de kabul edilir — token bunu otomatik çözer.
+The index digit resolves to `mint-700` on light through the token, so it stays
+contrast-safe; on hover the surface inverts and `mint-500` becomes correct.
 
-### Kart
+### Card
 
 ```jsx
 "border-2 border-border-strong bg-raised p-6 space-y-5"
 ```
 
-Başlık satırı: `flex justify-between items-baseline border-b border-border pb-4`
-— solda sans başlık, sağda mono durum etiketi.
+Header row: `flex justify-between items-baseline border-b border-border pb-4` —
+sans title on the left, mono status label on the right.
 
-### Tablo
+### Table
 
 ```jsx
 "w-full border-collapse font-mono text-sm tabular-nums"
-// thead th: text-micro uppercase tracking-[0.08em] text-muted border-b-2 border-border-strong py-2 text-left
+// thead th: text-micro uppercase tracking-[0.08em] text-muted
+//           border-b-2 border-border-strong py-2 text-left
 // tbody td: border-b border-border py-3
-// sayısal kolon: text-right
+// numeric column: text-right
 ```
 
-Zebra çizgisi yok — ayrım 1px kural çizgisiyle yapılır.
+No zebra striping — separation is a 1px rule.
 
 ### Modal
 
-`bg-overlay` backdrop (blur **yok**, düz opaklık) + `border-2 border-border-strong`
-panel + `shadow-2`. Odak tuzağı, `Esc` ile kapanma, `aria-modal="true"`,
-açılırken arka plan `overflow: hidden`.
+`bg-overlay` backdrop (flat opacity, **no blur**), `border-2 border-border-strong`
+panel, `shadow-2`. Focus trap, `Esc` to close, `aria-modal="true"`, and
+`overflow: hidden` on the background while open.
 
-### Durum nabzı — tek yuvarlak istisna
+### Status pulse — the one round exception
 
 ```jsx
 <span className="snm-pulse inline-block size-2 bg-accent" aria-hidden />
 <span className="font-mono text-micro font-bold uppercase">Operational</span>
 ```
 
-## Erişilebilirlik — teslim şartı
+## Accessibility — shipping requirement
 
-- `:focus-visible` her interaktif öğede görünür: `outline: 2px solid var(--snm-focus); outline-offset: 2px`. `outline: none` tek başına yazılmaz.
-- "Skip to content" bağlantısı her sayfada, ilk odaklanabilir öğe.
-- Başlık hiyerarşisi atlamasız (h1 → h2 → h3).
-- Landmark'lar: `header`, `nav`, `main`, `footer`.
-- Klavye ile tüm akış tamamlanabilir; `CursorPreview` gibi hover'a bağlı özellikler
-  bilgi taşımaz.
-- `prefers-reduced-motion` uygulanmış.
-- %200 zoom'da yatay kaydırma yok.
+- `:focus-visible` is visible on every interactive element:
+  `outline: 2px solid var(--snm-focus); outline-offset: 2px`. Never write
+  `outline: none` on its own.
+- A "skip to content" link is the first focusable element on every page.
+- Heading hierarchy has no skipped levels (h1 → h2 → h3).
+- Landmarks present: `header`, `nav`, `main`, `footer`.
+- Every flow is completable by keyboard; hover-dependent features such as
+  `CursorPreview` never carry information.
+- `prefers-reduced-motion` is honoured.
+- No horizontal scrolling at 200% zoom.
 
-## Performans
+## Performance
 
-- İki variable font, preload, self-hosted.
-- `transition: all` yok.
-- `content-visibility: auto` fold altı ağır bölümlerde.
-- Görseller `width`/`height` ile boyutlandırılmış (CLS), `loading="lazy"`,
-  AVIF/WebP, `object-fit: cover`, placeholder rengi `bgSunken` (blur-up **yok**).
-- Web Audio yalnızca ilk jestte başlatılır.
+- Two variable fonts, preloaded, self-hosted.
+- No `transition: all`.
+- `content-visibility: auto` on heavy below-the-fold sections.
+- Images carry explicit `width`/`height` (CLS), `loading="lazy"`, AVIF/WebP,
+  `object-fit: cover`, and a `bgSunken` placeholder — **no blur-up**.
+- Web Audio starts only on the first gesture.
 
 ## Global footer (SNM-CANON-05)
 
-Her çok bölümlü sayfa aynı `<FooterGlobal />` bileşenini render eder: 4 kolonlu
-Swiss bilgi ızgarası — `IDENTITY` · `NAVIGATION` · `CHANNELS` · `TELEMETRY`.
-Telemetri kolonu sürüm, son güncelleme (ISO), durum ve yanıt SLA'sını taşır.
-Referans: `assets/web/FooterGlobal.tsx`.
+Every multi-section page renders the same `<FooterGlobal />`: a four-column Swiss
+information grid — `IDENTITY` · `NAVIGATION` · `CHANNELS` · `TELEMETRY`. The
+telemetry column carries revision, last update (ISO), status and response SLA.
+Reference: `assets/web/FooterGlobal.tsx`.

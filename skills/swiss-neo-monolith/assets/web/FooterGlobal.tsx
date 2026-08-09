@@ -47,7 +47,7 @@ export function FooterGlobal({ telemetry, nav, channels }: FooterGlobalProps) {
         </section>
 
         {/* 02 — NAVIGATION */}
-        <nav className={COL} aria-label="Alt gezinme">
+        <nav className={COL} aria-label="Footer navigation">
           <h2 className={HEAD}>02 // Navigation</h2>
           <ul className="flex flex-col gap-2">
             {nav.map((i) => (

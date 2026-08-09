@@ -1,31 +1,32 @@
 # 04 // VOICE & CONTENT
 
-Görsel dil bir ses tonu ima eder. Bu dosya o tonu sabitler — tutarlılığın yarısı
-tipografide değil, kelime seçimindedir.
+A visual language implies a tone of voice. This file fixes that tone — half of
+consistency lives in word choice, not typography.
 
-## Ton
+## Tone
 
-**Ölçüm aleti gibi konuş.** Kesin, kısa, abartısız. Bir mühendislik çizimi kendini
-övmez; ölçüsünü verir.
+**Speak like an instrument.** Precise, short, unembellished. An engineering
+drawing does not praise itself; it states its measurement.
 
-| Kullan | Kullanma |
+| Use | Avoid |
 |---|---|
-| "Yanıt süresi: 24 saatten kısa" | "Size hemen dönüş yapıyoruz!" |
-| "12 proje teslim edildi" | "Sayısız başarılı projeye imza attık" |
-| "Kapsam dışı" | "Maalesef bu hizmeti sunamıyoruz 😔" |
-| "REV 04 · 2026-08-09" | "Son güncelleme: geçen hafta" |
+| "Response time: under 24 hours" | "We'll get right back to you!" |
+| "12 projects delivered" | "Countless successful projects" |
+| "Out of scope" | "Unfortunately we can't offer that 😔" |
+| "REV 04 · 2026-08-09" | "Last updated: last week" |
 
-Kurallar: ünlem yok · emoji yok · üstünlük sıfatı yok ("en iyi", "eşsiz", "devrim
-niteliğinde") · pazarlama klişesi yok · birinci çoğul şahıs ("biz") tek kişilik bir
-stüdyoda kullanılmaz, birinci tekil ya da nesnel dil kullanılır.
+Rules: no exclamation marks · no emoji · no superlatives ("best", "unique",
+"revolutionary") · no marketing clichés · no editorial "we" in a one-person
+studio — use first person singular or neutral phrasing.
 
-## Etiket dili
+## Label language
 
-Sistem etiketleri (CAD indeksleri, durum, künye) **İngilizce ve teknik** kalır;
-anlatı metni içeriğin dilindedir. Bu bilinçli bir ikiliktir: makine katmanı İngilizce
-konuşur, insan katmanı Türkçe. Aynı zamanda Türkçe büyük-harf sorununu tümden atlar.
+System labels — CAD indexes, status, colophons — stay **English and technical**;
+narrative copy follows the content's language. This duality is deliberate: the
+machine layer speaks English, the human layer speaks the reader's language. It
+also sidesteps the Turkish uppercase problem entirely.
 
-Standart etiket sözlüğü — bunlar dışına çıkma:
+The standard label vocabulary; do not invent outside it:
 
 ```
 STATUS   REV      SECTION   INDEX    SCOPE    STACK    ROLE
@@ -33,52 +34,53 @@ CLIENT   PERIOD   DELIVERY  SLA      SOURCE   OUTPUT   NOTE
 OPERATIONAL   IN PROGRESS   ARCHIVED   DRAFT   FINAL   CONFIDENTIAL
 ```
 
-## Sayı ve tarih formatı
+## Number and date formats
 
-Tümü monospace, tümü `tabular-nums`.
+All monospace, all `tabular-nums`.
 
-| Tür | Format | Örnek |
+| Kind | Format | Example |
 |---|---|---|
-| Tarih (sistem/künye) | ISO 8601 | `2026-08-09` |
-| Tarih (anlatı, TR) | `Intl` `tr-TR` | `9 Ağustos 2026` |
-| Tarih + saat | ISO + zaman dilimi | `2026-08-09 14:30 TRT` |
-| Aralık | en tire, boşluksuz | `2024–2026` |
-| Sürüm | `REV` + iki hane | `REV 04` |
-| Yüzde | boşluksuz | `%98` (TR) · `98%` (EN) |
-| Para (TR) | `Intl` `tr-TR` / `TRY` | `12.500,00 ₺` |
-| Para (EN) | `Intl` `en-US` / `USD` | `$12,500.00` |
-| Dosya boyutu | ondalık, tek boşluk | `2.4 MB` |
-| Süre | birim kısaltmalı | `180ms` · `<24h` |
-| Sayaç | sıfır dolgulu, `/` ayraçlı | `03 / 12` |
+| Date (system, colophon) | ISO 8601 | `2026-08-09` |
+| Date (narrative) | `Intl`, content locale | `9 Ağustos 2026` · `9 August 2026` |
+| Date + time | ISO + zone | `2026-08-09 14:30 TRT` |
+| Range | en dash, unspaced | `2024–2026` |
+| Revision | `REV` + two digits | `REV 04` |
+| Percentage | locale convention | `%98` (tr) · `98%` (en) |
+| Currency (TRY) | `Intl` `tr-TR` | `12.500,00 ₺` |
+| Currency (USD) | `Intl` `en-US` | `$12,500.00` |
+| File size | decimal, single space | `2.4 MB` |
+| Duration | abbreviated unit | `180ms` · `<24h` |
+| Counter | zero-padded, `/` separated | `03 / 12` |
 
-Tarih ve para biçimlendirmesi **her zaman** `Intl.DateTimeFormat` /
-`Intl.NumberFormat` ile yapılır. Elle string birleştirme yapılmaz.
+Dates and currency are **always** formatted through `Intl.DateTimeFormat` and
+`Intl.NumberFormat`. Never assemble them by string concatenation.
 
-## Başlık yazımı
+## Heading style
 
-- Sans başlıklar: cümle düzeni. "Sistem mimarisi" — "Sistem Mimarisi" değil.
-- Mono etiketler: tamamı büyük harf, kaynağında yazılmış.
-- Başlıklarda nokta yok, iki nokta serbest.
-- Soru cümlesi başlık kullanılmaz.
+- Sans headings: sentence case. "System architecture", not "System Architecture".
+- Mono labels: all caps, written uppercase in the source.
+- No full stops in headings; colons are fine.
+- No question-form headings.
 
-## Boş ve hata durumları
+## Empty and error states
 
-Boş durum bir özür değil, bir ölçümdür:
+An empty state is a measurement, not an apology:
 
 ```
 00 // NO RECORDS
-Bu filtreyle eşleşen kayıt yok.
-[ FİLTREYİ SIFIRLA ]
+No entries match this filter.
+[ RESET FILTER ]
 ```
 
-Hata mesajı üç parçadır: ne oldu · neden · ne yapılabilir. Suçlayıcı dil yok
-("geçersiz giriş yaptınız" değil, "e-posta adresi tanınmadı").
+An error message has three parts: what happened · why · what can be done. No
+blaming language — "email address not recognised", not "you entered an invalid
+address".
 
-## Erişilebilirlik metni
+## Accessible text
 
-- Her görselin `alt` metni var; dekoratif görselde `alt=""`.
-- CAD indeksleri dekoratiftir → ekran okuyucudan gizle (`aria-hidden`), başlığın
-  kendisi erişilebilir kalsın.
-- Yalnızca ikondan oluşan butonlarda `aria-label` zorunlu.
-- Bağlantı metni bağlamsız anlamlı olmalı — "buraya tıkla" yok.
-- `lang` özniteliği dil değişen bölümlerde belirtilir.
+- Every image has `alt`; decorative images use `alt=""`.
+- CAD indexes are decorative — hide them from screen readers with `aria-hidden`
+  while keeping the heading itself accessible.
+- Icon-only buttons require `aria-label`.
+- Link text must make sense out of context — never "click here".
+- Set `lang` on any section that changes language.

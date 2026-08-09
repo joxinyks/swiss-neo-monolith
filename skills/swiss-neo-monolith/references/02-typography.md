@@ -1,69 +1,75 @@
 # 02 // TYPOGRAPHY
 
-İki aile, iki görev. Bu ikilik sistemin en tanınabilir özelliğidir.
+Two families, two jobs. This split is the system's most recognisable trait.
 
-## Aile ayrımı — ihlal edilemez
+## The family contract — non-negotiable
 
-| Aile | Görev |
+| Family | Job |
 |---|---|
-| **Inter** (sans) | Anlatı. Başlıklar, gövde metni, açıklama, düz cümle. |
-| **JetBrains Mono** | Sistem. CAD indeksleri, etiket, künye, sayı, tarih, kod, durum, tablo verisi, birim. |
+| **Inter** (sans) | Narrative. Headings, body copy, description, prose. |
+| **JetBrains Mono** | System. CAD indexes, labels, colophons, numbers, dates, code, status, table data, units. |
 
-Kural: **makinenin ürettiği her şey monospace, insanın yazdığı her şey sans.**
-Bir tarih monospace'tir. Bir başlık sans'tır. Bir fiyat monospace'tir.
-Bir paragraf sans'tır. Tereddüt ettiğinde: veri mi, cümle mi?
+The rule: **anything a machine produced is monospace; anything a person wrote is
+sans.** A date is monospace. A heading is sans. A price is monospace. A paragraph
+is sans. When in doubt, ask: is this data, or is this a sentence?
 
-## Ölçek
+## Scale
 
-| Token | Boyut | Satır | Tracking | Kullanım |
+| Token | Size | Leading | Tracking | Use |
 |---|---|---|---|---|
-| `micro` | 11 | 14 | +0.08em | CAD indeks, rozet, künye. **Her zaman mono + bold + büyük harf** |
-| `xs` | 12 | 16 | +0.04em | Etiket, tablo başlığı, dipnot |
-| `sm` | 14 | 20 | 0 | İkincil metin, form yardımı, tablo hücresi |
-| `base` | 16 | 26 | 0 | Gövde metni |
-| `lg` | 18 | 28 | −0.01em | Giriş paragrafı (lede) |
-| `xl` | 24 | 30 | −0.02em | H3 / kart başlığı |
-| `2xl` | 32 | 36 | −0.025em | H2 / bölüm başlığı |
+| `micro` | 11 | 14 | +0.08em | CAD index, badge, colophon. **Always mono + bold + uppercase** |
+| `xs` | 12 | 16 | +0.04em | Labels, table headers, footnotes |
+| `sm` | 14 | 20 | 0 | Secondary text, form help, table cells |
+| `base` | 16 | 26 | 0 | Body copy |
+| `lg` | 18 | 28 | −0.01em | Lede paragraph |
+| `xl` | 24 | 30 | −0.02em | H3, card title |
+| `2xl` | 32 | 36 | −0.025em | H2, section heading |
 | `3xl` | 40 | 44 | −0.03em | H1 |
-| `4xl` | 56 | 56 | −0.035em | Hero başlığı |
-| `5xl` | 72 | 70 | −0.04em | Kapak / display |
+| `4xl` | 56 | 56 | −0.035em | Hero |
+| `5xl` | 72 | 70 | −0.04em | Cover, display |
 
-Ölçek dışı boyut yazma. Mobilde `4xl`/`5xl` bir kademe düşer (`3xl`/`4xl`).
+Never use an off-scale size. On mobile, `4xl`/`5xl` step down one level.
 
-## Ağırlık
+## Weight
 
-`400` gövde · `500` etiket/vurgu · `700` başlık ve mono · `800` yalnızca hero/kapak.
+`400` body · `500` labels and emphasis · `700` headings and all mono · `800` hero
+and cover only.
 
-`600` kullanma — 500 ile 700 arasındaki fark bu sistemde kasıtlı olarak serttir.
-İtalik kullanma; vurgu için ağırlık veya mono'ya geçiş kullanılır.
+Do not use `600` — the gap between 500 and 700 is deliberately hard in this
+system. Do not use italics; emphasis is expressed through weight or a switch to
+mono.
 
-## Değişmez kurallar
+## Invariants
 
-1. **Büyük harf yalnızca mono'da.** Sans başlıklar cümle düzeninde ("Sentence case").
-   Büyük harf mono etiketlerde tracking **her zaman** +0.08em.
-2. **Tabular rakam zorunlu.** Sayı içeren her yerde `font-variant-numeric: tabular-nums`.
-   Tablo, fiyat, telemetri, sayaç — hizalanmayan rakam kabul edilmez.
-3. **Yaslama yok.** `text-align: justify` yasak. Gövde metni sola dayalı, sağı serbest.
-4. **Tireleme kapalı.** `hyphens: none` — Swiss editoryal gelenek keskin sağ kenarı tercih eder.
-5. **Satır uzunluğu 68ch.** Aşan gövde metni ya kolonlanır ya daraltılır.
-6. **Dul/yetim satır.** Başlıklarda `text-wrap: balance`, paragraflarda `text-wrap: pretty`.
+1. **Uppercase only in mono.** Sans headings are sentence case. Uppercase mono
+   labels always carry +0.08em tracking.
+2. **Tabular figures are mandatory.** Anywhere numbers appear, set
+   `font-variant-numeric: tabular-nums`. Misaligned digits are not acceptable in
+   tables, prices, telemetry or counters.
+3. **No justification.** `text-align: justify` is forbidden. Body copy is
+   left-aligned with a ragged right edge.
+4. **No hyphenation.** `hyphens: none` — the Swiss editorial tradition prefers a
+   hard right edge.
+5. **68ch measure.** Body copy beyond this is columned or narrowed.
+6. **Widows and orphans.** `text-wrap: balance` on headings, `text-wrap: pretty`
+   on paragraphs.
 
-## CAD indeks formatı (SNM-CANON-02)
+## CAD index format (SNM-CANON-02)
 
 ```
-01 // THE ARCHITECTURE          ← bölüm açılışı
-SECTION 03 / 07                 ← sayaç
-RESPONSE SLA: <24H              ← telemetri
-STATUS: OPERATIONAL             ← durum
+01 // THE ARCHITECTURE          section opener
+SECTION 03 / 07                 counter
+RESPONSE SLA: <24H              telemetry
+STATUS: OPERATIONAL             state
 ```
 
-Kurallar: iki haneli sıfır dolgulu numara · boşluklu `//` ayracı · tamamı büyük harf ·
-`micro` boyut · `700` ağırlık. Numara `accent` renginde olabilir, etiketin geri kalanı
-`textMuted`. Başlığın kendisi asla aksan renginde değildir.
+Rules: two-digit zero-padded number · spaced `//` separator · all caps · `micro`
+size · `700` weight. The number may take the accent colour; the rest of the label
+is `textMuted`. The heading itself is never accent-coloured.
 
-## Font yükleme
+## Font loading
 
-Variable font, self-hosted, `woff2`. CDN'e bağımlılık yok.
+Variable fonts, self-hosted, `woff2`. No CDN dependency.
 
 ```html
 <link rel="preload" as="font" type="font/woff2"
@@ -82,24 +88,33 @@ Variable font, self-hosted, `woff2`. CDN'e bağımlılık yok.
 }
 ```
 
-Yalnızca gerçekten kullanılan iki aile yüklenir. İki mono ya da ikinci bir sans
-aile eklemek sistem ihlalidir.
+Load only the two families actually in use. Adding a second mono or a second sans
+is a system violation.
 
-CLS önlemi: `font-display: swap` + fallback metrik eşitleme
-(`@font-face { font-family: 'Inter-fallback'; src: local('Segoe UI'); size-adjust: 96%; }`).
+Guard against layout shift with `font-display: swap` plus a metric-matched
+fallback:
 
-## Türkçe — kritik
+```css
+@font-face {
+  font-family: 'Inter-fallback';
+  src: local('Segoe UI'), local('Helvetica Neue');
+  size-adjust: 96%;
+}
+```
 
-**CSS `text-transform: uppercase` Türkçe'de bozuktur:** `i` → `I` üretir, `İ` değil.
-"iletişim" → "ILETIŞIM" (yanlış), "İLETİŞİM" (doğru).
+## Turkish — critical
 
-Kurallar:
-1. `<html lang="tr">` her zaman ayarlı olsun — bazı motorlar locale'e saygı duyar,
-   ama **buna güvenme**.
-2. Türkçe büyük harf metinleri **kaynağında büyük harf yaz**, CSS ile dönüştürme.
-3. CAD etiketleri İngilizce ve teknik kalır (`STATUS`, `SECTION`, `REV`) — bu bir
-   üslup tercihi, aynı zamanda bu sorunu tümden atlar.
-4. Türkçe'ye özgü karakterlerin (ğ ı İ ş ç ö ü) seçilen fontta mevcut olduğunu
-   doğrula. Inter ve JetBrains Mono ikisi de tam destekler.
-5. Sıralama, tarih ve sayı biçimlendirmede `Intl` API'sini `tr-TR` ile kullan;
-   elle string birleştirme yapma.
+**CSS `text-transform: uppercase` is broken for Turkish:** it maps `i` to `I`
+rather than `İ`. "iletişim" becomes "ILETIŞIM" (wrong) instead of "İLETİŞİM".
+
+Rules:
+
+1. Always set `<html lang="tr">` — some engines respect the locale, but **do not
+   rely on it**.
+2. Write Turkish uppercase text as uppercase **in the source**; never transform it
+   with CSS.
+3. Keep CAD labels English and technical (`STATUS`, `SECTION`, `REV`). This is a
+   stylistic choice that also sidesteps the problem entirely.
+4. Verify the chosen font carries ğ ı İ ş ç ö ü. Inter and JetBrains Mono both do.
+5. Use the `Intl` API with `tr-TR` for sorting, dates and numbers. Never assemble
+   these by string concatenation.

@@ -1,94 +1,97 @@
 # 16 // BRAND ASSETS
 
-Logo, ikon, favicon, sosyal görsel, e-posta, imza, README. Sistemin dışa dönük yüzü.
+Logo, icons, favicon, social images, email, signature, README. The system's
+outward face.
 
-## Marka işareti
+## The mark
 
-SNM'nin işareti tipografiktir — resimsel bir logo yoktur:
-
-```
-OKAN ÖZTÜRK          ← Inter 700, +0.02em tracking, sentence/caps duruma göre
-▌                    ← 2px × cap-height mint dikey çubuk, isimden 8px solda
-```
-
-Kilitli birim: mint çubuk + isim. Çubuk ile isim arası boşluk **her zaman** cap
-yüksekliğinin 0.25'i. İşaret yalnızca yatay kullanılır.
-
-Koruma alanı: her yönde, harf yüksekliğinin **1×**'i kadar boşluk. İçine hiçbir
-şey girmez.
-
-Minimum boyut: ekranda 16px cap yüksekliği, baskıda 4mm.
-
-Yasaklar: eğme, gölge, kontur ekleme, degrade, renk değiştirme (mint çubuk hariç
-tek renk), fotoğraf üstüne düz yerleştirme (obsidyen bir plaka üzerinde kullanılır),
-yeniden dizme, orantı bozma.
-
-Tek renk kullanımlarda çubuk da metin rengini alır.
-
-## İkonografi
-
-- **Çizgisel**, dolgu yok.
-- Stroke 1.5px @ 24px ızgara (16px'te 1.25px, 32px'te 2px).
-- `stroke-linecap: butt` · `stroke-linejoin: miter` — **yuvarlak uç ve köşe yok**.
-- 24×24 viewBox, 2px iç boşluk, 20×20 canlı alan.
-- Optik değil, geometrik: daireler yerine kare/dikdörtgen tercih edilir; zorunlu
-  daire (durum noktası, kadran) serbest.
-- Tek renk `currentColor`.
-- Uyumlu hazır set: **Lucide** (stroke ayarını 1.5, linecap/linejoin'i `butt`/`miter`
-  yap). Karışık set kullanma.
-
-## Favicon & uygulama ikonu
-
-Obsidyen kare zemin (**dolu, kenar boşluksuz**) + ortada mint `▌` çubuk + beyaz
-`OÖ` monogramı. Yuvarlatma yok — platform kendi maskesini uygular (iOS), buna
-karışma.
-
-Boyutlar: `favicon.svg` (tercih edilen) · `favicon.ico` 32 · `apple-touch-icon`
-180 · `icon-192` · `icon-512` · `maskable-512` (safe zone %80).
-
-16px'te monogram okunmaz — o boyutta yalnızca mint çubuk + düz obsidyen kullan.
-
-## Sosyal / OG görseli
-
-1200 × 630. Şablon:
+SNM's mark is typographic; there is no pictorial logo:
 
 ```
-┌────────────────────────────────────────────┐
-│ ▌ OKAN ÖZTÜRK              01 // ARTICLE   │  ← üst şerit, mono
-│                                            │
-│  Başlık buraya gelir,                      │  ← Inter 800, 64px, sola dayalı
-│  en fazla iki satır                        │     max 2 satır, 60ch
-│                                            │
-│ ──────────────────────────────────────────│  ← 2px mint çizgi
-│ joxinyks.com              2026-08-09       │  ← mono 20px
-└────────────────────────────────────────────┘
-   obsidyen zemin · 64px kenar boşluğu
+OKAN ÖZTÜRK          Inter 700, +0.02em tracking
+▌                    2px × cap-height mint bar, 8px to the left of the name
 ```
 
-Fotoğraf kullanılacaksa: obsidyen üzerine %30 opaklıkta, üstünde düz obsidyen
-metin plakası. Bulanıklaştırma yok.
+The bar and the name form a locked unit. The gap between them is always 0.25 of
+the cap height. The mark is used horizontally only.
 
-Twitter card `summary_large_image`, `og:image:width/height` her zaman belirtilir.
+Clear space: one cap height on every side. Nothing enters it.
 
-## E-posta şablonu
+Minimum size: 16px cap height on screen, 4mm in print.
 
-E-posta istemcileri kısıtlıdır — burada tavizler kaçınılmaz:
+Forbidden: skewing, shadows, outlining, gradients, recolouring (only the mint bar
+carries colour), placing directly over photography (use an obsidian plate),
+re-typesetting, distorting proportions.
 
-- Tablo tabanlı düzen, 600px genişlik, tek kolon.
-- **Inline CSS** (CSS değişkeni desteklenmez → token değerleri literal yazılır;
-  `tokens.resolved.json`'dan üret, elle yazma).
-- Web font yüklenmez varsayımıyla tasarla: `font-family: 'JetBrains Mono',
-  Consolas, monospace` ve `Inter, 'Segoe UI', Arial, sans-serif` fallback zinciri.
-- `border-radius: 0` zaten varsayılan — hiçbir yerde ekleme.
-- Gölge yok (destek yok zaten), degrade yok.
-- Buton = `<a>` içinde `padding` + `background` + 2px `border` (VML gerekmez).
-- Koyu tema: `@media (prefers-color-scheme: dark)` ile ama **buna güvenme** —
-  açık temada da okunur olmalı. Gmail renkleri ters çevirebilir; kritik bilgi
-  yalnızca renkte olmasın.
-- Alt bilgide telemetri: kimlik · tarih · abonelikten çıkma bağlantısı.
-- Görseller `alt` metinli; engellendiğinde e-posta anlamını korumalı.
+In single-colour applications the bar takes the text colour.
 
-## E-posta imzası
+## Iconography
+
+- **Linear**, no fills.
+- 1.5px stroke on a 24px grid (1.25px at 16px, 2px at 32px).
+- `stroke-linecap: butt` · `stroke-linejoin: miter` — **no rounded caps or joins**.
+- 24×24 viewBox, 2px padding, 20×20 live area.
+- Geometric rather than optical: prefer squares and rectangles to circles.
+  Genuine circles (status dots, dials) are fine.
+- Single colour, `currentColor`.
+- Compatible ready-made set: **Lucide**, with stroke set to 1.5 and caps/joins set
+  to `butt`/`miter`. Never mix icon sets.
+
+## Favicon and app icon
+
+An obsidian square, filled edge to edge, with the mint `▌` bar and a white `OÖ`
+monogram. No rounding — the platform applies its own mask (iOS); do not
+pre-empt it.
+
+Sizes: `favicon.svg` (preferred) · `favicon.ico` 32 · `apple-touch-icon` 180 ·
+`icon-192` · `icon-512` · `maskable-512` (80% safe zone).
+
+At 16px the monogram is illegible; at that size use the mint bar on flat obsidian
+alone.
+
+## Social / OG image
+
+1200 × 630. Template:
+
+```
++--------------------------------------------+
+| ▌ OKAN ÖZTÜRK              01 // ARTICLE   |  top strip, mono
+|                                            |
+|  The headline goes here,                   |  Inter 800, 64px, left aligned
+|  two lines at most                         |  max 2 lines, 60ch
+|                                            |
+| ------------------------------------------|  2px mint rule
+| joxinyks.com              2026-08-09       |  mono 20px
++--------------------------------------------+
+   obsidian ground · 64px margin
+```
+
+If photography is used: obsidian ground at 30% opacity with a flat obsidian text
+plate over it. No blurring.
+
+Twitter card `summary_large_image`; always declare `og:image:width` and
+`og:image:height`.
+
+## Email template
+
+Email clients are constrained, so compromises here are unavoidable:
+
+- Table-based layout, 600px wide, single column.
+- **Inline CSS** — custom properties are unsupported, so token values are written
+  literally. Generate them from `tokens.resolved.json`; never type them by hand.
+- Design assuming web fonts will not load: fall back through
+  `'JetBrains Mono', Consolas, monospace` and `Inter, 'Segoe UI', Arial, sans-serif`.
+- `border-radius: 0` is already the default — never add it anywhere.
+- No shadows (unsupported anyway), no gradients.
+- Buttons are an `<a>` with `padding`, `background` and a 2px `border`; no VML
+  required.
+- Dark mode via `@media (prefers-color-scheme: dark)`, but **do not rely on it** —
+  the light rendering must stand alone. Gmail may invert colours, so no critical
+  information lives in colour only.
+- Telemetry in the footer: identity · date · unsubscribe link.
+- Images carry `alt`; the email must still make sense with images blocked.
+
+## Email signature
 
 ```
 Okan Öztürk
@@ -97,24 +100,24 @@ Okan Öztürk
 STATUS: OPERATIONAL · RESPONSE SLA: <24H
 ```
 
-Düz metin öncelikli. HTML sürümde: isim Inter 700 14px, mono satır 11px
-`steel.600`, mint çubuk. Logo görseli, sosyal ikon bloğu, hukuki uyarı paragrafı
-**yok**.
+Plain text first. In the HTML version: name in Inter 700 14px, mono line at 11px
+`steel.600`, mint bar. No logo image, no social icon row, no legal disclaimer
+paragraph.
 
-## README / repo
+## README / repository
 
-- Rozetler: `flat-square` stili (yuvarlak yasak), renk `10b981`.
-- Başlık: `# 00 // PROJECT NAME`
-- Bölümler CAD numaralı.
-- Sonda telemetri bloğu: sürüm, lisans, son güncelleme.
-- Ekran görüntüsü: obsidyen çerçeve, 2px kontur, gölgesiz.
+- Badges in `flat-square` style (rounded is forbidden), accent `10b981`.
+- Title: `# 00 // PROJECT NAME`
+- CAD-numbered sections.
+- A telemetry block at the end: revision, licence, last update.
+- Screenshots framed in obsidian with a 2px rule and no shadow.
 
-## Sunum/dosya adlandırma
+## File naming
 
 ```
-snm_<tip>_<konu>_<REV>_<ISO tarih>.<uzantı>
-snm_teklif_akme-portal_r04_2026-08-09.pdf
+snm_<type>_<subject>_<REV>_<ISO date>.<ext>
+snm_proposal_akme-portal_r04_2026-08-09.pdf
 ```
 
-Küçük harf, alt çizgi ayraç, tire kelime içi, ISO tarih. Türkçe karakter ve boşluk
-dosya adında kullanılmaz.
+Lowercase, underscore separators, hyphens within words, ISO date. No spaces and no
+non-ASCII characters in file names.

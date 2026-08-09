@@ -1,87 +1,90 @@
-# 11 // APPLICATIONS (masaüstü & mobil)
+# 11 // APPLICATIONS (desktop & mobile)
 
-Uygulama, siteden iki noktada ayrılır: **yoğunluk** ve **platform sözleşmesi**.
-Kanon değişmez; ölçüler değişir.
+An application differs from a site in two respects: **density** and **platform
+contract**. The canon does not change; the measurements do.
 
-## Yoğunluk (density)
+## Density
 
-Web sayfası nefes alır; uygulama iş yapar. Uygulamada bir kademe sıkıştır:
+A web page breathes; an application works. Tighten by one step:
 
-| | Web | Uygulama |
+| | Web | Application |
 |---|---|---|
-| Gövde metni | `base` 16px | `sm` 14px |
-| Satır yüksekliği (liste/tablo) | 48px | 32px |
-| Bölüm boşluğu | `s7` 48px | `s5` 24px |
-| Kart iç boşluğu | `s6` 32px | `s4` 16px |
-| Buton yüksekliği | 48px | 36px (masaüstü) / 44px (dokunmatik) |
+| Body text | `base` 16px | `sm` 14px |
+| Row height (list, table) | 48px | 32px |
+| Section gap | `s7` 48px | `s5` 24px |
+| Card padding | `s6` 32px | `s4` 16px |
+| Button height | 48px | 36px desktop / 44px touch |
 
-Dokunmatik hedef minimumu (44px) masaüstünde 28px'e inebilir — fare hassasiyeti
-farklıdır — ama **klavye odak halkası her iki durumda da tam boyuttadır**.
+The 44px touch minimum may drop to 28px on desktop — pointer precision differs —
+but **the keyboard focus ring stays full size in both cases**.
 
-## Platform sözleşmesi
+## Platform contract
 
-Bu sistem platformu ezmez, üstüne biner. Uyulacaklar:
+This system rides on top of the platform; it does not override it. Respect:
 
-- **Pencere kromu**: OS'un kendi başlık çubuğu, trafik ışıkları, pencere yönetimi.
-  Özel başlık çubuğu yazacaksan yüksekliği 36px, zemin `bgSunken`, altında 1px
-  `border`, sürüklenebilir alan tanımlı (`-webkit-app-region: drag`).
-- **Kısayollar**: platform standardı (⌘ / Ctrl). Kendi kısayolunu icat etme.
-- **Kaydırma**: OS varsayılan davranışı; özel scroll kaçırma (scrolljacking) yasak.
-- **Sistem teması**: uygulama açılışta OS temasını alır, kullanıcı ezebilir.
-- **Güvenli alanlar**: mobilde `safe-area-inset-*` her zaman uygulanır (çentik,
-  ana ekran çubuğu).
-- **Geri jesti**: iOS/Android sistem geri hareketi engellenmez.
+- **Window chrome** — the OS title bar, traffic lights and window management. If
+  you must draw your own title bar: 36px tall, `bgSunken`, a 1px rule beneath, and
+  a defined drag region (`-webkit-app-region: drag`).
+- **Shortcuts** — platform standards (⌘ / Ctrl). Do not invent your own.
+- **Scrolling** — OS default behaviour; scrolljacking is forbidden.
+- **System theme** — the app adopts the OS theme at launch; the user may override.
+- **Safe areas** — always apply `safe-area-inset-*` on mobile (notch, home bar).
+- **Back gesture** — never intercept the iOS/Android system back gesture.
 
-Zorunlu platform kontrolleri (iOS switch, Android date picker, native menü) kendi
-yuvarlaklığını korur — bu SNM-CANON-01 ihlali sayılmaz. Bunları özel çizmeye kalkma;
-uyum, tutarlılıktan önce gelir.
+Mandatory platform controls (iOS switch, Android date picker, native menus) keep
+their own radii; this is not a SNM-CANON-01 violation. Do not redraw them —
+conformance outranks consistency here.
 
-## Uygulama iskeleti
+## Application shell
 
 ```
-┌──────────────────────────────────────────────────┐
-│ TITLEBAR   36px · bgSunken · alt 1px border      │
-├────────────┬─────────────────────────────────────┤
-│ SIDEBAR    │ CONTENT                             │
-│ 240px      │ min-w-0, kendi kaydırması           │
-│ bgSunken   │                                     │
-│ sağ 1px    │                                     │
-│ border     │                                     │
-├────────────┴─────────────────────────────────────┤
-│ STATUS BAR 24px · mono micro · TELEMETRY         │
-└──────────────────────────────────────────────────┘
++--------------------------------------------------+
+| TITLEBAR   36px · bgSunken · 1px rule beneath     |
++------------+-------------------------------------+
+| SIDEBAR    | CONTENT                             |
+| 240px      | min-w-0, own scroll container       |
+| bgSunken   |                                     |
+| 1px rule   |                                     |
+| on right   |                                     |
++------------+-------------------------------------+
+| STATUS BAR 24px · mono micro · TELEMETRY         |
++--------------------------------------------------+
 ```
 
-**Durum çubuğu SNM-CANON-05'in uygulama karşılığıdır** ve atlanamaz. İçerik:
-bağlantı durumu (nabız + etiket), aktif bağlam, sürüm, saat. Mono `micro`.
+**The status bar is the application's form of SNM-CANON-05** and is not optional.
+It carries connection state (pulse + label), active context, revision and clock,
+in mono `micro`.
 
-Kenar çubuğu öğeleri: 32px yüksekliğinde, 12px ikon, mono `xs` etiket, aktif öğe
-sol kenarında 2px mint şerit (dolgu zemin değil, çizgi).
+Sidebar items: 32px tall, 12px icon, mono `xs` label. The active item takes a 2px
+mint bar on its leading edge — a rule, not a filled background.
 
-## Mobil
+## Mobile
 
-- Alt navigasyon 56px + safe-area; en fazla 5 sekme; aktif sekme mint üst şerit.
-- Başlık çubuğu 56px, sola dayalı başlık (ortalanmış değil — SNM-CANON-06).
-- Liste satırı 56px, sağda mono meta değer, altında 1px ayraç.
-- Aşağı çekip yenileme: spinner yerine 2px mint çizgi.
-- Modal yerine tam ekran sheet; üstte 2px kontur, sola dayalı başlık, sağda `✕`.
+- Bottom navigation 56px plus safe area; five tabs maximum; the active tab takes a
+  mint top rule.
+- App bar 56px with a left-aligned title (not centred — SNM-CANON-06).
+- List rows 56px, mono meta value on the right, 1px rule beneath.
+- Pull-to-refresh: a 2px mint line instead of a spinner.
+- Full-screen sheets rather than modals: 2px rule on top, left-aligned title,
+  `✕` on the right.
 
-## Framework notları
+## Framework notes
 
-| Framework | Token dosyası | Not |
+| Framework | Token file | Notes |
 |---|---|---|
-| Electron / Tauri | `tokens.css` | Web kuralları geçerli; yoğunluğu düşür. `-webkit-app-region` tanımla. |
-| React Native | `tokens.ts` | `borderRadius: 0` tema sabiti; `Platform.select` ile yoğunluk. Gölge yerine `borderWidth`. |
-| Flutter | `tokens.dart` | `BorderRadius.zero` global tema; `CardTheme`, `InputDecorationTheme`, `ElevatedButtonTheme` içinde `elevation: 0` + `side: BorderSide(width: 2)`. |
-| SwiftUI / Compose | `tokens.resolved.json` | Renkleri asset katalogla senkronize et; `.cornerRadius(0)`. |
+| Electron / Tauri | `tokens.css` | Web rules apply; reduce density. Define `-webkit-app-region`. |
+| React Native | `tokens.ts` | `borderRadius: 0` as a theme constant; `Platform.select` for density. Use `borderWidth`, not shadow. |
+| Flutter | `tokens.dart` | `BorderRadius.zero` globally; set `elevation: 0` and `side: BorderSide(width: 2)` in `CardTheme`, `InputDecorationTheme`, `ElevatedButtonTheme`. |
+| SwiftUI / Compose | `tokens.resolved.json` | Sync colours into the asset catalogue; `.cornerRadius(0)`. |
 
-Flutter'da `Material` varsayılan elevation'ı (blur gölge) **her temada sıfırlanmalı** —
-`ThemeData(useMaterial3: true, cardTheme: CardTheme(elevation: 0, shape: …))`.
+In Flutter, Material's default blurred elevation **must be zeroed in both
+themes**: `ThemeData(useMaterial3: true, cardTheme: CardTheme(elevation: 0, …))`.
 
-## Uygulamaya özgü erişilebilirlik
+## Application-specific accessibility
 
-- Ekran okuyucu etiketleri (`Semantics` / `accessibilityLabel`) her etkileşimli öğede.
-- Dinamik yazı tipi boyutu (iOS Dynamic Type / Android font scale) desteklenir;
-  sabit `px` yerine ölçeklenen birim kullan. Ölçek 200%'de layout bozulmamalı.
-- Odak sırası görsel sırayla eşleşir.
-- Kritik akışlar yalnızca jestle değil, düğmeyle de tamamlanabilir.
+- Screen-reader labels (`Semantics` / `accessibilityLabel`) on every interactive
+  element.
+- Support dynamic type (iOS Dynamic Type, Android font scale): use scaling units
+  rather than fixed `px`. The layout must survive 200% scale.
+- Focus order matches visual order.
+- Critical flows are completable by button, not only by gesture.

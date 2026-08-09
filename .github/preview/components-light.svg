@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 560" width="1200" height="560" role="img" aria-label="Components">
+<title>Components</title>
+<rect x="0" y="0" width="1200" height="560" fill="#f2f4f3" shape-rendering="crispEdges"/>
+<text x="64" y="44" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="700" letter-spacing="1.04" fill="#047857">03 //</text>
+<text x="120.2" y="44" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="700" letter-spacing="1.04" fill="#4b5563">COMPONENTS</text>
+<text x="1136" y="44" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="700" letter-spacing="1.04" fill="#4b5563" text-anchor="end">RADIUS 0 · NO BLUR</text>
+<line x1="64" y1="64" x2="1136" y2="64" stroke="#121316" stroke-width="1" stroke-opacity="0.15" shape-rendering="crispEdges"/>
+<rect x="66" y="118" width="168" height="44" fill="#121316" shape-rendering="crispEdges"/><rect x="64" y="116" width="168" height="44" fill="#121316" stroke="#121316" stroke-width="2" shape-rendering="crispEdges"/><text x="148" y="142" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="700" letter-spacing="0.96" fill="#ffffff" text-anchor="middle">PRIMARY</text>
+<rect x="258" y="118" width="168" height="44" fill="#121316" shape-rendering="crispEdges"/><rect x="256" y="116" width="168" height="44" fill="#f2f4f3" stroke="#121316" stroke-width="2" shape-rendering="crispEdges"/><text x="340" y="142" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="700" letter-spacing="0.96" fill="#121316" text-anchor="middle">SECONDARY</text>
+<rect x="450" y="118" width="168" height="44" fill="#121316" stroke="#121316" stroke-width="2" shape-rendering="crispEdges"/><text x="534" y="144" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="700" letter-spacing="0.96" fill="#ffffff" text-anchor="middle">PRESSED</text>
+<text x="64" y="184" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="400" letter-spacing="0.96" fill="#4b5563">Pressed sinks into its own offset shadow — the tactile signature.</text>
+<rect x="64" y="248" width="360" height="44" fill="#ffffff" stroke="#121316" stroke-width="2" shape-rendering="crispEdges"/>
+<text x="80" y="276" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="400" letter-spacing="1.04" fill="#4b5563">name@domain.com</text>
+<text x="464" y="232" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="700" letter-spacing="0.96" fill="#4b5563">FOCUS RING</text>
+<rect x="464" y="248" width="360" height="44" fill="#ffffff" stroke="#121316" stroke-width="2" shape-rendering="crispEdges"/>
+<rect x="460" y="244" width="368" height="52" fill="none" stroke="#047857" stroke-width="2" shape-rendering="crispEdges"/>
+<text x="480" y="276" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="400" letter-spacing="1.04" fill="#121316">name@domain.com</text>
+<rect x="64" y="356" width="300" height="116" fill="#ffffff" stroke="#121316" stroke-width="2" shape-rendering="crispEdges"/>
+<text x="84" y="384" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="700" letter-spacing="0.96" fill="#4b5563">TOTAL REVENUE</text>
+<text x="84" y="424" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="30" font-weight="700" letter-spacing="2.40" fill="#121316">12.500,00 ₺</text>
+<text x="84" y="450" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="700" letter-spacing="0.96" fill="#047857">▲ 12.4%  vs Q3</text>
+<circle cx="410" cy="372" r="5" fill="#10b981"/>
+<text x="426" y="377" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="700" letter-spacing="1.04" fill="#121316">OPERATIONAL</text>
+<text x="404" y="400" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="400" letter-spacing="0.96" fill="#4b5563">The only round shape in the system.</text>
+<text x="404" y="432" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="700" letter-spacing="0.96" fill="#4b5563">PROGRESS</text>
+<rect x="404" y="444" width="300" height="4" fill="#121316" fill-opacity="0.15" shape-rendering="crispEdges"/>
+<rect x="404" y="444" width="186" height="4" fill="#10b981" shape-rendering="crispEdges"/>
+<text x="404" y="468" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="400" letter-spacing="0.96" fill="#4b5563">62%  ·  no spinners, no rounded caps</text>
+<text x="733" y="372" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="700" letter-spacing="0.96" fill="#4b5563">IDX</text>
+<text x="789" y="372" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="700" letter-spacing="0.96" fill="#4b5563">METRIC</text>
+<text x="993" y="372" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="700" letter-spacing="0.96" fill="#4b5563" text-anchor="end">VALUE</text>
+<line x1="733" y1="380" x2="993" y2="380" stroke="#121316" stroke-width="2" stroke-opacity="1" shape-rendering="crispEdges"/>
+<text x="733" y="404" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="400" letter-spacing="1.04" fill="#047857">01</text>
+<text x="789" y="404" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="400" letter-spacing="1.04" fill="#121316">TOKENS</text>
+<text x="993" y="404" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="400" letter-spacing="1.04" fill="#121316" text-anchor="end">110</text>
+<line x1="733" y1="412" x2="993" y2="412" stroke="#121316" stroke-width="1" stroke-opacity="0.15" shape-rendering="crispEdges"/>
+<text x="733" y="430" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="400" letter-spacing="1.04" fill="#047857">02</text>
+<text x="789" y="430" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="400" letter-spacing="1.04" fill="#121316">PAIRS</text>
+<text x="993" y="430" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="400" letter-spacing="1.04" fill="#121316" text-anchor="end">034</text>
+<line x1="733" y1="438" x2="993" y2="438" stroke="#121316" stroke-width="1" stroke-opacity="0.15" shape-rendering="crispEdges"/>
+<text x="733" y="456" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="400" letter-spacing="1.04" fill="#047857">03</text>
+<text x="789" y="456" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="400" letter-spacing="1.04" fill="#121316">MEDIA</text>
+<text x="993" y="456" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="400" letter-spacing="1.04" fill="#121316" text-anchor="end">007</text>
+<line x1="733" y1="464" x2="993" y2="464" stroke="#121316" stroke-width="1" stroke-opacity="0.15" shape-rendering="crispEdges"/>
+<line x1="64" y1="516" x2="1136" y2="516" stroke="#121316" stroke-width="1" stroke-opacity="0.15" shape-rendering="crispEdges"/>
+<text x="64" y="540" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="400" letter-spacing="0.96" fill="#4b5563">OKAN ÖZTÜRK · JOXINYKS.COM</text>
+<text x="1136" y="540" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="700" letter-spacing="0.96" fill="#047857" text-anchor="end">2026-08-09 · STATUS: OPERATIONAL</text>
+</svg>

@@ -1,81 +1,81 @@
 # 12 // PRINT & PDF
 
-Rapor, teklif, fatura, CV, sertifika, kapak. Baskı SNM'nin en doğal ortamıdır —
-Swiss editoryal gelenek buradan gelir.
+Reports, proposals, invoices, CVs, certificates, covers. Print is the system's
+most natural habitat — the Swiss editorial tradition originates here.
 
-## Üretim yolu
+## Production route
 
-Tercih sırası:
+In order of preference:
 
-1. **HTML + CSS Paged Media → WeasyPrint / Paged.js** — token'lar doğrudan çalışır,
-   tek kaynaktan hem web hem PDF. Varsayılan seçim.
-2. **ReportLab (Python)** — programatik, veri yoğun, çok sayfalı raporlar.
+1. **HTML + CSS Paged Media → WeasyPrint / Paged.js.** Tokens work directly; one
+   source produces both web and PDF. The default choice.
+2. **ReportLab (Python)** for programmatic, data-heavy, many-page reports.
    `tokens/dist/tokens.py` → `rgb("bg")`.
-3. **LaTeX** — akademik/uzun form. Renkleri `\definecolor` ile token'lardan tanımla.
+3. **LaTeX** for academic or long-form work. Define colours with `\definecolor`
+   from the tokens.
 
-Word'den PDF üretme (bkz. `13-office.md`) yalnızca alıcı dosyayı düzenleyecekse.
+Generate a PDF from Word (see `13-office.md`) only when the recipient must edit
+the file.
 
-## Sayfa ızgarası
+## Page grid
 
-| | Değer |
+| | Value |
 |---|---|
-| Sayfa | A4 (210 × 297mm) · US Letter gerekiyorsa ayrı şablon |
-| Kenar boşluğu | 18mm dış, 22mm alt (kolontitül için) |
-| Kolon | 12'li, 4mm gutter |
-| Taban ızgarası | 4mm — **tüm** metin bu ızgaraya oturur |
-| Varsayılan bölünme | 40 / 60 (sol künye kolonu / sağ içerik) |
+| Page | A4 (210 × 297mm); a separate template for US Letter |
+| Margins | 18mm outer, 22mm bottom (running foot) |
+| Columns | 12, 4mm gutter |
+| Default split | 40 / 60 — colophon column / content column |
 
-Baseline grid pazarlıksızdır: gövde 10pt/14pt = 4.94mm... bunun yerine
-**10pt / 14pt satır aralığı** kullan ve blok aralıklarını 14pt'nin katları yap
-(14 / 28 / 42pt). Bu, sayfalar arası dikey hizayı garanti eder.
+Vertical rhythm is anchored to the **14pt leading** of body text: block spacing is
+always a multiple (14 / 28 / 42pt). This guarantees alignment across pages.
 
-## Tipografi (punto)
+## Typography (points)
 
-| Rol | Punto | Satır | Aile |
+| Role | Size | Leading | Family |
 |---|---|---|---|
-| Kapak başlığı | 48pt | 46pt | Inter 800 |
+| Cover title | 48pt | 46pt | Inter 800 |
 | H1 | 24pt | 28pt | Inter 700 |
 | H2 | 16pt | 21pt | Inter 700 |
 | H3 | 12pt | 14pt | Inter 700 |
-| Gövde | 10pt | 14pt | Inter 400 |
-| Not / dipnot | 8pt | 11pt | Inter 400 |
-| CAD etiket / künye | 7.5pt | 10pt | JetBrains Mono 700, +0.08em |
-| Tablo verisi | 9pt | 12pt | JetBrains Mono 400, tabular |
+| Body | 10pt | 14pt | Inter 400 |
+| Note, footnote | 8pt | 11pt | Inter 400 |
+| CAD label, colophon | 7.5pt | 10pt | JetBrains Mono 700, +0.08em |
+| Table data | 9pt | 12pt | JetBrains Mono 400, tabular |
 
-Ekrandaki `px` ölçeği baskıya **birebir taşınmaz** — yukarıdaki tablo baskının
-kendi ölçeğidir. Okuma mesafesi farklıdır.
+The on-screen `px` scale does **not** transfer to print. The table above is print's
+own scale; the reading distance is different.
 
-## Renk
+## Colour
 
-- Gövde metni: **K100 düz siyah**. Rich black metinde kayıt kayması (misregistration)
-  yaratır — kullanma.
-- Büyük dolgu alanları (kapak): rich black `C75 M65 Y60 K90`.
-- Mint: `C91 M0 Y30 K27` (yaklaşık) · Pantone yaklaşık **3395 C**.
-  **Bu değerler ICC profili olmadan hesaplanmıştır — matbaa işi öncesi fiziksel
-  kılavuzla doğrula.**
-- Kemik zemin: mümkünse **kağıt seçimiyle** çöz (doğal/uncoated stok), tam sayfa
-  tint basma. Basılacaksa `C3 M1 Y2 K0`.
-- Tek renk baskıda (siyah-beyaz) mint → K40 tram. Sistem bu hâlde de okunur olmalı;
-  bilgi asla yalnızca mint ile kodlanmaz.
+- Body text: **flat K100 black**. Rich black causes misregistration in text — do
+  not use it.
+- Large filled areas (covers): rich black `C75 M65 Y60 K90`.
+- Mint: `C91 M0 Y30 K27` approximate; nearest Pantone approximately **3395 C**.
+  **These figures were computed without an ICC profile — verify against a physical
+  guide before any production run.**
+- Bone background: solve it with **paper choice** (natural, uncoated stock) rather
+  than printing a flood tint. If it must be printed, `C3 M1 Y2 K0`.
+- In single-colour printing, mint becomes a K40 tint. The system must still read
+  in that state — information is never encoded in mint alone.
 
-## Sayfa yapısı
+## Page structure
 
 ```
-┌─────────────────────────────────────────┐  ← 18mm
-│ 01 // SECTION NAME          REV 04       │  başlık kolontitülü, mono 7.5pt
-│ ─────────────────────────────────────── │  0.5pt kural çizgisi
-│                                          │
-│  ◄── 40% ──►│◄────── 60% ──────►        │
-│  künye       │ içerik                    │
-│  kolonu      │                           │
-│                                          │
-│ ─────────────────────────────────────── │
-│ OKAN ÖZTÜRK · 2026-08-09    SAYFA 03/12 │  ← telemetri (SNM-CANON-05)
-└─────────────────────────────────────────┘  ← 22mm
++------------------------------------------+  <- 18mm
+| 01 // SECTION NAME           REV 04       |  running head, mono 7.5pt
+| ---------------------------------------- |  0.5pt rule
+|                                          |
+|  <-- 40% -->|<------ 60% ------>         |
+|  colophon   | content                    |
+|  column     |                            |
+|                                          |
+| ---------------------------------------- |
+| OKAN ÖZTÜRK · 2026-08-09    PAGE 03/12   |  <- telemetry (SNM-CANON-05)
++------------------------------------------+  <- 22mm
 ```
 
-Alt kolontitül **her sayfada** zorunlu: kimlik · ISO tarih · sayfa sayacı
-(`03 / 12`, sıfır dolgulu). Kapak sayfası muaftır.
+The running foot is mandatory on **every** page: identity · ISO date · page
+counter (`03 / 12`, zero-padded). The cover page is exempt.
 
 ## CSS Paged Media
 
@@ -84,8 +84,8 @@ Alt kolontitül **her sayfada** zorunlu: kimlik · ISO tarih · sayfa sayacı
   size: A4;
   margin: 18mm 18mm 22mm;
   @top-left  { content: string(section); font: 700 7.5pt 'JetBrains Mono'; letter-spacing: .08em; }
-  @top-right { content: 'REV 04'; font: 700 7.5pt 'JetBrains Mono'; }
-  @bottom-left  { content: 'OKAN ÖZTÜRK · 2026-08-09'; font: 400 7.5pt 'JetBrains Mono'; }
+  @top-right { content: 'REV ' string(rev); font: 700 7.5pt 'JetBrains Mono'; }
+  @bottom-left  { content: string(identity) ' · ' string(date); font: 400 7.5pt 'JetBrains Mono'; }
   @bottom-right { content: counter(page, decimal-leading-zero) ' / '
                            counter(pages, decimal-leading-zero);
                   font: 700 7.5pt 'JetBrains Mono'; font-variant-numeric: tabular-nums; }
@@ -98,29 +98,31 @@ table, figure, .snm-card { break-inside: avoid; }
 p { orphans: 3; widows: 3; }
 ```
 
-Hazır sayfa stil dosyası: `assets/print/print.css`.
+Ready-made stylesheet: `assets/print/print.css`.
 
-## Baskı kuralları
+## Print rules
 
-- **Gölge yok.** Elevation baskıda 1pt kontura dönüşür.
-- Kontur kalınlıkları: 0.5pt hairline · 1pt yapısal · 2pt ağır.
-  0.25pt'nin altına inme — ofset baskıda kaybolur.
-- Bağlantılar PDF'te tıklanabilir kalır ama **URL de yazılır** (basılı kopya için):
+- **No shadows.** Elevation becomes a 1pt rule.
+- Rule weights: 0.5pt hairline · 1pt structural · 2pt heavy. Never go below
+  0.25pt — it disappears in offset printing.
+- Links stay clickable in the PDF but **also print their URL** for paper:
   `joxinyks.com  ↗`
-- Tablo: zebra yok, 0.5pt yatay çizgiler, dikey çizgi yok, sayılar sağa dayalı.
-- Görseller minimum 300dpi; CMYK'ye dönüştürülmüş; taşma (bleed) gerekiyorsa 3mm.
-- Kırım payı ve kesim işaretleri yalnızca matbaa çıktısında; ekranda dağıtılan
-  PDF'te olmaz.
-- PDF/A gerekiyorsa fontlar gömülü (embedded), şeffaflık düzleştirilmiş.
-- Erişilebilir PDF: etiketli (tagged) yapı, okuma sırası, `alt` metinleri, doküman
-  dili `tr-TR`, `Title` metadata dolu.
+- Tables: no zebra, 0.5pt horizontal rules, no vertical rules, numbers right
+  aligned.
+- Images at 300dpi minimum, converted to CMYK; 3mm bleed where artwork runs off
+  the page.
+- Crop marks and bleed only for press output — never in a PDF distributed on
+  screen.
+- For PDF/A: embed fonts and flatten transparency.
+- Accessible PDF: tagged structure, correct reading order, `alt` text, document
+  language set, `Title` metadata populated.
 
-## Doküman tipleri
+## Document types
 
-| Tip | Kapak | Kolontitül | Not |
+| Type | Cover | Running head | Notes |
 |---|---|---|---|
-| Teklif | Var, tam obsidyen zemin | Var | İlk sayfada `SCOPE` künye bloğu |
-| Rapor | Var | Var | İçindekiler CAD numaralı |
-| Fatura | Yok | Sadece alt | Tüm rakamlar mono tabular; toplam 2pt üst çizgi |
-| CV | Yok | Sadece alt | 40/60: sol künye+iletişim, sağ deneyim |
-| Tek sayfalık | Yok | Yok | Telemetri tek satır, en altta |
+| Proposal | Yes, full obsidian | Yes | `SCOPE` colophon block on page one |
+| Report | Yes | Yes | CAD-numbered table of contents |
+| Invoice | No | Foot only | All figures mono tabular; total gets a 2pt rule above |
+| CV | No | Foot only | 40/60: colophon and contact left, experience right |
+| One-pager | No | No | Single telemetry line at the very bottom |

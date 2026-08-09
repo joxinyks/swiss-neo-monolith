@@ -1,107 +1,110 @@
 ---
 name: swiss-neo-monolith
 description: |
-  Okan Öztürk'ün imza tasarım sistemi (SNM) — Swiss editoryal tipografi + endüstriyel
-  CAD şematiği + sıfır yuvarlaklık. Web, uygulama, PDF/baskı, sunum, doküman, terminal,
-  e-posta, sosyal görsel — HER mecrada görsel bir çıktı üretirken veya düzenlerken KULLAN.
-  Tetikleyiciler: UI komponenti, sayfa, ekran, tema, renk/font/aralık seçimi, rapor,
-  teklif, CV, fatura, slayt, README rozeti, grafik/chart, logo, OG görseli, e-posta şablonu.
-  "Benim tarzımda / kendi tasarımımla / her zamanki gibi yap" dendiğinde de KULLAN.
-  KULLANMA: üçüncü tarafın marka kılavuzu varsa, kullanıcı açıkça başka bir stil
-  istediyse, ya da çıktı tamamen görselsizse (saf backend, veri dönüşümü, script).
+  Okan Öztürk's signature design system (SNM) — Swiss editorial typography,
+  industrial CAD schematics, zero radius. USE whenever producing or editing any
+  visual output, in any medium: web UI, desktop/mobile app, PDF, report, proposal,
+  CV, invoice, slide deck, document, spreadsheet, CLI output, chart, dashboard,
+  logo, favicon, OG image, email template, README. Also use when asked for
+  "my style", "the usual look", or "make it match my other work".
+  DO NOT use when a third party's brand guidelines apply, when a different style
+  is explicitly requested, or when the output has no visual surface at all
+  (pure backend, data transforms, scripts).
 ---
 
 # Swiss Neo-Monolith (SNM)
 
-Tek bir tasarım dili, her mecrada. Bir web butonu, bir PDF kapağı ve bir terminal
-çıktısı aynı elden çıkmış gibi görünmeli — bunu sağlayan şey aşağıdaki **6 değişmez**.
+One design language across every medium. A web button, a PDF cover and a terminal
+report must read as the work of one hand. The **six invariants** below are what
+make that true.
 
-## Nasıl kullanılır
+## How to use this skill
 
-1. **Her zaman** bu dosyadaki Kanon'u ve Kırmızı Çizgiler'i uygula.
-2. Çalıştığın mecraya ait referans dosyasını **oku** (aşağıdaki tablo).
-3. Token'ları elle yazma — `tokens/dist/` içinden ilgili bağlamayı içe aktar.
-4. Teslimden önce `references/99-checklist.md` ile kendini denetle.
+1. Apply the Canon and the Red Lines below — always, in every medium.
+2. Read the reference for the medium you are producing (table below).
+3. Never hand-write token values; import the binding from `tokens/dist/`.
+4. Before delivering, audit against `references/99-checklist.md`.
 
-| Ne üretiyorsan | Oku |
+| Producing | Read |
 |---|---|
-| Renk, aralık, kontrast, yükseklik kararı | `references/01-foundations.md` |
-| Başlık, punto, satır aralığı, font yükleme | `references/02-typography.md` |
-| Animasyon, geçiş, ses, imleç, haptik | `references/03-motion-sound.md` |
-| Metin, başlık, tarih/sayı formatı, ton | `references/04-voice.md` |
-| Web (React/Tailwind/HTML) | `references/10-web.md` |
-| Masaüstü / mobil uygulama | `references/11-app.md` |
-| PDF, rapor, teklif, CV, baskı | `references/12-print.md` |
-| Sunum, Word, Excel | `references/13-office.md` |
-| Terminal, CLI, TUI, log | `references/14-terminal.md` |
-| Grafik, chart, dashboard, veri görseli | `references/15-data-viz.md` |
-| Logo, favicon, ikon, OG görseli, e-posta | `references/16-brand-assets.md` |
+| Colour, spacing, contrast, elevation decisions | `references/01-foundations.md` |
+| Headings, sizes, leading, font loading | `references/02-typography.md` |
+| Transitions, sound, cursor, haptics | `references/03-motion-sound.md` |
+| Copy, labels, date/number formats, tone | `references/04-voice.md` |
+| Web — React, Tailwind, HTML | `references/10-web.md` |
+| Desktop or mobile application | `references/11-app.md` |
+| PDF, report, proposal, CV, print | `references/12-print.md` |
+| Slides, Word, Excel | `references/13-office.md` |
+| Terminal, CLI, TUI, logs | `references/14-terminal.md` |
+| Charts, dashboards, data visualisation | `references/15-data-viz.md` |
+| Logo, favicon, icons, OG image, email | `references/16-brand-assets.md` |
 
-Token bağlamaları: `tokens/dist/` → `tokens.css`, `tokens.scss`, `tokens.ts`,
+Token bindings live in `tokens/dist/`: `tokens.css`, `tokens.scss`, `tokens.ts`,
 `tailwind.preset.cjs`, `tokens.py`, `tokens.dart`, `tokens.resolved.json`.
-Kaynak `tokens/tokens.json`; değişiklikten sonra `node scripts/build-tokens.mjs`.
+The source is `tokens/tokens.json`; after editing it run
+`node scripts/build-tokens.mjs`.
 
 ---
 
-## Kanon — 6 değişmez
+## The Canon — six invariants
 
-Bunlar mecradan bağımsızdır. Bir çıktının SNM olup olmadığı bunlarla anlaşılır.
+Medium-independent. Whether an output belongs to this system is decided here.
 
-**SNM-CANON-01 · Sıfır yarıçap.**
-`border-radius: 0`. Her yerde: buton, kart, input, modal, tablo, slayt kutusu, PDF
-çerçevesi, avatar, görsel. Tek istisna: durum nabzı (status pulse dot) ve zorunlu
-platform kontrolleri (iOS switch). Yuvarlak köşe bu sistemde bir hatadır.
+**SNM-CANON-01 · Zero radius.**
+`border-radius: 0`. Everywhere: buttons, cards, inputs, modals, tables, slide
+shapes, PDF frames, avatars, images. The only exceptions are the status pulse dot
+and mandatory platform controls (an iOS switch). A rounded corner is a defect.
 
-**SNM-CANON-02 · CAD indeksleme.**
-Her anlamlı bölüm monospace, büyük harf, numaralı bir etiketle açılır:
+**SNM-CANON-02 · CAD indexing.**
+Every meaningful section opens with a monospace, uppercase, numbered tag:
 `01 // THE ARCHITECTURE` · `03 // FINANCIALS` · `SECTION 02 / 07`.
-Numara iki haneli ve sıfır dolgulu. Ayraç `//`. Etiket aksan renginde olabilir,
-başlık asla.
+Two digits, zero-padded, `//` separator. The number may carry the accent colour;
+the heading itself never does.
 
-**SNM-CANON-03 · Tek kromatik aksan.**
-Mint dışında renk yok. Mint toplam görsel alanın **%10'unu geçemez** — o bir vurgu,
-bir zemin değil. Geri kalan her şey kemik / obsidyen / çelik. Durum renkleri
-(danger/warn/info) yalnızca gerçek bir durum bildirirken kullanılır, dekoratif asla.
+**SNM-CANON-03 · One chromatic accent.**
+No colour other than mint. Mint covers at most **10% of visible area** — it is an
+accent, not a surface. Everything else is bone, obsidian or steel. State colours
+appear only when reporting an actual state, never as decoration.
 
-**SNM-CANON-04 · Yapı çizgiyle kurulur, gölgeyle değil.**
-Hiyerarşi 1px/2px keskin kural çizgileriyle ifade edilir. Bulanık gölge, degrade,
-cam efekti, neon parıltı, doku yasak. Yükseklik gerekiyorsa sert ofset gölge
-(`2px 2px 0`) — ki bu bir gölge değil, ikinci bir konturdur.
+**SNM-CANON-04 · Structure is drawn with rules, not shadows.**
+Hierarchy is expressed with crisp 1px/2px rules. Blurred shadows, gradients,
+glassmorphism, glows and textures are forbidden. Where elevation is genuinely
+needed, use a hard offset (`2px 2px 0`) — which is a second contour, not a shadow.
 
-**SNM-CANON-05 · Telemetri şeridi.**
-Her bitmiş çıktı, kenarında monospace bir künye taşır: sürüm, tarih (ISO), durum,
-sayfa/bölüm sayacı. Web'de footer, PDF'te alt kolontitül, slaytta alt şerit,
-terminalde başlık satırı. Bu şerit sistemin imzasıdır.
+**SNM-CANON-05 · Telemetry strip.**
+Every finished output carries a monospace colophon: revision, ISO date, status,
+page or section counter. Footer on the web, running foot in PDF, bottom strip on
+a slide, header line in a terminal. This strip is the system's signature.
 
-**SNM-CANON-06 · Asimetri.**
-Kompozisyon ortalanmaz. Varsayılan 40/60 asimetrik bölünme; metin sola dayalı,
-sağa doğru geniş boşluk. Ortalanmış başlık yalnızca kapak sayfalarında kabul edilir.
+**SNM-CANON-06 · Asymmetry.**
+Compositions are not centred. The default is a 40/60 split; text sits left with
+open space to the right. A centred heading is acceptable only on a cover page.
 
 ---
 
-## Kırmızı çizgiler
+## Red lines
 
-Bunlardan biri çıktında varsa, çıktı yanlıştır:
+If any of these appear in your output, the output is wrong:
 
-- Yuvarlatılmış köşe (nabız noktası hariç)
-- Palette dışı renk, ya da elle yazılmış hex (`#10b981` yerine token kullan)
-- Kemik zemin üzerinde `mint-500` metin — kontrast 2.4:1, okunmuyor. Metin için `mint-700`.
-- Bulanık gölge, degrade, blur, glassmorphism
-- Ortalanmış gövde metni, iki yana yaslama (justify)
-- `100vh` (→ `100dvh`), sabit piksel header yüksekliği (→ token)
+- A rounded corner (other than the status pulse dot)
+- An off-palette colour, or a hand-written hex value — use a token
+- `mint-500` as text on bone: 2.3:1, unreadable. Text uses `mint-700`.
+- Blurred shadow, gradient, blur, glassmorphism
+- Centred body copy, or justified text
+- `100vh` (use `100dvh`), or a hard-coded header height (use the token)
 - `transition: all`
-- Emoji ikon (ikonlar çizgisel, 1.5px stroke, keskin uçlu)
-- Klavye odağı görünmeyen interaktif öğe
-- Türkçe metinde CSS `text-transform: uppercase` (i → I hatası; bkz. `04-voice.md`)
+- Emoji used as an icon — icons are linear, 1.5px stroke, butt caps, miter joins
+- An interactive element with no visible keyboard focus ring
+- CSS `text-transform: uppercase` on Turkish copy (see `04-voice.md`)
 
 ---
 
-## Hızlı referans
+## Quick reference
 
 ```
-Kemik   #f2f4f3    Obsidyen #121316    Mint #10b981    Mint-metin #047857
-Aralık  4 8 12 16 24 32 48 64 96 128       Yarıçap 0
-Kontur  1px hairline · 2px yapısal          Gölge 2px 2px 0
-Süre    120 / 180 / 320ms                   Easing cubic-bezier(0.2,0,0,1)
-Font    Inter (anlatı)  ·  JetBrains Mono (sistem, sayı, künye)
+Bone    #f2f4f3    Obsidian #121316    Mint #10b981    Mint-text #047857
+Space   4 8 12 16 24 32 48 64 96 128        Radius 0
+Rules   1px hairline · 2px structural       Shadow 2px 2px 0
+Timing  120 / 180 / 320ms                   Easing cubic-bezier(0.2,0,0,1)
+Type    Inter (narrative) · JetBrains Mono (system, data, colophon)
 ```
