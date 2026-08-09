@@ -37,10 +37,38 @@ jobs:
       - name: Contrast gate
         run: node scripts/check-contrast.mjs
 
-      # The installer is the entry point on four machines; a syntax error in it
-      # is only discovered at the worst possible moment.
-      - name: Lint installer
+      # Red lines, literal colour, version agreement and the shipped lint rules.
+      # Without this the canon is enforced only by a human reading a checklist.
+      - name: Canon gate
+        run: node scripts/check-canon.mjs
+
+      # The delivery path is documented in the README; if it breaks, every
+      # consuming project breaks with it. Vendor outside the workspace so this
+      # cannot disturb the drift check above.
+      - name: Vendor smoke test
+        run: |
+          node scripts/vendor.mjs "$RUNNER_TEMP/snm-vendor"
+          for f in package.json tokens.css tokens.ts tailwind.preset.cjs eslint-snm.cjs; do
+            test -f "$RUNNER_TEMP/snm-vendor/$f" || { echo "::error::vendor output is missing $f"; exit 1; }
+          done
+          node -e "require('$RUNNER_TEMP/snm-vendor/tailwind.preset.cjs')"
+
+      # The installers are the entry point on four machines; a syntax error in
+      # one is only discovered at the worst possible moment.
+      - name: Parse install.sh
         run: bash -n install.sh
+
+      - name: Parse install.ps1
+        shell: pwsh
+        run: |
+          $errors = $null
+          [System.Management.Automation.Language.Parser]::ParseFile(
+            (Resolve-Path ./install.ps1), [ref]$null, [ref]$errors) | Out-Null
+          if ($errors) {
+            $errors | ForEach-Object { Write-Host "::error::$($_.Extent.StartLineNumber): $($_.Message)" }
+            exit 1
+          }
+          Write-Host 'install.ps1 parses clean'
 
       # SKILL.md is what Claude reads first. If it loses its frontmatter or its
       # routing table, the skill silently stops triggering.

@@ -1,6 +1,6 @@
 {
   "name": "swiss-neo-monolith",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Okan Öztürk's signature cross-medium design system — web, apps, print, office, terminal.",
   "type": "module",
   "private": true,
@@ -10,7 +10,10 @@
     "build": "node scripts/build-tokens.mjs && node scripts/build-previews.mjs",
     "build:tokens": "node scripts/build-tokens.mjs",
     "build:previews": "node scripts/build-previews.mjs",
-    "check": "node scripts/check-contrast.mjs",
+    "vendor": "node scripts/vendor.mjs",
+    "check": "npm run check:contrast && npm run check:canon",
+    "check:contrast": "node scripts/check-contrast.mjs",
+    "check:canon": "node scripts/check-canon.mjs",
     "verify": "npm run build && npm run check"
   },
   "engines": { "node": ">=18" }

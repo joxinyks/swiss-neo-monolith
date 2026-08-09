@@ -12,8 +12,9 @@ It ships as a **Claude skill**, so on any machine where it is installed the syst
 gets applied automatically, whatever you are building.
 
 [![verify](https://github.com/joxinyks/swiss-neo-monolith/actions/workflows/verify.yml/badge.svg)](https://github.com/joxinyks/swiss-neo-monolith/actions/workflows/verify.yml)
-![revision](https://img.shields.io/badge/REV-1.1.0-10b981?style=flat-square&labelColor=121316)
+![revision](https://img.shields.io/badge/REV-1.2.0-10b981?style=flat-square&labelColor=121316)
 ![contrast](https://img.shields.io/badge/WCAG-34%2F34%20PASS-10b981?style=flat-square&labelColor=121316)
+![canon](https://img.shields.io/badge/CANON-GATED-10b981?style=flat-square&labelColor=121316)
 ![media](https://img.shields.io/badge/MEDIA-7-4b5563?style=flat-square&labelColor=121316)
 ![licence](https://img.shields.io/badge/LICENCE-MIT-4b5563?style=flat-square&labelColor=121316)
 
@@ -69,7 +70,8 @@ Verify at any time:
 npm run verify
 ```
 
-Anything other than `PASS` means the installation is incomplete or broken.
+This rebuilds every binding and runs both gates — contrast and canon. Anything
+other than `PASS` means the installation is incomplete or broken.
 
 </details>
 
@@ -174,16 +176,29 @@ from it.
 ```
 tokens.json ──▶ tokens.css · tokens.scss · tokens.ts · tailwind.preset.cjs
                 tokens.py  · tokens.dart · tokens.resolved.json
-                preview/*.svg          the showcase above
-                check-contrast         WCAG gate, non-zero exit on failure
+                eslint-snm.cjs · package.json    the delivery surface
+                preview/*.svg                    the showcase above
+                check-contrast · check-canon     the gates, non-zero on failure
 ```
 
+### Putting them in a project
+
+The system is not published to a registry — it is one personal repository, and a
+release process would only add a way for the two to disagree. Instead, copy the
+compiled surface into the consuming project:
+
+```bash
+npm run vendor -- ../my-app/vendor/snm
+```
+
+`tokens/dist/` is self-contained, so that directory is all the project needs.
+
 <details>
-<summary><b>Using the tokens in a project</b></summary>
+<summary><b>Import paths</b> — one directory, every medium</summary>
 
 <br>
 
-**Web**
+**Web — Tailwind**
 
 ```js
 // tailwind.config.js — the preset replaces the palette, so an off-palette
@@ -191,25 +206,44 @@ tokens.json ──▶ tokens.css · tokens.scss · tokens.ts · tailwind.preset.
 module.exports = { presets: [require('./vendor/snm/tailwind.preset.cjs')] };
 ```
 
-**Python — PDF and charts**
-
-```python
-from snm.tokens import token, rgb
-fill = rgb("accent")            # (0.06, 0.73, 0.51)
-```
-
-**Flutter**
-
-```dart
-import 'snm/tokens.dart';
-Container(color: SnmLight.bgRaised, ...)
+```css
+/* app.css — before the Tailwind layers */
+@import './vendor/snm/tokens.css';
 ```
 
 **TypeScript — canvas, SVG, email**
 
 ```ts
-import { token, cssVar } from '@snm/tokens';
+import { token, cssVar } from './vendor/snm/tokens';
 ctx.fillStyle = token('bgInverse');
+```
+
+**Python — PDF and charts**
+
+```python
+from vendor.snm.tokens import token, rgb
+fill = rgb("accent")            # (0.06, 0.73, 0.51)
+```
+
+**Flutter** — vendor into `lib/`, then import by package path:
+
+```dart
+import 'package:my_app/snm/tokens.dart';
+Container(color: SnmLight.bgRaised, ...)
+```
+
+**Lint** — the rules that make a canon violation fail the build:
+
+```js
+// eslint.config.js
+module.exports = [ ...require('./vendor/snm/eslint-snm.cjs') ];
+```
+
+If you would rather write a bare specifier than a relative path, the vendored
+directory is a valid package:
+
+```bash
+npm i file:./vendor/snm     # then: import { token } from '@snm/tokens'
 ```
 
 </details>
@@ -220,14 +254,17 @@ ctx.fillStyle = token('bgInverse');
 <br>
 
 ```bash
-# 1  edit tokens/tokens.json
-npm run build      # regenerate every binding and the showcase
-npm run check      # 34 contrast pairs, both themes
-# 2  raise $meta.version, record it in CHANGELOG.md
+# 1  edit tokens/tokens.json, raise $meta.version
+npm run verify     # rebuild every binding and the showcase, then both gates
+# 2  record the change in CHANGELOG.md
 ```
 
-The gate also holds guard tests over tones banned for text, so a future palette
-edit cannot quietly make them look safe. See [`CONTRIBUTING.md`](CONTRIBUTING.md).
+The contrast gate holds guard tests over tones banned for text, so a future
+palette edit cannot quietly make them look safe. The canon gate refuses a radius,
+a blur, a gradient or a hand-written colour anywhere in the source, checks that
+the print stylesheet and the Office theme still carry real token values, and
+fails if the version disagrees with itself in any of the six places it is stated.
+See [`CONTRIBUTING.md`](CONTRIBUTING.md).
 
 </details>
 
@@ -238,9 +275,9 @@ edit cannot quietly make them look safe. See [`CONTRIBUTING.md`](CONTRIBUTING.md
 ```
 SKILL.md          the constitution — also the skill entry point
 references/       12 medium and base-layer references
-tokens/           tokens.json + generated bindings in dist/
+tokens/           tokens.json + generated delivery surface in dist/
 assets/           web · print · office reference implementations
-scripts/          build · preview · contrast gate
+scripts/          build · preview · vendor · contrast gate · canon gate
 preview/          generated showcase — do not edit
 install.ps1 .sh   installers
 ```
@@ -250,7 +287,19 @@ The repository root *is* the skill: the installer links it into
 
 ---
 
+## 07 // LICENCE
+
+The code, the tokens and the documentation are **MIT** — take the pipeline, the
+gates, the token compiler, any of it.
+
+What MIT does not grant is an identity. "Swiss Neo-Monolith", "SNM" and this
+palette are the signature of one person's work; using them to present output as
+mine would be misrepresentation whatever the licence says. Fork the machinery,
+change the name and the accent, and it is yours.
+
+---
+
 ```
 OKAN ÖZTÜRK · joxinyks.com
-REV 1.1.0 · STATUS: OPERATIONAL · LICENCE: MIT
+REV 1.2.0 · STATUS: OPERATIONAL · LICENCE: MIT
 ```

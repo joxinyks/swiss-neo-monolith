@@ -1,0 +1,27 @@
+{
+  "name": "@snm/tokens",
+  "version": "1.2.0",
+  "description": "Swiss Neo-Monolith design tokens — generated bindings. Source: tokens/tokens.json.",
+  "license": "MIT",
+  "author": "Okan Öztürk (https://joxinyks.com)",
+  "type": "module",
+  "sideEffects": [
+    "*.css",
+    "*.scss"
+  ],
+  "exports": {
+    ".": {
+      "types": "./tokens.ts",
+      "default": "./tokens.ts"
+    },
+    "./tokens.css": "./tokens.css",
+    "./tokens.scss": "./tokens.scss",
+    "./tokens.ts": "./tokens.ts",
+    "./tokens.py": "./tokens.py",
+    "./tokens.dart": "./tokens.dart",
+    "./tokens.resolved.json": "./tokens.resolved.json",
+    "./tailwind.preset.cjs": "./tailwind.preset.cjs",
+    "./eslint-snm.cjs": "./eslint-snm.cjs",
+    "./package.json": "./package.json"
+  }
+}

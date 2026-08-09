@@ -53,7 +53,7 @@ html { font-family: 'Inter', sans-serif; }
 body {
   font-size: 10pt;
   line-height: 14pt;      /* baseline unit — all vertical rhythm is a multiple */
-  color: #000;            /* K100, never rich black, for body text */
+  color: #000;            /* SNM-ALLOW — K100, never rich black, for body text. Deliberately not a token: obsidian is a screen colour, and printing it as a four-colour build would fringe on small type. */
   background: #fff;
   text-align: left;       /* SNM: never justified */
   hyphens: none;

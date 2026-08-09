@@ -4,28 +4,48 @@ React + Tailwind is the default; plain HTML/CSS uses `tokens.css` directly.
 
 ## Setup
 
+Vendor the compiled tokens into the project first — one directory, nothing else
+to install:
+
+```bash
+node scripts/vendor.mjs ../my-app/vendor/snm
+```
+
 ```js
 // tailwind.config.js
 module.exports = {
-  presets: [require('./node_modules/@snm/tokens/tailwind.preset.cjs')],
+  presets: [require('./vendor/snm/tailwind.preset.cjs')],
   content: ['./src/**/*.{ts,tsx}'],
 };
 ```
 
 ```css
 /* app.css — first */
-@import '@snm/tokens/tokens.css';
+@import './vendor/snm/tokens.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 ```
+
+`npm i file:./vendor/snm` makes the same files resolvable as `@snm/tokens` if the
+project prefers a bare specifier. Either way there is no registry and no release
+step: the vendored copy is pinned by the consuming project's own commit.
 
 The preset **replaces** the colour and spacing scales rather than extending them:
 an off-palette colour or off-scale spacing value produces no class, and the error
 surfaces at build time. This is intentional.
 
 **No arbitrary values:** never write `bg-[#121316]`, `p-[10px]`, `text-[11px]`.
-Enforce it with `assets/web/eslint-snm.cjs`.
+Enforce it with the lint config that ships alongside the tokens:
+
+```js
+// eslint.config.js
+module.exports = [ ...require('./vendor/snm/eslint-snm.cjs') ];
+```
+
+Its source is `assets/web/eslint-snm.cjs`; `scripts/check-canon.mjs` tests every
+rule in it against a violation it must catch and a correct line it must not
+flag, so a rule cannot rot into decoration.
 
 ## Layout
 

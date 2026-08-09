@@ -6,6 +6,69 @@ Versioning: `MAJOR.MINOR.PATCH`.
 
 ---
 
+## 1.2.0 — 2026-08-09
+
+The system could be read, but not taken. This closes the gap between what the
+documentation promised and what the repository actually delivered, and puts the
+canon under a gate instead of under a checklist.
+
+### Added
+- **`scripts/vendor.mjs`** and `npm run vendor`. The README described four
+  different import paths — `@snm/tokens`, `./vendor/snm/`, `snm.tokens`,
+  `snm/tokens.dart` — and `references/10-web.md` a fifth. None of them resolved:
+  the package is private, unpublished, and has no Python or Dart distribution.
+  There is now one documented path, and it works.
+
+- **`tokens/dist/package.json`**, generated. The delivery surface is a real
+  package, so `npm i file:./vendor/snm` turns the relative paths into the bare
+  `@snm/tokens` specifier for projects that prefer it. Its version is read from
+  `tokens.json` and can never disagree with the tokens it ships.
+
+- **`scripts/check-canon.mjs`** and `npm run check:canon` — the second gate.
+  Contrast was measured; the other five canon items were enforced only by a
+  human reading `99-checklist.md`. It now scans hand-written source for a
+  non-zero radius, blur, gradient, blurred `box-shadow`, `transition: all` and
+  the `vh` unit; verifies every literal colour outside `tokens.json` resolves to
+  a real token value; checks the version agrees with itself across all six places
+  it is stated; and exercises each shipped ESLint rule against a violation it
+  must catch and a clean line it must not flag.
+
+- `SNM-ALLOW` as the single, documented escape hatch from that gate. Three lines
+  carry it, each stating its reason.
+
+- CI now runs the canon gate, parses `install.ps1` (only `install.sh` was
+  checked, on a Windows-first system), and smoke-tests the vendor path end to
+  end.
+
+### Fixed
+- **The terminal panel was invisible in the dark showcase.** It took `bg-inverse`
+  as its background, which resolves to bone in the dark theme — bone text on a
+  bone panel. It is pinned now, like the slide: a terminal is dark in both
+  themes.
+
+- **The showcase was only partly generated from the tokens**, despite the README
+  claiming otherwise. The print, slide and terminal panels carried nine
+  hand-written hex values duplicating token values, so a palette edit would have
+  left them behind. They resolve through the tokens now, pinned to a theme where
+  the medium demands it.
+
+- The lint config's usage example pointed at a package that did not exist, and
+  `10-web.md` disagreed with the README about how to install the Tailwind preset.
+
+### Changed
+- `tokens.json` no longer claims a `$schema` that does not exist. The DTCG has
+  published no JSON Schema, and this file would not validate against one anyway —
+  themed tokens carry a light/dark pair rather than a `$value`. A `$format` block
+  states the relationship honestly.
+
+- README gained a licence section. MIT covers the code, the tokens and the
+  documentation; it does not hand over the name or the signature palette.
+
+- `CONTRIBUTING.md` documents the gate, the escape hatch and the vendor path;
+  its sections renumbered to accommodate them.
+
+---
+
 ## 1.1.0 — 2026-08-09
 
 The repository is restructured around its visitors rather than its packaging.

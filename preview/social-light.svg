@@ -5,7 +5,7 @@
 <line x1="80" y1="512" x2="1200" y2="512" stroke="#121316" stroke-width="1" stroke-opacity="0.2" shape-rendering="crispEdges"/>
 <text x="80" y="96" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="22" font-weight="700" letter-spacing="1.76" fill="#047857">00 //</text>
 <text x="172" y="96" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="22" font-weight="700" letter-spacing="1.76" fill="#4b5563">DESIGN SYSTEM</text>
-<text x="1200" y="96" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="22" font-weight="700" letter-spacing="1.76" fill="#4b5563" text-anchor="end">REV 1.1.0</text>
+<text x="1200" y="96" font-family="'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="22" font-weight="700" letter-spacing="1.76" fill="#4b5563" text-anchor="end">REV 1.2.0</text>
 
 <rect x="80" y="210" width="8" height="168" fill="#10b981" shape-rendering="crispEdges"/>
 <text x="120" y="288" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="92" font-weight="800" letter-spacing="-3.68" fill="#121316">SWISS</text>

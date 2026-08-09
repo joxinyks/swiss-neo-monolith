@@ -7,6 +7,11 @@
  * Reads tokens/tokens.json (the ONLY hand-edited token file) and emits
  * platform bindings into tokens/dist/. Everything in dist/ is generated;
  * editing it by hand is a bug.
+ *
+ * tokens/dist/ is also the system's DELIVERY SURFACE: it carries its own
+ * package.json and a copy of the lint config, so `scripts/vendor.mjs` can drop
+ * the whole directory into a consuming project and every documented import path
+ * resolves. Nothing outside dist/ needs to travel with it.
  */
 
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
@@ -16,6 +21,7 @@ import { fileURLToPath } from 'node:url';
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const SRC = resolve(ROOT, 'tokens/tokens.json');
 const OUT = resolve(ROOT, 'tokens/dist');
+const PKG = JSON.parse(readFileSync(resolve(ROOT, 'package.json'), 'utf8'));
 
 const T = JSON.parse(readFileSync(SRC, 'utf8'));
 const VERSION = T.$meta.version;
@@ -139,7 +145,7 @@ ${cssVars(themed, 1)}
 /* SNM-CANON-01 — zero radius is structural, not decorative. */
 @layer base {
   *, *::before, *::after { border-radius: 0; }
-  .snm-pulse { border-radius: 9999px; } /* the single sanctioned exception */
+  .snm-pulse { border-radius: 9999px; } /* SNM-ALLOW C01 — the one sanctioned exception */
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -218,7 +224,7 @@ ${Object.keys(T.space).filter(k => !k.startsWith('$')).map(k => `      '${k}': $
       px: '1px',
       full: '100%',
     },
-    borderRadius: { none: '0px', full: '9999px' },
+    borderRadius: { none: '0px', full: '9999px' }, // SNM-ALLOW C01 — 'full' exists for the pulse dot alone
     borderWidth: { 0: '0', DEFAULT: '1px', 2: '2px', 3: '3px' },
     fontFamily: {
       sans: [${JSON.stringify(T.type.family.sans.$value)}],
@@ -322,6 +328,40 @@ ${Object.entries(T.type.scale).filter(([k]) => !k.startsWith('$'))
 const BorderRadius snmRadius = BorderRadius.zero;
 `;
 
+/* ---------- package manifest ------------------------------------------- */
+
+/* Makes the vendored directory a real package: `npm i file:./vendor/snm`
+ * resolves every specifier documented in references/10-web.md. The version is
+ * taken from tokens.json so the manifest can never disagree with the tokens it
+ * ships — scripts/check-canon.mjs asserts the two against package.json. */
+const pkg = {
+  name: '@snm/tokens',
+  version: VERSION,
+  description: 'Swiss Neo-Monolith design tokens — generated bindings. Source: tokens/tokens.json.',
+  license: PKG.license,
+  author: PKG.author,
+  type: 'module',
+  sideEffects: ['*.css', '*.scss'],
+  exports: {
+    '.': { types: './tokens.ts', default: './tokens.ts' },
+    './tokens.css': './tokens.css',
+    './tokens.scss': './tokens.scss',
+    './tokens.ts': './tokens.ts',
+    './tokens.py': './tokens.py',
+    './tokens.dart': './tokens.dart',
+    './tokens.resolved.json': './tokens.resolved.json',
+    './tailwind.preset.cjs': './tailwind.preset.cjs',
+    './eslint-snm.cjs': './eslint-snm.cjs',
+    './package.json': './package.json',
+  },
+};
+
+/* ---------- lint config (copied in, so the package is self-contained) --- */
+
+const lintSrc = readFileSync(resolve(ROOT, 'assets/web/eslint-snm.cjs'), 'utf8');
+const lint = `/*\n${banner(' *', ' * Copied from assets/web/eslint-snm.cjs — edit that file, then rebuild.')} */\n\n` +
+  lintSrc.replace(/^\/\*\*[\s\S]*?\*\/\n\n/, '');
+
 /* ---------- resolved JSON --------------------------------------------- */
 
 const resolved = {
@@ -341,6 +381,8 @@ const files = {
   'tokens.py': py,
   'tokens.dart': dart,
   'tokens.resolved.json': JSON.stringify(resolved, null, 2) + '\n',
+  'eslint-snm.cjs': lint,
+  'package.json': JSON.stringify(pkg, null, 2) + '\n',
 };
 
 for (const [name, body] of Object.entries(files)) {

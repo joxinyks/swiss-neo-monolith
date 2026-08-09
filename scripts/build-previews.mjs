@@ -63,6 +63,22 @@ const palette = (theme) => ({
   danger: t('danger', theme),
 });
 
+/** Fixed-medium colours. A printed page is white and a slide is obsidian
+ *  whatever the viewer's theme is, so those two panels pin their palette instead
+ *  of following the sheet. They still resolve through the tokens: a palette edit
+ *  moves them with everything else, and no hex is written by hand here. */
+const F = {
+  paper: t('color-bone-50', 'light'),
+  ink: t('color-obsidian-900', 'light'),
+  inkMuted: t('color-steel-600', 'light'),
+  screen: t('color-obsidian-900', 'light'),
+  screenText: t('color-bone-200', 'light'),
+  screenMuted: t('color-steel-400', 'light'),
+  screenDim: t('color-steel-500', 'light'),
+  accent: t('color-mint-500', 'light'),
+  accentText: t('color-mint-300', 'light'),
+};
+
 /* ---------- primitives -------------------------------------------------- */
 
 const esc = (s) => String(s)
@@ -70,7 +86,7 @@ const esc = (s) => String(s)
 
 function text(content, o = {}) {
   const {
-    x = 0, y = 0, size = 13, weight = 400, fill = '#000',
+    x = 0, y = 0, size = 13, weight = 400, fill = 'currentColor',
     mono = true, anchor = 'start', track = mono ? 0.08 : 0, len,
   } = o;
   const a = [
@@ -212,47 +228,50 @@ function media(theme) {
 
   // 02 PRINT
   x = M + pw + gap;
-  out.push(head(x, y - 10, '02', 'PRINT & PDF'), rect(x, y, pw, ph, '#ffffff', { stroke: c.strong, sw: 2 }));
+  out.push(head(x, y - 10, '02', 'PRINT & PDF'), rect(x, y, pw, ph, F.paper, { stroke: c.strong, sw: 2 }));
   const ps = x + Math.round(pw * 0.4);
   out.push(
-    text('03 // FINANCIALS', { x: x + 14, y: y + 22, size: 10, weight: 700, fill: '#4b5563' }),
-    text(`REV ${REV}`, { x: x + pw - 14, y: y + 22, size: 10, weight: 700, fill: '#4b5563', anchor: 'end' }),
-    line(x + 14, y + 30, x + pw - 14, y + 30, '#121316', 1, 0.35),
-    text('Quarterly report', { x: x + 14, y: y + 62, size: 17, weight: 800, mono: false, fill: '#121316' }),
-    line(ps, y + 42, ps, y + ph - 34, '#121316', 1, 0.2),
-    ...[0, 1, 2, 3, 4].map((i) => line(ps + 14, y + 54 + i * 16, x + pw - 14 - (i % 3) * 16, y + 54 + i * 16, '#121316', 1, 0.3)),
-    line(x + 14, y + ph - 26, x + pw - 14, y + ph - 26, '#121316', 1, 0.35),
-    text(`OKAN ÖZTÜRK · ${DATE}`, { x: x + 14, y: y + ph - 9, size: 10, fill: '#4b5563' }),
-    text('03 / 12', { x: x + pw - 14, y: y + ph - 9, size: 10, weight: 700, fill: '#121316', anchor: 'end' }),
+    text('03 // FINANCIALS', { x: x + 14, y: y + 22, size: 10, weight: 700, fill: F.inkMuted }),
+    text(`REV ${REV}`, { x: x + pw - 14, y: y + 22, size: 10, weight: 700, fill: F.inkMuted, anchor: 'end' }),
+    line(x + 14, y + 30, x + pw - 14, y + 30, F.ink, 1, 0.35),
+    text('Quarterly report', { x: x + 14, y: y + 62, size: 17, weight: 800, mono: false, fill: F.ink }),
+    line(ps, y + 42, ps, y + ph - 34, F.ink, 1, 0.2),
+    ...[0, 1, 2, 3, 4].map((i) => line(ps + 14, y + 54 + i * 16, x + pw - 14 - (i % 3) * 16, y + 54 + i * 16, F.ink, 1, 0.3)),
+    line(x + 14, y + ph - 26, x + pw - 14, y + ph - 26, F.ink, 1, 0.35),
+    text(`OKAN ÖZTÜRK · ${DATE}`, { x: x + 14, y: y + ph - 9, size: 10, fill: F.inkMuted }),
+    text('03 / 12', { x: x + pw - 14, y: y + ph - 9, size: 10, weight: 700, fill: F.ink, anchor: 'end' }),
   );
 
   // 03 SLIDE
   x = M; y = 82 + ph + 42;
-  out.push(head(x, y - 10, '03', 'SLIDE'), rect(x, y, pw, ph, '#121316', { stroke: c.strong, sw: 2 }));
+  out.push(head(x, y - 10, '03', 'SLIDE'), rect(x, y, pw, ph, F.screen, { stroke: c.strong, sw: 2 }));
   out.push(
-    text('SECTION 03 / 07', { x: x + 14, y: y + 24, size: 10, weight: 700, fill: '#9ca3af' }),
-    text('03', { x: x + 14, y: y + 108, size: 64, weight: 800, mono: false, fill: '#10b981' }),
-    rect(x + 14, y + 124, pw - 28, 2, '#10b981'),
-    text('Financials', { x: x + 14, y: y + 154, size: 20, weight: 800, mono: false, fill: '#f2f4f3' }),
-    line(x + 14, y + ph - 26, x + pw - 14, y + ph - 26, '#f2f4f3', 1, 0.15),
-    text('OKAN ÖZTÜRK', { x: x + 14, y: y + ph - 9, size: 10, fill: '#9ca3af' }),
-    text('03 / 24', { x: x + pw - 14, y: y + ph - 9, size: 10, weight: 700, fill: '#6ee7b7', anchor: 'end' }),
+    text('SECTION 03 / 07', { x: x + 14, y: y + 24, size: 10, weight: 700, fill: F.screenMuted }),
+    text('03', { x: x + 14, y: y + 108, size: 64, weight: 800, mono: false, fill: F.accent }),
+    rect(x + 14, y + 124, pw - 28, 2, F.accent),
+    text('Financials', { x: x + 14, y: y + 154, size: 20, weight: 800, mono: false, fill: F.screenText }),
+    line(x + 14, y + ph - 26, x + pw - 14, y + ph - 26, F.screenText, 1, 0.15),
+    text('OKAN ÖZTÜRK', { x: x + 14, y: y + ph - 9, size: 10, fill: F.screenMuted }),
+    text('03 / 24', { x: x + pw - 14, y: y + ph - 9, size: 10, weight: 700, fill: F.accentText, anchor: 'end' }),
   );
 
   // 04 TERMINAL
   x = M + pw + gap;
-  out.push(head(x, y - 10, '04', 'TERMINAL'), rect(x, y, pw, ph, c.inverse, { stroke: c.strong, sw: 2 }));
+  // Pinned like the slide: a terminal is dark in both themes. It used to take
+  // bg-inverse, which in the dark sheet resolves to bone — bone text on a bone
+  // panel, i.e. an invisible panel.
+  out.push(head(x, y - 10, '04', 'TERMINAL'), rect(x, y, pw, ph, F.screen, { stroke: c.strong, sw: 2 }));
   [
-    ['01 // BUILD', '#9ca3af', 700],
-    ['● tokens        110', '#10b981', 400],
-    ['● contrast       34', '#10b981', 400],
-    ['◐ previews    12/12', '#f2f4f3', 400],
-    ['████████████  100%', '#10b981', 400],
-    ['DONE · 1.24s', '#6b7280', 400],
+    ['01 // BUILD', F.screenMuted, 700],
+    ['● tokens        110', F.accent, 400],
+    ['● contrast       34', F.accent, 400],
+    ['◐ previews    12/12', F.screenText, 400],
+    ['████████████  100%', F.accent, 400],
+    ['DONE · 1.24s', F.screenDim, 400],
   ].forEach(([s, fill, weight], i) => {
     out.push(text(s, { x: x + 14, y: y + 30 + i * 24, size: 12, weight, fill }));
   });
-  out.push(line(x + 14, y + ph - 26, x + pw - 14, y + ph - 26, '#f2f4f3', 1, 0.15));
+  out.push(line(x + 14, y + ph - 26, x + pw - 14, y + ph - 26, F.screenText, 1, 0.15));
 
   const h = y + ph + 68;
   out.push(text('Same canon in four media: zero radius, CAD index, one accent, rules not shadows, telemetry.',

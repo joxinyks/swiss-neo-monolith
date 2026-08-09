@@ -7,3 +7,7 @@ Thumbs.db
 
 # tokens/dist IS committed on purpose: consumers pull this repo and use the
 # bindings directly without needing Node. Regenerate with build-tokens.mjs.
+
+# scripts/vendor.mjs writes here when run with no target. A vendored copy inside
+# the repository that produced it is a second source of truth waiting to drift.
+/vendor/
